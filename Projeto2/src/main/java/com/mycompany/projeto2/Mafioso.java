@@ -4,19 +4,19 @@ public abstract class Mafioso {
 
     //Variaveis de Instancia
     private String nome;
-    private int ccId, lealdade, musculo, inteligencia, estratega, carisma, probabilidaSerPreso;
+    private int ccId, lealdade, musculo, inteligencia, estratega, carisma, probabilidadeSerPreso;
     private boolean estaPreso, linhagem;
 
 //Construtores
 // Construtor Mafioso
-    public Mafioso(String nome, int ccId, int lealdade, int musculo, int inteligencia, int estratega, int carisma, int probabilidaSerPreso, boolean estaPreso, boolean linhagem) {
+    public Mafioso(String nome, int ccId, int lealdade, int musculo, int inteligencia, int estratega, int carisma, int probabilidadeSerPreso, boolean estaPreso, boolean linhagem) {
         this.nome = nome;
         this.lealdade = lealdade;
         this.musculo = musculo;
         this.inteligencia = inteligencia;
         this.estratega = estratega;
         this.carisma = carisma;
-        this.probabilidaSerPreso = probabilidaSerPreso;
+        this.probabilidadeSerPreso = probabilidadeSerPreso;
         this.carisma = carisma;
         this.estaPreso = estaPreso;
         this.linhagem = linhagem;
@@ -78,12 +78,12 @@ public abstract class Mafioso {
         this.carisma = carisma;
     }
 
-    public int getProbabilidaSerPreso() {
-        return probabilidaSerPreso;
+    public int getProbabilidadeSerPreso() {
+        return probabilidadeSerPreso;
     }
 
-    public void setProbabilidaSerPreso(int probabilidaSerPreso) {
-        this.probabilidaSerPreso = probabilidaSerPreso;
+    public void setProbabilidadeSerPreso(int probabilidadeSerPreso) {
+        this.probabilidadeSerPreso = probabilidadeSerPreso;
     }
 
     public boolean isEstaPreso() {
@@ -104,6 +104,6 @@ public abstract class Mafioso {
 
     @Override
     public String toString() {
-        return "Nome do mafioso=" + nome + ", ccId=" + ccId + ", lealdade=" + lealdade + ", musculo=" + musculo + ", inteligencia=" + inteligencia + ", estratega=" + estratega + ", carisma=" + carisma + ", probabilidaSerPreso=" + probabilidaSerPreso + ", estaPreso=" + estaPreso + ", linhagem=" + linhagem + '}';
+        return "Nome do mafioso=" + nome + ", ccId=" + ccId + ", lealdade=" + lealdade + ", musculo=" + musculo + ", inteligencia=" + inteligencia + ", estratega=" + estratega + ", carisma=" + carisma + ", probabilidadeSerPreso=" + probabilidadeSerPreso + ", estaPreso=" + estaPreso + ", linhagem=" + linhagem + '}';
     }
 }
