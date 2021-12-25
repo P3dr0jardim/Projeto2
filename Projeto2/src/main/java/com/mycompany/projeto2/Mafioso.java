@@ -3,14 +3,17 @@ package com.mycompany.projeto2;
 public abstract class Mafioso {
 
     //Variaveis de Instancia
+    private Familia familia;
     private String nome;
     private int ccId, lealdade, musculo, inteligencia, estratega, carisma, probabilidadeSerPreso;
     private boolean estaPreso, linhagem;
 
 //Construtores
 // Construtor Mafioso
-    public Mafioso(String nome, int ccId, int lealdade, int musculo, int inteligencia, int estratega, int carisma, int probabilidadeSerPreso, boolean estaPreso, boolean linhagem) {
+    public Mafioso(Familia familia, String nome, int ccId, int lealdade, int musculo, int inteligencia, int estratega, int carisma, int probabilidadeSerPreso, boolean estaPreso, boolean linhagem) {
+        this.familia = familia;
         this.nome = nome;
+        this.ccId = ccId;
         this.lealdade = lealdade;
         this.musculo = musculo;
         this.inteligencia = inteligencia;
@@ -101,9 +104,20 @@ public abstract class Mafioso {
     public void setLinhagem(boolean linhagem) {
         this.linhagem = linhagem;
     }
-
+    
     @Override
     public String toString() {
-        return "Nome do mafioso=" + nome + ", ccId=" + ccId + ", lealdade=" + lealdade + ", musculo=" + musculo + ", inteligencia=" + inteligencia + ", estratega=" + estratega + ", carisma=" + carisma + ", probabilidadeSerPreso=" + probabilidadeSerPreso + ", estaPreso=" + estaPreso + ", linhagem=" + linhagem + '}';
+        String texto;
+        texto = "Nome do mafioso: "+nome+"\n";
+        texto += "ccId:" + ccId+"\n";
+        texto += "Lealdade:" + lealdade+"\n";
+        texto += "Musculo:" + musculo+"\n";
+        texto += "Inteligencia:" + inteligencia+"\n";
+        texto += "Estratega:" + estratega+"\n";
+        texto += "Carisma:" + carisma+"\n";
+        texto += "ProbabilidadeSerPreso:" + probabilidadeSerPreso+"\n";
+        texto += "EstaPreso:" + estaPreso+"\n";
+        texto += "Linhagem:" + linhagem+"\n";
+        return texto;
     }
 }
