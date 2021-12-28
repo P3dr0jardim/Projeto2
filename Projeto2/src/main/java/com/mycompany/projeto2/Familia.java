@@ -86,6 +86,11 @@ public class Familia {
         caporegimes.add(caporegime);
     }
     
+    public CapoRegime getCapoRegime(int id){
+        System.out.println("CapoRegime: " + caporegimes.get(id));
+        return caporegimes.get(id);
+    }
+    
     //Método que devolve a lista com os soldiers da família 
     public ArrayList<Soldier> getSoldiers(){
         return soldiers;

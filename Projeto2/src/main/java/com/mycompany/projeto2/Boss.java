@@ -4,39 +4,52 @@ public class Boss extends Mafioso {
 
     private boolean consiglieri = false;
     private Familia familia;
+    private CapoRegime equipaDoCapoRegime;
 
     public Boss(Familia familia, String nome, int ccId, int lealdade, int musculo, int inteligencia, int estratega, int carisma, int probabilidaSerPreso, boolean estaPreso, boolean linhagem) {
         super(familia, nome, ccId, lealdade, musculo, inteligencia, estratega, carisma, probabilidaSerPreso, estaPreso, linhagem);
         this.familia = familia;
     }
 
-    public void RecrutaSoldier(String nome) {
+    public void RecrutaSoldier(String nome, int capoRegime) {
         //Codigo para recrutar um soldier 
         familia.addSoldier(new Soldier(familia, nome, 10, 50, 20, 10, 70, 80, 10, false, true));
-           
+        
+        equipaDoCapoRegime = familia.getCapoRegime(capoRegime);
+        
+        equipaDoCapoRegime.addSoldier(new Soldier(familia, nome, 10, 50, 20, 10, 70, 80, 10, false, true));
+        
         System.out.println("Familia do soldier " + familia.getNome());
         
-        System.out.println("Sodliers: " + familia.getSoldiers());
+        System.out.println(equipaDoCapoRegime.capoRegimeTeam());
+        
         System.out.println("Atualmente existem: " + familia.getSoldiers().size());
     }
 
-    public void RecrutaCapoRegime() {
+    public void RecrutaCapoRegime(String nome) {
         //Codigo para recrutar um CapoRegime 
-        CapoRegime capoRegime = new CapoRegime(familia, "Joao", 100, 50, 20, 10, 70, 80, 10, false, true);
-        System.out.println("O capoRegime foi criado com os dados:" + capoRegime.toString());
+        
+        familia.addCapoRegime(new CapoRegime(familia, nome, 10, 50, 20, 10, 70, 80, 10, false, true));
+        
+        System.out.println("Familia do capoRegime " + familia.getNome());
+        System.out.println("Atualmente existem: " + familia.getCapoRegime().size());
     }
 
-    public void RecrutaUnderboss() {
+    public void RecrutaUnderboss(String nome) {
         //Codigo para recrutar um Underboss 
-        Underboss underboss = new Underboss(familia, "Antonio", 100, 50, 20, 10, 70, 80, 10, false, true);
-        System.out.println("O underboss foi criado com os dados:" + underboss.toString());
+        familia.addUnderboss(new Underboss(familia, nome, 100, 50, 20, 10, 70, 80, 10, false, true)); 
+        
+        System.out.println("Familia do capoRegime " + familia.getNome());
+        System.out.println("Atualmente existem: " + familia.getUnderBoss().size());
     }
 
-    public void NomearConsiglieri() {
+    public void NomearConsiglieri(String nome) {
         //Codigo para nomear um consiglieri 
         consiglieri = true;
-        Consiglieri consiglieri = new Consiglieri(familia, "Marcelo", 100, 50, 20, 10, 70, 80, 10, false, true);
-        System.out.println("O consiglieri foi criado com os dados:" + consiglieri.toString());
+        
+        familia.addConsiglieri(new Consiglieri(familia, nome, 100, 50, 20, 10, 70, 80, 10, false, true)); 
+        System.out.println("Familia do consiglieri " + familia.getNome());
+        System.out.println("Atualmente existem: " + familia.getConsiglieri().size());
     }
 
     public String temConsiglieri() {
