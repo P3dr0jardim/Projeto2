@@ -14,15 +14,6 @@ public class Familia {
     private ArrayList<Soldier> soldiers;
     
     //Construtor
-    public Familia(){
-        mafiosos = new ArrayList<Mafioso>();
-        bosses = new ArrayList<Boss>();
-        underbosses = new ArrayList<Underboss>();
-        consiglieris = new ArrayList<Consiglieri>();
-        caporegimes = new ArrayList<CapoRegime>();
-        soldiers = new ArrayList<Soldier>();
-    }
-    
     public Familia(int familiaId, String nome, double riqueza, double patrimonio){
         this.familiaId = familiaId;
         this.nome= nome;
