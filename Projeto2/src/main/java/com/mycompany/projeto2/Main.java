@@ -41,13 +41,6 @@ public class Main {
                         case 1:
                             System.out.println("Atualmente existe: " + familia1.getSoldiers());
 
-//                            System.out.println("Introduza a quantidade de soldiers que deseja criar");
-//                            quantidadeSoldiers = scan.nextInt();
-//
-//                            for (int i = 0; i < quantidadeSoldiers; i++) {
-//
-//                            }
-                            
                             System.out.println("CapoRegimes disponiveis" + familia1.getCapoRegime());
                             
                             System.out.println("Introduza o capoRegime que o soldier ira fazer parte");
@@ -69,8 +62,6 @@ public class Main {
                             break;
                         case 4:
                             //Gera negocios para caporegime
-                            
-                            
                             break;
                         case 5:
                             System.out.println("Introduza o nome do Consiglieri");
