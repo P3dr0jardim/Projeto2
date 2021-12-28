@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class Familia {
     //Variáveis de Instância
+    private int familiaId;
     private String nome;
     private double riqueza, patrimonio;
     private ArrayList<Mafioso> mafiosos;
@@ -13,7 +14,8 @@ public class Familia {
     private ArrayList<Soldier> soldiers;
     
     //Construtor
-    public Familia(String nome, double riqueza, double patrimonio){
+    public Familia(int familiaId, String nome, double riqueza, double patrimonio){
+        this.familiaId = familiaId;
         this.nome= nome;
         this.riqueza= riqueza;
         this.patrimonio= patrimonio;
@@ -75,6 +77,11 @@ public class Familia {
         caporegimes.add(caporegime);
     }
     
+    public CapoRegime getCapoRegime(int id){
+        System.out.println("CapoRegime: " + caporegimes.get(id));
+        return caporegimes.get(id);
+    }
+    
     //Método que devolve a lista com os soldiers da família 
     public ArrayList<Soldier> getSoldiers(){
         return soldiers;
@@ -107,6 +114,14 @@ public class Familia {
         this.riqueza = riqueza;
     }
 
+    public int getFamiliaId() {
+        return familiaId;
+    }
+
+    public void setFamiliaId(int familiaId) {
+        this.familiaId = familiaId;
+    }
+
     public void setPatrimonio(double patrimonio) {
         this.patrimonio = patrimonio;
     }
@@ -115,7 +130,8 @@ public class Familia {
     @Override
     public String toString(){
         String texto;
-        texto = "Nome da Familia: "+nome+"\n";
+        texto = "Id da Familia: "+familiaId+"\n";
+        texto += "Nome da Familia: "+nome+"\n";
         texto += "Riqueza da Familia: "+riqueza+"\n";
         texto += "Patrimonio da Familia: "+patrimonio;
         return texto;

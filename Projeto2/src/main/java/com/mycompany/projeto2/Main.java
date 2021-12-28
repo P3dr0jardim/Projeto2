@@ -8,10 +8,13 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int opcao;
+        int opcao, capoRegime;
+        String nome;
         boolean sair = false;
 
         Scanner scan = new Scanner(System.in);
+        Familia familia1 = new Familia(1, "Peaky Blinders", 1000.0, 2000.0);
+        Boss chefeDaMafia = new Boss(familia1, "Thomas Shelby", 75, 55, 24, 10, 70, 80, 10, false, true);
 
         do {
             System.out.println("        MENU MÁFIA       ");
@@ -22,8 +25,6 @@ public class Main {
             System.out.println("5 - Sair da aplicação");
             System.out.println("Introduza uma opção: ");
             opcao = scan.nextInt();
-
-            Boss chefeDaMafia = new Boss("Al Pacino", 75, 55, 24, 10, 70, 80, 10, false, true);
 
             switch (opcao) {
                 case 1:
@@ -38,20 +39,34 @@ public class Main {
 
                     switch (opcao) {
                         case 1:
-                            chefeDaMafia.RecrutaSoldier();
+                            System.out.println("Atualmente existe: " + familia1.getSoldiers());
+
+                            System.out.println("CapoRegimes disponiveis" + familia1.getCapoRegime());
+                            
+                            System.out.println("Introduza o capoRegime que o soldier ira fazer parte");
+                            capoRegime = scan.nextInt();
+                            
+                            System.out.println("Introduza o nome do soldier");
+                            nome = scan.next();
+                            chefeDaMafia.RecrutaSoldier(nome, capoRegime);
                             break;
                         case 2:
-                            chefeDaMafia.RecrutaCapoRegime();
+                            System.out.println("Introduza o nome do capoRegime");
+                            nome = scan.next();
+                            chefeDaMafia.RecrutaCapoRegime(nome);
                             break;
                         case 3:
-                            chefeDaMafia.RecrutaUnderboss();
+                            System.out.println("Introduza o nome do Underboss");
+                            nome = scan.next();
+                            chefeDaMafia.RecrutaUnderboss(nome);
                             break;
                         case 4:
                             //Gera negocios para caporegime
                             break;
                         case 5:
-                            chefeDaMafia.NomearConsiglieri();
-                            System.out.println(chefeDaMafia.temConsiglieri());
+                            System.out.println("Introduza o nome do Consiglieri");
+                            nome = scan.next();
+                            chefeDaMafia.NomearConsiglieri(nome);
                             break;
                         default:
                             System.out.println("\nOpção inválida!\n");
@@ -109,7 +124,7 @@ public class Main {
 
                     switch (opcao) {
                         case 1:
-                            System.out.println("\naaaaaaaaaaa\n");
+                            System.out.println(familia1.getSoldiers());
                             break;
                         case 2:
                             break;
