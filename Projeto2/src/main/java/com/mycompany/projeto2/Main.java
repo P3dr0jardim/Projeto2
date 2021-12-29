@@ -8,14 +8,15 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int opcao, capoRegime;
+        int opcao, capoRegime, preso;
         String nome;
-        boolean sair = false;
+        boolean sair = false, underbossMenu = false;
 
         Scanner scan = new Scanner(System.in);
         Familia familia1 = new Familia(1, "Peaky Blinders", 1000.0, 2000.0);
         Boss chefeDaMafia = new Boss(familia1, "Thomas Shelby", 75, 55, 24, 10, 70, 80, 10, false, true);
-
+        Prisao prisao = new Prisao();
+        Underboss underboss;
         do {
             System.out.println("        MENU MÁFIA       ");
             System.out.println("1 - Boss");
@@ -41,11 +42,11 @@ public class Main {
                         case 1:
                             System.out.println("Atualmente existe: " + familia1.getSoldiers());
 
-                            System.out.println("CapoRegimes disponiveis" + familia1.getCapoRegime());
-                            
+                            System.out.println("CapoRegimes disponiveis" + familia1.getCapoRegimes());
+
                             System.out.println("Introduza o capoRegime que o soldier ira fazer parte");
                             capoRegime = scan.nextInt();
-                            
+
                             System.out.println("Introduza o nome do soldier");
                             nome = scan.next();
                             chefeDaMafia.RecrutaSoldier(nome, capoRegime);
@@ -59,6 +60,7 @@ public class Main {
                             System.out.println("Introduza o nome do Underboss");
                             nome = scan.next();
                             chefeDaMafia.RecrutaUnderboss(nome);
+                            underbossMenu = true;
                             break;
                         case 4:
                             //Gera negocios para caporegime
@@ -73,25 +75,35 @@ public class Main {
                     }
                     break;
                 case 2:
-                    System.out.println("\n        Opções válidas      ");
-                    System.out.println("1. Libertar mafioso");
-                    System.out.println("2. Período contabilístico");
-                    System.out.println("3. Loyalty test");
-                    System.out.println("O que pretende?");
-                    opcao = scan.nextInt();
+                    if (underbossMenu) {
+                        System.out.println("\n        Opções válidas      ");
+                        System.out.println("1. Libertar mafioso");
+                        System.out.println("2. Período contabilístico");
+                        System.out.println("3. Loyalty test");
+                        System.out.println("O que pretende?");
+                        opcao = scan.nextInt();
 
-                    switch (opcao) {
-                        case 1:
-                            System.out.println("\naaaaaaaaaaa\n");
-                            break;
-                        case 2:
-                            break;
-                        case 3:
-                            break;
-                        default:
-                            System.out.println("\nOpção inválida!\n");
-                            break;
+                        switch (opcao) {
+                            case 1:
+                                System.out.println("Introduza o id do mafioso que deseja libertar da prisao");
+                                preso = scan.nextInt();
+                                prisao.libertarPreso(preso);
+                                break;
+                            case 2:
+                                //Periodo Contabilistico
+                                break;
+                            case 3:
+                                underboss = familia1.getUnderBoss();
+                                underboss.loyaltyTest(familia1);
+                                break;
+                            default:
+                                System.out.println("\nOpção inválida!\n");
+                                break;
+                        }
+                    } else {
+                        System.out.println("O Menu underBoss esta indisponivel, porque o underboss ainda nao foi criado!");
                     }
+
                     break;
                 case 3:
                     System.out.println("\n        Opções válidas      ");
@@ -133,6 +145,7 @@ public class Main {
                         case 4:
                             break;
                         case 5:
+                            System.out.println("Obituario: " + familia1.getObituarioFamiliares());
                             break;
                         case 6:
                             break;

@@ -13,7 +13,7 @@ public class Boss extends Mafioso {
 
     public void RecrutaSoldier(String nome, int capoRegime) {
         //Codigo para recrutar um soldier 
-        familia.addSoldier(new Soldier(familia, nome, 10, 50, 20, 10, 70, 80, 10, false, true));
+        familia.addSoldier(new Soldier(familia, nome, 10, 10, 20, 10, 70, 80, 10, false, true));
         
         equipaDoCapoRegime = familia.getCapoRegime(capoRegime);
         
@@ -29,10 +29,10 @@ public class Boss extends Mafioso {
     public void RecrutaCapoRegime(String nome) {
         //Codigo para recrutar um CapoRegime 
         
-        familia.addCapoRegime(new CapoRegime(familia, nome, 10, 50, 20, 10, 70, 80, 10, false, true));
+        familia.addCapoRegime(new CapoRegime(familia, nome, 10, 10, 20, 10, 70, 80, 10, false, true));
         
         System.out.println("Familia do capoRegime " + familia.getNome());
-        System.out.println("Atualmente existem: " + familia.getCapoRegime().size());
+        System.out.println("Atualmente existem: " + familia.getCapoRegimes().size());
     }
 
     public void RecrutaUnderboss(String nome) {
@@ -40,7 +40,7 @@ public class Boss extends Mafioso {
         familia.addUnderboss(new Underboss(familia, nome, 100, 50, 20, 10, 70, 80, 10, false, true)); 
         
         System.out.println("Familia do capoRegime " + familia.getNome());
-        System.out.println("Atualmente existem: " + familia.getUnderBoss().size());
+        System.out.println("Atualmente existem: " + familia.getUnderBosses().size());
     }
 
     public void NomearConsiglieri(String nome) {
