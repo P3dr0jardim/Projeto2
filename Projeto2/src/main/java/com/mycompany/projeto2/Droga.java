@@ -25,11 +25,11 @@ public class Droga extends Negocio{
         for(int i=0;i<CapoRegime.getSoldiers().size();i++){ 
             media += CapoRegime.getSoldiers().get(i).getMusculo();
         }
-        if(media >= 70){
+        if(media/CapoRegime.getSoldiers().size() >= 70){
             double novaRentabilidade= rentabilidade * 2;
             setRentabilidade(novaRentabilidade);
         }
-        if(media >= 85){
+        if(media/CapoRegime.getSoldiers().size() >= 85){
             double novaRentabilidade = rentabilidade * 3;
             setRentabilidade(novaRentabilidade);
         }
