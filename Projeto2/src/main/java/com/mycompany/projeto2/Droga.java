@@ -15,8 +15,8 @@ public class Droga extends Negocio{
         return rentabilidade;
     }
 
-    public void setRentabilidade(int novaRentabilidade) {
-        this.rentabilidade = novaRentabilidade;
+    public void setRentabilidade(double aumento) {
+        this.rentabilidade = aumento;
     }
     
     //Média do Musculo da equipa de Soldiers
@@ -26,10 +26,12 @@ public class Droga extends Negocio{
             media += CapoRegime.getSoldiers().get(i).getMusculo();
         }
         if(media >= 70){
-            rentabilidade = rentabilidade*2;
+            double novaRentabilidade= rentabilidade * 2;
+            setRentabilidade(novaRentabilidade);
         }
         if(media >= 85){
-            rentabilidade = rentabilidade*3;
+            double novaRentabilidade = rentabilidade * 3;
+            setRentabilidade(novaRentabilidade);
         }
     }
     
