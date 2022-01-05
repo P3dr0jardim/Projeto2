@@ -23,7 +23,7 @@ public class Prisao {
         presos.add(mafioso);
     }
 
-    //Método que adiciona um membro da mafia à prisao
+    //Método que liberta um membro da mafia da prisao
     public void libertarPreso(int mafiosoId) {
         presos.remove(mafiosoId);
     }
