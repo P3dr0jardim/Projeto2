@@ -5,7 +5,7 @@ public abstract class Mafioso {
     //Variaveis de Instancia
     private Familia familia;
     private String nome;
-    private int ccId, lealdade, musculo, inteligencia, estratega, carisma, probabilidadeSerPreso;
+    private int ccId, lealdade, musculo, inteligencia, estratega, carisma, probabilidadeSerPreso = 0;
     private boolean estaPreso, linhagem;
 
 //Construtores
