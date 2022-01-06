@@ -11,12 +11,13 @@ public class Main {
         int opcao, capoRegime, preso;
         String nome;
         boolean sair = false, underbossMenu = false;
-
+        RandomAtributesGenerator randomAtributesGenerator = new RandomAtributesGenerator();
         Scanner scan = new Scanner(System.in);
         Familia familia1 = new Familia(1, "Peaky Blinders", 1000.0, 2000.0);
-        Boss chefeDaMafia = new Boss(familia1, "Thomas Shelby", 75, 55, 24, 10, 70, 80, 10, false, true);
+        Boss chefeDaMafia = new Boss(familia1, "Thomas Shelby", 1, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), 0, false, true);
         Prisao prisao = new Prisao();
         Underboss underboss;
+
         do {
             System.out.println("        MENU MÁFIA       ");
             System.out.println("1 - Boss");
