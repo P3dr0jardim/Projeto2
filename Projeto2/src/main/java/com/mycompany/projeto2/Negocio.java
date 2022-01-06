@@ -6,13 +6,15 @@ public class Negocio {
     private double ValorBaseTributavel;
     private int ProbPolicia;
     private boolean Policiavel;
+    private CapoRegime CapoRegime;
     
     //Constutor de negocio
-    public Negocio(String nome, double ValorBaseTributavel, int ProbPolicia, boolean Policiavel){
+    public Negocio(String nome, double ValorBaseTributavel, int ProbPolicia, boolean Policiavel, CapoRegime CapoRegime){
         this.nome=nome;
         this.ValorBaseTributavel=ValorBaseTributavel;
         this.ProbPolicia=0;
         this.Policiavel=Policiavel;
+        this.CapoRegime = CapoRegime;
     }
     
     //Getters e setters necessários
@@ -47,5 +49,25 @@ public class Negocio {
             int policia = rand.nextInt(61)+20;//valor entre 20 e 80 (inclusive ambos)
             setProbPolicia(policia);
         }
+    }
+    
+    public double VerificaInteligencia(){
+        double media = 0;
+        double soma = 0;
+        for(int i=0;i<CapoRegime.getSoldiers().size();i++){ 
+            soma += CapoRegime.getSoldiers().get(i).getInteligencia();
+        }
+        media = soma/CapoRegime.getSoldiers().size();
+        return media;
+    }
+    
+    public double VerificaMusculo(){
+        double media = 0;
+        double soma = 0;
+        for(int i=0;i<CapoRegime.getSoldiers().size();i++){ 
+            soma += CapoRegime.getSoldiers().get(i).getMusculo();
+        }
+        media = soma/CapoRegime.getSoldiers().size();
+        return media;
     }
 }

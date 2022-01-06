@@ -1,9 +1,9 @@
 package com.mycompany.projeto2;
 
-public class LavagemDinheiro extends Negocio{
+public class Casino extends Negocio{
     private double rentabilidade;
 
-    public LavagemDinheiro(double rentabilidade, CapoRegime Caporegime, String nome, double ValorBaseTributavel, int ProbPolicia, boolean Policiavel, CapoRegime CapoRegime) {
+    public Casino(double rentabilidade, String nome, double ValorBaseTributavel, int ProbPolicia, boolean Policiavel, CapoRegime CapoRegime) {
         super(nome, ValorBaseTributavel, ProbPolicia, Policiavel, CapoRegime);
         this.rentabilidade = rentabilidade;
     }
@@ -17,15 +17,18 @@ public class LavagemDinheiro extends Negocio{
     }
     
     //Média do Musculo da equipa de Soldiers
-    public void AtualizaRentabilidadeLavagem(){
-        if(VerificaInteligencia() >= 70){
-            double novaRentabilidade= rentabilidade * 2;
+    public void AtualiazaRentabilidadeCasino(){
+        if(VerificaInteligencia() >= 40){
+            double novaRentabilidade= rentabilidade * 1.5;
             setRentabilidade(novaRentabilidade);
         }
-        if(VerificaInteligencia() >= 85){
+        if(VerificaInteligencia() >= 70){
+            double novaRentabilidade = rentabilidade * 2;
+            setRentabilidade(novaRentabilidade);
+        }
+        if(VerificaInteligencia() >= 90){
             double novaRentabilidade = rentabilidade * 3;
             setRentabilidade(novaRentabilidade);
         }
     }
-    
 }

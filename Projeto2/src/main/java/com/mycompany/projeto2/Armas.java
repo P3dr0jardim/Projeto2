@@ -2,12 +2,10 @@ package com.mycompany.projeto2;
 
 public class Armas extends Negocio{
     private double rentabilidade;
-    private CapoRegime CapoRegime;
 
-    public Armas(double rentabilidade, CapoRegime Caporegime, String nome, double ValorBaseTributavel, int ProbPolicia, boolean Policiavel) {
-        super(nome, ValorBaseTributavel, ProbPolicia, Policiavel);
+    public Armas(double rentabilidade, String nome, double ValorBaseTributavel, int ProbPolicia, boolean Policiavel, CapoRegime CapoRegime) {
+        super(nome, ValorBaseTributavel, ProbPolicia, Policiavel, CapoRegime);
         this.rentabilidade = rentabilidade;
-        this.CapoRegime = CapoRegime;
     }
 
     public double getRentabilidade() {
@@ -19,18 +17,12 @@ public class Armas extends Negocio{
     }
     
     //Média do Musculo da equipa de Soldiers
-    public void VerificaMusculo(){
-        double media = 0;
-        double soma = 0;
-        for(int i=0;i<CapoRegime.getSoldiers().size();i++){ 
-            soma += CapoRegime.getSoldiers().get(i).getMusculo();
-        }
-        media = soma/CapoRegime.getSoldiers().size();
-        if(media >= 55){
+    public void AtualizaRentabilidadeArmas(){
+        if(VerificaMusculo() >= 55){
             double novaRentabilidade= rentabilidade * 1.5;
             setRentabilidade(novaRentabilidade);
         }
-        if(media >= 75){
+        if(VerificaMusculo() >= 75){
             double novaRentabilidade = rentabilidade * 2;
             setRentabilidade(novaRentabilidade);
         }
