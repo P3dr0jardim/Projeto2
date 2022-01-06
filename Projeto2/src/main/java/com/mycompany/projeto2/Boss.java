@@ -11,8 +11,6 @@ public class Boss extends Mafioso {
         this.familia = familia;
     }
     
-    
-
     public void RecrutaSoldier(String nome, int capoRegime) {
         //Codigo para recrutar um soldier 
         
