@@ -38,7 +38,7 @@ public class Negocio {
         return ValorBaseTributavel;
     }
 
-    public void setValorBaseTributavel(int NovoValorBase) {
+    public void setValorBaseTributavel(double NovoValorBase) {
         this.ValorBaseTributavel = NovoValorBase;
     }
 

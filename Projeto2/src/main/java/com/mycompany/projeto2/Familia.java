@@ -15,6 +15,7 @@ public class Familia {
     private ArrayList<CapoRegime> caporegimes;
     private ArrayList<Soldier> soldiers;
     private ArrayList<Object> obituarioFamiliares;
+    private ArrayList<Negocio> negocios;
 
     //Construtor
     public Familia(int familiaId, String nome, double riqueza, double patrimonio) {
@@ -29,6 +30,19 @@ public class Familia {
         caporegimes = new ArrayList<CapoRegime>();
         soldiers = new ArrayList<Soldier>();
         obituarioFamiliares = new ArrayList<Object>();
+        negocios = new ArrayList<Negocio>();
+    }
+
+    public ArrayList<Negocio> getNegocios() {
+        return negocios;
+    }
+
+    public void setNegocios(ArrayList<Negocio> negocios) {
+        this.negocios = negocios;
+    }
+    
+    public Negocio getNegocio(int id) {
+        return negocios.get(id);
     }
 
     //Método que devolve a lista de mafiosos na família 
@@ -67,10 +81,14 @@ public class Familia {
     }
 
     //Método que devolve a lista com o consiglieri da família 
-    public ArrayList<Consiglieri> getConsiglieri() {
+    public ArrayList<Consiglieri> getConsiglieris() {
         return consiglieris;
     }
 
+    public Consiglieri getConsiglieri(int id) {
+        return consiglieris.get(id);
+    }
+    
     //Método que adiciona o consiglieri à lista dos consiglieri da família
     public void addConsiglieri(Consiglieri consiglieri) {
         consiglieris.add(consiglieri);

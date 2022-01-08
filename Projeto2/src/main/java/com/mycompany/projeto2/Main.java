@@ -8,7 +8,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int opcao, capoRegime, preso;
+        int opcao, capoRegime, preso, negocio;
         String nome;
         boolean sair = false, underbossMenu = false;
         RandomAtributesGenerator randomAtributesGenerator = new RandomAtributesGenerator();
@@ -17,6 +17,7 @@ public class Main {
         Boss chefeDaMafia = new Boss(familia1, "Thomas Shelby", 1, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), 0, false, true);
         Prisao prisao = new Prisao();
         Underboss underboss;
+        Consiglieri consiglieri;
 
         do {
             System.out.println("        MENU MÁFIA       ");
@@ -115,7 +116,10 @@ public class Main {
 
                     switch (opcao) {
                         case 1:
-                            System.out.println("\naaaaaaaaaaa\n");
+                            System.out.println("Introduza o id do negocio que deseja expandir");
+                            negocio = scan.nextInt();
+                            consiglieri = familia1.getConsiglieri(0);
+                            consiglieri.expandirNegocio(negocio);
                             break;
                         case 2:
                             break;

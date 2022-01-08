@@ -51,7 +51,7 @@ public class Boss extends Mafioso {
 
         familia.addConsiglieri(new Consiglieri(familia, nome, 10, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), getProbabilidadeSerPreso(), false, true));
         System.out.println("Familia do consiglieri " + familia.getNome());
-        System.out.println("Atualmente existem: " + familia.getConsiglieri().size());
+        System.out.println("Atualmente existem: " + familia.getConsiglieris().size());
     }
 
     public String temConsiglieri() {
