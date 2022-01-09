@@ -7,15 +7,23 @@ public class Armas extends Negocio{
     }
     
     //Média do Musculo da equipa de Soldiers
-    public void AtualizaRentabilidadeArmas(){
-        if(VerificaMusculo() >= 55){
+    public void AtualizaValoresArmas(){
+        if(VerificaMusculo() >= 50 && VerificaMusculo() < 70){
             double novaRentabilidade= getRentabilidade() * 1.5;
             setRentabilidade(novaRentabilidade);
         }
-        if(VerificaMusculo() >= 75){
+        else if(VerificaMusculo() >= 70 && VerificaMusculo() < 90){
             double novaRentabilidade = getRentabilidade() * 2;
             setRentabilidade(novaRentabilidade);
+            setProbPolicia(getProbPolicia()-5);
         }
+        else if(VerificaMusculo() >= 95){
+            double novaRentabilidade = getRentabilidade() * 2;
+            setRentabilidade(novaRentabilidade);
+            setProbPolicia(getProbPolicia()-10);
+        }
+        else
+            setProbPolicia(getProbPolicia()+10);
     }
     
 }

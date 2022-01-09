@@ -7,18 +7,22 @@ public class Casino extends Negocio {
     }
 
     //Média do Musculo da equipa de Soldiers
-    public void AtualiazaRentabilidadeCasino() {
-        if (VerificaInteligencia() >= 40) {
+    public void AtualiazaValoresCasino() {
+        if (VerificaInteligencia() >= 50 && VerificaInteligencia() < 70) {
             double novaRentabilidade = getRentabilidade() * 1.5;
             setRentabilidade(novaRentabilidade);
         }
-        if (VerificaInteligencia() >= 70) {
+        else if (VerificaInteligencia() >= 70 && VerificaInteligencia()<90) {
             double novaRentabilidade = getRentabilidade() * 2;
             setRentabilidade(novaRentabilidade);
+            setProbPolicia(getProbPolicia()-5);
         }
-        if (VerificaInteligencia() >= 90) {
+        else if (VerificaInteligencia() >= 90) {
             double novaRentabilidade = getRentabilidade() * 3;
             setRentabilidade(novaRentabilidade);
+            setProbPolicia(getProbPolicia()-10);
         }
+        else
+            setProbPolicia(getProbPolicia()+15);
     }
 }

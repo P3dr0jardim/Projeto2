@@ -7,15 +7,23 @@ public class Droga extends Negocio {
     }
 
     //Média do Musculo da equipa de Soldiers
-    public void AtualizaRentabilidadeDroga() {
-        if (VerificaMusculo() >= 70) {
+    public void AtualizaValoresDroga() {
+        if (VerificaMusculo() >= 50 && VerificaMusculo() < 70) {
+            double novaRentabilidade = getRentabilidade() * 1.5;
+            setRentabilidade(novaRentabilidade);
+        }
+        else if (VerificaMusculo() >= 70 && VerificaMusculo() < 90) {
             double novaRentabilidade = getRentabilidade() * 2;
             setRentabilidade(novaRentabilidade);
+            setProbPolicia(getProbPolicia()-5);
         }
-        if (VerificaMusculo() >= 85) {
+        else if (VerificaMusculo() >= 90) {
             double novaRentabilidade = getRentabilidade() * 3;
             setRentabilidade(novaRentabilidade);
+            setProbPolicia(getProbPolicia()-10);
         }
+        else
+            setProbPolicia(getProbPolicia()+15);
     }
 
 }
