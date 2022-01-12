@@ -24,7 +24,7 @@ public abstract class Mafioso {
         this.estaPreso = estaPreso;
         this.linhagem = linhagem;
     }
-
+    
     public String getNome() {
         return nome;
     }

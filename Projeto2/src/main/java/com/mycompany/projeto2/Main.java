@@ -86,9 +86,17 @@ public class Main {
 
                         switch (opcao) {
                             case 1:
-                                System.out.println("Introduza o id do mafioso que deseja libertar da prisao");
-                                preso = scan.nextInt();
-                                prisao.libertarPreso(preso);
+                                if (prisao.getPresos().size()>0){
+                                    System.out.println("O(s) seguinte(s) "+ prisao.getPresos().size()+" mafioso(s) encontram-se na prisão:");
+                                    for (int i=0; i<prisao.getPresos().size();i++){
+                                        System.out.println("ID: "+ prisao.getPresos().get(i).getCcId()+", Nome: "+ prisao.getPresos().get(i).getNome());
+                                    }
+                                    System.out.println("Introduza o id do mafioso que deseja libertar da prisao");
+                                    preso = scan.nextInt();
+                                    prisao.libertarPreso(preso);
+                                }
+                                else
+                                    System.out.println("Nenhum mafioso encontra-se preso neste momento");
                                 break;
                             case 2:
                                 //Periodo Contabilistico

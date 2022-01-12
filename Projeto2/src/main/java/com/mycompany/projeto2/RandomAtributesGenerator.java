@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class RandomAtributesGenerator {
 
-    private int randomLealdade, randomInteligencia, randomMusculo, randomEstrategia, randomCarisma;
+    private int randomLealdade, randomInteligencia, randomMusculo, randomEstrategia, randomCarisma, randomPoliciaAtuar;
 
     // create instance of Random class
     Random rand = new Random();
@@ -36,6 +36,11 @@ public class RandomAtributesGenerator {
     public int generateRandomCarisma() {
         randomCarisma = rand.nextInt(100);
         return randomCarisma;
+    }
+    
+    public int generateRandomPoliciaAtuar(){
+        randomPoliciaAtuar= rand.nextInt(41)+10; //Prob entre 10 e 50
+        return randomPoliciaAtuar;
     }
 
     public int getRandomLealdade() {
@@ -78,4 +83,11 @@ public class RandomAtributesGenerator {
         this.randomCarisma = randomCarisma;
     }
 
+    public int getRandomPoliciaAtuar(){
+        return randomPoliciaAtuar;
+    }
+    
+    public void setRandomPoliciaAtuar(int PoliciaAtuar){
+        this.randomPoliciaAtuar=PoliciaAtuar;
+    }
 }
