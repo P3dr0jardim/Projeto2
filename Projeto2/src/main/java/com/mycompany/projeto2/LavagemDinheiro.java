@@ -7,15 +7,23 @@ public class LavagemDinheiro extends Negocio {
     }
 
     //Média do Musculo da equipa de Soldiers
-    public void AtualizaRentabilidadeLavagem() {
-        if (VerificaInteligencia() >= 70) {
+    public void AtualizaValoresLavagem() {
+        if (VerificaInteligencia() >= 50 && VerificaInteligencia() < 70) {
             double novaRentabilidade = getRentabilidade() * 2;
             setRentabilidade(novaRentabilidade);
         }
-        if (VerificaInteligencia() >= 85) {
+        if (VerificaInteligencia() >= 70 && VerificaInteligencia() < 90 ) {
+            double novaRentabilidade = getRentabilidade() * 2;
+            setRentabilidade(novaRentabilidade);
+            setProbPolicia(getProbPolicia()-5);
+        }
+        else if (VerificaInteligencia() >= 90) {
             double novaRentabilidade = getRentabilidade() * 3;
             setRentabilidade(novaRentabilidade);
+            setProbPolicia(getProbPolicia()-10);
         }
+        else
+            setProbPolicia(getProbPolicia()+15);
     }
 
 }

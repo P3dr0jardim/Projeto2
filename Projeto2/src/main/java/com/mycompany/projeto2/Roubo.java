@@ -7,15 +7,23 @@ public class Roubo extends Negocio {
     }
 
     //Média do Musculo da equipa de Soldiers
-    public void AtualizaRentabilidadeRoubo() {
-        if (VerificaMusculo() >= 50 && VerificaInteligencia() >= 50) {
+    public void AtualizaValoresRoubo() {
+        if ((VerificaMusculo() >= 50 && VerificaMusculo() < 70) && (VerificaInteligencia() >= 50 && VerificaInteligencia() < 70)) {
             double novaRentabilidade = getRentabilidade() * 2;
             setRentabilidade(novaRentabilidade);
         }
-        if (VerificaMusculo() >= 75 && VerificaInteligencia() >= 75) {
+        else if ((VerificaMusculo() >= 70 && VerificaMusculo() < 90) && (VerificaInteligencia() >=70) && VerificaInteligencia() <90) {
             double novaRentabilidade = getRentabilidade() * 3;
             setRentabilidade(novaRentabilidade);
+            setProbPolicia(getProbPolicia()-5);
         }
+        else if (VerificaMusculo() >= 90 && VerificaInteligencia() >= 90) {
+            double novaRentabilidade = getRentabilidade() * 3;
+            setRentabilidade(novaRentabilidade);
+            setProbPolicia(getProbPolicia()-15);
+        }
+        else 
+            setProbPolicia(getProbPolicia()+15);
     }
 
 }

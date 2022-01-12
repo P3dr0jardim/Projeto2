@@ -1,16 +1,13 @@
 package com.mycompany.projeto2;
 
-import java.util.Random;
-
 public class Negocio {
 
     private String nome;
-    private double ValorBaseTributavel;
+    private double ValorBaseTributavel, rentabilidade;
     private int ProbPolicia;
     private boolean Policiavel;
     private CapoRegime CapoRegime;
-    private double rentabilidade;
-    
+    private RandomAtributesGenerator randomAtributesGenerator = new RandomAtributesGenerator();
 
     //Constutor de negocio
     public Negocio(String nome, double ValorBaseTributavel, int ProbPolicia, boolean Policiavel, CapoRegime CapoRegime, double rentabilidade) {
@@ -21,7 +18,8 @@ public class Negocio {
         this.CapoRegime = CapoRegime;
         this.rentabilidade = rentabilidade;
     }
-
+    
+    //Getters e setters necessários
     public double getRentabilidade() {
         return rentabilidade;
     }
@@ -30,7 +28,6 @@ public class Negocio {
         this.rentabilidade = aumento;
     }
 
-    //Getters e setters necessários
     public String getNome() {
         return nome;
     }
@@ -60,12 +57,10 @@ public class Negocio {
         ProbPolicia += aumento;
     }
 
-    //Probabilidade do negocio ser atuado pela policia
+    //Probabilidade do negocio ser atuado pela policia usando quando este for inicializado
     public void PoliciaAtuar() {
         if (VerificaPoliciavel() == true) {
-            Random rand = new Random();
-            int policia = rand.nextInt(61) + 20;//valor entre 20 e 80 (inclusive ambos)
-            setProbPolicia(policia);
+            setProbPolicia(randomAtributesGenerator.generateRandomPoliciaAtuar());
         }
     }
 
