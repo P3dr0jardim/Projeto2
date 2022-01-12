@@ -4,8 +4,9 @@ public class Boss extends Mafioso {
 
     private boolean consiglieri = false;
     private Familia familia;
-    private CapoRegime equipaDoCapoRegime;
+    private CapoRegime equipaDoCapoRegime, capoRegime;
     private RandomAtributesGenerator randomAtributesGenerator = new RandomAtributesGenerator();
+    private int quantidadeDeNegocio;
 
     public Boss(Familia familia, String nome, int ccId, int lealdade, int musculo, int inteligencia, int estratega, int carisma, int probabilidaSerPreso, boolean estaPreso, boolean linhagem) {
         super(familia, nome, ccId, lealdade, musculo, inteligencia, estratega, carisma, probabilidaSerPreso, estaPreso, linhagem);
@@ -61,6 +62,25 @@ public class Boss extends Mafioso {
         } else {
             return "O chefe da mafia " + getNome() + " não tem um consiglieri";
         }
+    }
+
+    public void geraNegocio(int capoRegimeId) {
+        capoRegime = familia.getCapoRegime(capoRegimeId);
+        if (capoRegime.getLealdade() >= 80) {
+            quantidadeDeNegocio = 5;
+        } else if (capoRegime.getLealdade() >= 50 && capoRegime.getLealdade() < 80) {
+            quantidadeDeNegocio = 3;
+        } else if (capoRegime.getLealdade() < 50) {
+            quantidadeDeNegocio = 1;
+        }
+        
+        for (int i = 0; i < quantidadeDeNegocio; i++) {
+            
+        }
+
+        familia.addNegocio(new Negocio("teste", 100, 0, false, capoRegime, 100));
+        System.out.println("Negocios: " + familia.getNegocios());
+        capoRegime.addNegocio(new Negocio(nomeNegocio, 100, 0, false, capoRegime, 100));
     }
 
     @Override

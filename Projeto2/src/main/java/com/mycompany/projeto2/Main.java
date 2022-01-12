@@ -8,8 +8,8 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int opcao, capoRegime, preso, negocio;
-        String nome;
+        int opcao, capoRegime, preso, negocioId;
+        String nome, nomeNegocio;
         boolean sair = false, underbossMenu = false;
         RandomAtributesGenerator randomAtributesGenerator = new RandomAtributesGenerator();
         Scanner scan = new Scanner(System.in);
@@ -66,6 +66,13 @@ public class Main {
                             break;
                         case 4:
                             //Gera negocios para caporegime
+                            System.out.println("Introduza o capoRegime que ira atribuir o novo negocio");
+                            capoRegime = scan.nextInt();
+                            //System.out.println("Introduza o nome do negocio");
+                            //nomeNegocio = scan.next();
+                            
+                            chefeDaMafia.geraNegocio(capoRegime);
+                            
                             break;
                         case 5:
                             System.out.println("Introduza o nome do Consiglieri");
@@ -116,10 +123,13 @@ public class Main {
 
                     switch (opcao) {
                         case 1:
+                            System.out.println("Negocios: " + familia1.getNegocios());
                             System.out.println("Introduza o id do negocio que deseja expandir");
-                            negocio = scan.nextInt();
-                            consiglieri = familia1.getConsiglieri(0);
-                            consiglieri.expandirNegocio(negocio);
+                            negocioId = scan.nextInt();
+                            
+                            System.out.println("Consiglieri: " + familia1.getConsiglieris());
+                            consiglieri = familia1.getConsiglieri();
+                            consiglieri.expandirNegocio(negocioId);
                             break;
                         case 2:
                             break;

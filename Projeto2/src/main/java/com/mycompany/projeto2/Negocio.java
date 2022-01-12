@@ -1,6 +1,6 @@
 package com.mycompany.projeto2;
 
-import java.util.*;
+import java.util.Random;
 
 public class Negocio {
 
@@ -10,6 +10,7 @@ public class Negocio {
     private boolean Policiavel;
     private CapoRegime CapoRegime;
     private double rentabilidade;
+    
 
     //Constutor de negocio
     public Negocio(String nome, double ValorBaseTributavel, int ProbPolicia, boolean Policiavel, CapoRegime CapoRegime, double rentabilidade) {
@@ -86,5 +87,17 @@ public class Negocio {
         }
         media = soma / CapoRegime.getSoldiers().size();
         return media;
+    }
+    
+    @Override
+    public String toString() {
+        String texto;
+        texto = "Nome do negocio: "+nome+"\n";
+        texto += "Valor Base Tributavel:" + ValorBaseTributavel+"\n";
+        texto += "Probabilidade da Policia:" + ProbPolicia+"\n";
+        texto += "Policiavel:" + Policiavel+"\n";
+        texto += "CapoRegime:" + CapoRegime.getNome()+"\n";
+        texto += "Rentabilidade:" + rentabilidade+"\n";
+        return texto;
     }
 }
