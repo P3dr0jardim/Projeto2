@@ -22,10 +22,10 @@ public class CapoRegime extends Mafioso {
     }
 
     //Método que adiciona um negocio à lista dos soldiers associados ao capoRegime
-    public void addNegocio(Negocio negocio){
+    public void addNegocio(Negocio negocio) {
         negocios.add(negocio);
     }
-    
+
     public ArrayList<Soldier> getSoldiers() {
         return soldiers;
     }

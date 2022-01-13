@@ -18,7 +18,7 @@ public class Negocio {
         this.CapoRegime = CapoRegime;
         this.rentabilidade = rentabilidade;
     }
-    
+
     //Getters e setters necessários
     public double getRentabilidade() {
         return rentabilidade;
@@ -83,16 +83,16 @@ public class Negocio {
         media = soma / CapoRegime.getSoldiers().size();
         return media;
     }
-    
+
     @Override
     public String toString() {
         String texto;
-        texto = "Nome do negocio: "+nome+"\n";
-        texto += "Valor Base Tributavel:" + ValorBaseTributavel+"\n";
-        texto += "Probabilidade da Policia:" + ProbPolicia+"\n";
-        texto += "Policiavel:" + Policiavel+"\n";
-        texto += "CapoRegime:" + CapoRegime.getNome()+"\n";
-        texto += "Rentabilidade:" + rentabilidade+"\n";
+        texto = "Nome do negocio: " + nome + "\n";
+        texto += "Valor Base Tributavel:" + ValorBaseTributavel + "\n";
+        texto += "Probabilidade da Policia:" + ProbPolicia + "\n";
+        texto += "Policiavel:" + Policiavel + "\n";
+        texto += "CapoRegime:" + CapoRegime.getNome() + "\n";
+        texto += "Rentabilidade:" + rentabilidade + "\n";
         return texto;
     }
 }

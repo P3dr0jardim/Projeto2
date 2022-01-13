@@ -8,6 +8,7 @@ public class Underboss extends Mafioso {
     private ArrayList<CapoRegime> capoRegimes;
     private Soldier soldier, traidorSoldier;
     private CapoRegime capoRegime, traidorCapoRegime;
+
     public Underboss(Familia familia, String nome, int ccId, int lealdade, int musculo, int inteligencia, int estratega, int carisma, int probabilidaSerPreso, boolean estaPreso, boolean linhagem) {
         super(familia, nome, ccId, lealdade, musculo, inteligencia, estratega, carisma, probabilidaSerPreso, estaPreso, linhagem);
         soldiers = new ArrayList<Soldier>();
@@ -35,7 +36,7 @@ public class Underboss extends Mafioso {
             if (capoRegime.getLealdade() < 20) {
                 traidorCapoRegime = capoRegimes.get(i);
                 System.out.println("TraidorCapo = " + traidorCapoRegime.getNome());
-                
+
             }
         }
     }

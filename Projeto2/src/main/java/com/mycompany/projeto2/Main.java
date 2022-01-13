@@ -18,8 +18,6 @@ public class Main {
         Prisao prisao = new Prisao();
         Underboss underboss;
         Consiglieri consiglieri;
-        
-        
 
         do {
             System.out.println("        MENU MÁFIA       ");
@@ -72,10 +70,10 @@ public class Main {
                             capoRegime = scan.nextInt();
                             //System.out.println("Introduza o nome do negocio");
                             //nomeNegocio = scan.next();
-                            
+
                             chefeDaMafia.geraNegocio(capoRegime);
                             System.out.println("negocios da familia: " + familia1.getNegocios());
-                            
+
                             break;
                         case 5:
                             System.out.println("Introduza o nome do Consiglieri");
@@ -97,17 +95,17 @@ public class Main {
 
                         switch (opcao) {
                             case 1:
-                                if (prisao.getPresos().size()>0){
-                                    System.out.println("O(s) seguinte(s) "+ prisao.getPresos().size()+" mafioso(s) encontram-se na prisão:");
-                                    for (int i=0; i<prisao.getPresos().size();i++){
-                                        System.out.println("ID: "+ prisao.getPresos().get(i).getCcId()+", Nome: "+ prisao.getPresos().get(i).getNome());
+                                if (prisao.getPresos().size() > 0) {
+                                    System.out.println("O(s) seguinte(s) " + prisao.getPresos().size() + " mafioso(s) encontram-se na prisão:");
+                                    for (int i = 0; i < prisao.getPresos().size(); i++) {
+                                        System.out.println("ID: " + prisao.getPresos().get(i).getCcId() + ", Nome: " + prisao.getPresos().get(i).getNome());
                                     }
                                     System.out.println("Introduza o id do mafioso que deseja libertar da prisao");
                                     preso = scan.nextInt();
                                     prisao.libertarPreso(preso);
-                                }
-                                else
+                                } else {
                                     System.out.println("Nenhum mafioso encontra-se preso neste momento");
+                                }
                                 break;
                             case 2:
                                 //Periodo Contabilistico
@@ -137,7 +135,7 @@ public class Main {
                             System.out.println("Negocios: " + familia1.getNegocios());
                             System.out.println("Introduza o id do negocio que deseja expandir");
                             negocioId = scan.nextInt();
-                            
+
                             System.out.println("Consiglieri: " + familia1.getConsiglieris());
                             consiglieri = familia1.getConsiglieri();
                             consiglieri.expandirNegocio(negocioId);
