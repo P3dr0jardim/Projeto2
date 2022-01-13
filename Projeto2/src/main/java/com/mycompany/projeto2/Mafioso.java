@@ -24,7 +24,7 @@ public abstract class Mafioso {
         this.estaPreso = estaPreso;
         this.linhagem = linhagem;
     }
-    
+
     public String getNome() {
         return nome;
     }
@@ -104,20 +104,20 @@ public abstract class Mafioso {
     public void setLinhagem(boolean linhagem) {
         this.linhagem = linhagem;
     }
-    
+
     @Override
     public String toString() {
         String texto;
-        texto = "Nome do mafioso: "+nome+"\n";
-        texto += "ccId:" + ccId+"\n";
-        texto += "Lealdade:" + lealdade+"\n";
-        texto += "Musculo:" + musculo+"\n";
-        texto += "Inteligencia:" + inteligencia+"\n";
-        texto += "Estratega:" + estratega+"\n";
-        texto += "Carisma:" + carisma+"\n";
-        texto += "ProbabilidadeSerPreso:" + probabilidadeSerPreso+"\n";
-        texto += "EstaPreso:" + estaPreso+"\n";
-        texto += "Linhagem:" + linhagem+"\n";
+        texto = "Nome do mafioso: " + nome + "\n";
+        texto += "ccId:" + ccId + "\n";
+        texto += "Lealdade:" + lealdade + "\n";
+        texto += "Musculo:" + musculo + "\n";
+        texto += "Inteligencia:" + inteligencia + "\n";
+        texto += "Estratega:" + estratega + "\n";
+        texto += "Carisma:" + carisma + "\n";
+        texto += "ProbabilidadeSerPreso:" + probabilidadeSerPreso + "\n";
+        texto += "EstaPreso:" + estaPreso + "\n";
+        texto += "Linhagem:" + linhagem + "\n";
         return texto;
     }
 }

@@ -11,18 +11,16 @@ public class Casino extends Negocio {
         if (VerificaInteligencia() >= 50 && VerificaInteligencia() < 70) {
             double novaRentabilidade = getRentabilidade() * 1.5;
             setRentabilidade(novaRentabilidade);
-        }
-        else if (VerificaInteligencia() >= 70 && VerificaInteligencia()<90) {
+        } else if (VerificaInteligencia() >= 70 && VerificaInteligencia() < 90) {
             double novaRentabilidade = getRentabilidade() * 2;
             setRentabilidade(novaRentabilidade);
-            setProbPolicia(getProbPolicia()-5);
-        }
-        else if (VerificaInteligencia() >= 90) {
+            setProbPolicia(getProbPolicia() - 5);
+        } else if (VerificaInteligencia() >= 90) {
             double novaRentabilidade = getRentabilidade() * 3;
             setRentabilidade(novaRentabilidade);
-            setProbPolicia(getProbPolicia()-10);
+            setProbPolicia(getProbPolicia() - 10);
+        } else {
+            setProbPolicia(getProbPolicia() + 15);
         }
-        else
-            setProbPolicia(getProbPolicia()+15);
     }
 }

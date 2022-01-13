@@ -15,6 +15,8 @@ public class Familia {
     private ArrayList<CapoRegime> caporegimes;
     private ArrayList<Soldier> soldiers;
     private ArrayList<Object> obituarioFamiliares;
+    private ArrayList<Negocio> negocios;
+    private ArrayList<Negocio> tiposDeNegocio;
 
     //Construtor
     public Familia(int familiaId, String nome, double riqueza, double patrimonio) {
@@ -29,6 +31,33 @@ public class Familia {
         caporegimes = new ArrayList<CapoRegime>();
         soldiers = new ArrayList<Soldier>();
         obituarioFamiliares = new ArrayList<Object>();
+        negocios = new ArrayList<Negocio>();
+        tiposDeNegocio = new ArrayList<Negocio>();
+    }
+
+    public ArrayList<Negocio> getNegocios() {
+        return negocios;
+    }
+
+    public void setNegocios(ArrayList<Negocio> negocios) {
+        this.negocios = negocios;
+    }
+
+    //Método que adiciona objetos da classe Mafiosos à lista
+    public void addNegocio(Negocio negocio) {
+        negocios.add(negocio);
+    }
+
+    public Negocio getNegocio(int id) {
+        return negocios.get(id);
+    }
+
+    public ArrayList<Negocio> getTiposDeNegocio() {
+        return tiposDeNegocio;
+    }
+
+    public void setTiposDeNegocio(ArrayList<Negocio> tiposDeNegocio) {
+        this.tiposDeNegocio = tiposDeNegocio;
     }
 
     //Método que devolve a lista de mafiosos na família 
@@ -67,8 +96,12 @@ public class Familia {
     }
 
     //Método que devolve a lista com o consiglieri da família 
-    public ArrayList<Consiglieri> getConsiglieri() {
+    public ArrayList<Consiglieri> getConsiglieris() {
         return consiglieris;
+    }
+
+    public Consiglieri getConsiglieri() {
+        return consiglieris.get(0);
     }
 
     //Método que adiciona o consiglieri à lista dos consiglieri da família
@@ -147,7 +180,7 @@ public class Familia {
     public void setObituarioFamiliares(ArrayList<Object> obituarioFamiliares) {
         this.obituarioFamiliares = obituarioFamiliares;
     }
-    
+
     //Método que adiciona um soldier à lista dos soldiers da família
     public void addFamiliarObituario(Object familiar) {
         obituarioFamiliares.add(familiar);

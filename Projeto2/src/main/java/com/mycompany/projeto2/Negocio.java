@@ -1,6 +1,5 @@
 package com.mycompany.projeto2;
 
-
 public class Negocio {
 
     private String nome;
@@ -19,7 +18,7 @@ public class Negocio {
         this.CapoRegime = CapoRegime;
         this.rentabilidade = rentabilidade;
     }
-    
+
     //Getters e setters necessários
     public double getRentabilidade() {
         return rentabilidade;
@@ -37,7 +36,7 @@ public class Negocio {
         return ValorBaseTributavel;
     }
 
-    public void setValorBaseTributavel(int NovoValorBase) {
+    public void setValorBaseTributavel(double NovoValorBase) {
         this.ValorBaseTributavel = NovoValorBase;
     }
 
@@ -61,7 +60,7 @@ public class Negocio {
     //Probabilidade do negocio ser atuado pela policia usando quando este for inicializado
     public void PoliciaAtuar() {
         if (VerificaPoliciavel() == true) {
-            setProbPolicia(randomAtributesGenerator.generateRandomPoliciaAtuar());
+            setProbPolicia(randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar());
         }
     }
 
@@ -83,5 +82,17 @@ public class Negocio {
         }
         media = soma / CapoRegime.getSoldiers().size();
         return media;
+    }
+
+    @Override
+    public String toString() {
+        String texto;
+        texto = "Nome do negocio: " + nome + "\n";
+        texto += "Valor Base Tributavel:" + ValorBaseTributavel + "\n";
+        texto += "Probabilidade da Policia:" + ProbPolicia + "\n";
+        texto += "Policiavel:" + Policiavel + "\n";
+        texto += "CapoRegime:" + CapoRegime.getNome() + "\n";
+        texto += "Rentabilidade:" + rentabilidade + "\n";
+        return texto;
     }
 }
