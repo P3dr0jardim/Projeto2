@@ -2,7 +2,7 @@ package com.mycompany.projeto2;
 
 public class LavagemDinheiro extends Negocio {
 
-    public LavagemDinheiro(CapoRegime Caporegime, String nome, double ValorBaseTributavel, int ProbPolicia, boolean Policiavel, CapoRegime CapoRegime, double rentabilidade) {
+    public LavagemDinheiro(String nome, double ValorBaseTributavel, int ProbPolicia, boolean Policiavel, CapoRegime CapoRegime, double rentabilidade) {
         super(nome, ValorBaseTributavel, ProbPolicia, Policiavel, CapoRegime, rentabilidade);
     }
 

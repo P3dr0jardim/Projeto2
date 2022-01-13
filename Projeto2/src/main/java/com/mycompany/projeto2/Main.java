@@ -18,6 +18,8 @@ public class Main {
         Prisao prisao = new Prisao();
         Underboss underboss;
         Consiglieri consiglieri;
+        
+        
 
         do {
             System.out.println("        MENU MÁFIA       ");
@@ -72,6 +74,7 @@ public class Main {
                             //nomeNegocio = scan.next();
                             
                             chefeDaMafia.geraNegocio(capoRegime);
+                            System.out.println("negocios da familia: " + familia1.getNegocios());
                             
                             break;
                         case 5:

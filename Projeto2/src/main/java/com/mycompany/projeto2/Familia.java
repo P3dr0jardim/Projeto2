@@ -1,7 +1,6 @@
 package com.mycompany.projeto2;
 
 import java.util.ArrayList;
-
 public class Familia {
 
     //Variáveis de Instância
@@ -50,8 +49,8 @@ public class Familia {
 
     public Negocio getNegocio(int id) {
         return negocios.get(id);
-    }
-
+    } 
+    
     public ArrayList<Negocio> getTiposDeNegocio() {
         return tiposDeNegocio;
     }

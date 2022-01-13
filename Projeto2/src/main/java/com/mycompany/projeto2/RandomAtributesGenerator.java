@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class RandomAtributesGenerator {
 
-    private int randomLealdade, randomInteligencia, randomMusculo, randomEstrategia, randomCarisma, randomPoliciaAtuar;
+    private int randomLealdade, randomInteligencia, randomMusculo, randomEstrategia, randomCarisma, randomNumber, randomValorBaseTributavel, randomProbabPoliciaAtuar, randomRentabilidade, minValue = 10000, maxValue = 100000000;
 
     // create instance of Random class
     Random rand = new Random();
@@ -13,9 +13,61 @@ public class RandomAtributesGenerator {
 
     }
 
+    public int generateRandomValorBaseTributavel() {
+        randomValorBaseTributavel = rand.nextInt(maxValue - minValue) + minValue;
+        return randomValorBaseTributavel;
+    }
+
+    public int getRandomValorBaseTributavel() {
+        return randomValorBaseTributavel;
+    }
+
+    public void setRandomValorBaseTributavel(int randomValorBaseTributavel) {
+        this.randomValorBaseTributavel = randomValorBaseTributavel;
+    }
+
+    public int generateRandomRentabilidade() {
+        randomRentabilidade = rand.nextInt(maxValue - minValue) + minValue;
+        return randomRentabilidade;
+    }
+
+    public int getRandomRentabilidade() {
+        return randomRentabilidade;
+    }
+
+    public void setRandomRentabilidade(int randomRentabilidade) {
+        this.randomRentabilidade = randomRentabilidade;
+    }
+
+    public int generateRandomProbabilidadePoliciaAtuar() {
+        randomProbabPoliciaAtuar = rand.nextInt(100);
+        return randomProbabPoliciaAtuar;
+    }
+
+    public int getRandomProbabPoliciaAtuarr() {
+        return randomProbabPoliciaAtuar;
+    }
+
+    public void setRandomProbabilidadePoliciaAtuar(int ProbabilidadePoliciaAtuar) {
+        this.randomProbabPoliciaAtuar = ProbabilidadePoliciaAtuar;
+    }
+
     public int generateRandomLealdade() {
         randomLealdade = rand.nextInt(100);
         return randomLealdade;
+    }
+
+    public int generateRandomNumber() {
+        randomNumber = rand.nextInt(5);
+        return randomNumber;
+    }
+
+    public int getRandomNumber() {
+        return randomNumber;
+    }
+
+    public void setRandomNumber(int randomNumber) {
+        this.randomNumber = randomNumber;
     }
 
     public int generateRandomInteligencia() {
@@ -36,11 +88,6 @@ public class RandomAtributesGenerator {
     public int generateRandomCarisma() {
         randomCarisma = rand.nextInt(100);
         return randomCarisma;
-    }
-    
-    public int generateRandomPoliciaAtuar(){
-        randomPoliciaAtuar= rand.nextInt(41)+10; //Prob entre 10 e 50
-        return randomPoliciaAtuar;
     }
 
     public int getRandomLealdade() {
@@ -81,13 +128,5 @@ public class RandomAtributesGenerator {
 
     public void setRandomCarisma(int randomCarisma) {
         this.randomCarisma = randomCarisma;
-    }
-
-    public int getRandomPoliciaAtuar(){
-        return randomPoliciaAtuar;
-    }
-    
-    public void setRandomPoliciaAtuar(int PoliciaAtuar){
-        this.randomPoliciaAtuar=PoliciaAtuar;
     }
 }

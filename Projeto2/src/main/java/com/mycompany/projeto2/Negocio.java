@@ -60,7 +60,7 @@ public class Negocio {
     //Probabilidade do negocio ser atuado pela policia usando quando este for inicializado
     public void PoliciaAtuar() {
         if (VerificaPoliciavel() == true) {
-            setProbPolicia(randomAtributesGenerator.generateRandomPoliciaAtuar());
+            setProbPolicia(randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar());
         }
     }
 
