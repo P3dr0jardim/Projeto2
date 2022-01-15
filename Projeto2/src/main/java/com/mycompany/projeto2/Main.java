@@ -118,7 +118,7 @@ public class Main {
                                         familia1.setRiqueza(familia1.getRiqueza()+lucro);
                                     }
                                 }
-                                System.ou.println("A riqueza da familia foi atualizada!");
+                                System.out.println("A riqueza da familia foi atualizada!");
                                 break;
                             case 3:
                                 underboss = familia1.getUnderBoss();
