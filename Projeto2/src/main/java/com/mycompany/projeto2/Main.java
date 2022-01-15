@@ -14,7 +14,7 @@ public class Main {
         RandomAtributesGenerator randomAtributesGenerator = new RandomAtributesGenerator();
         Scanner scan = new Scanner(System.in);
         Familia familia1 = new Familia(1, "Peaky Blinders", 1000.0, 2000.0);
-        Boss chefeDaMafia = new Boss(familia1, "Thomas Shelby", 1, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), 0, false, true);
+        Boss chefeDaMafia = new Boss(familia1, "Thomas Shelby", 1, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), 0, false, true, false);
         Prisao prisao = new Prisao();
         Underboss underboss;
         Consiglieri consiglieri;
@@ -103,12 +103,22 @@ public class Main {
                                     System.out.println("Introduza o id do mafioso que deseja libertar da prisao");
                                     preso = scan.nextInt();
                                     prisao.libertarPreso(preso);
+                                    familia1.setRiqueza(familia1.getRiqueza()*0.05);//pagamento de libertar
                                 } else {
                                     System.out.println("Nenhum mafioso encontra-se preso neste momento");
                                 }
                                 break;
                             case 2:
-                                //Periodo Contabilistico
+                                for(int i = 0; i< familia1.getCapoRegimes().size();i++){
+                                    familia1.getCapoRegimes().get(i).getNegocios();
+                                    for(int j = 0; j < familia1.getCapoRegimes().get(i).getNegocios().size(); j++){
+                                        double tributos = familia1.getCapoRegimes().get(i).getNegocios().get(j).getValorAtualTributavel();
+                                        double ganhos = familia1.getCapoRegimes().get(i).getNegocios().get(j).getRentabilidade();
+                                        double lucro = ganhos - tributos;
+                                        familia1.setRiqueza(familia1.getRiqueza()+lucro);
+                                    }
+                                }
+                                System.ou.println("A riqueza da familia foi atualizada!");
                                 break;
                             case 3:
                                 underboss = familia1.getUnderBoss();
