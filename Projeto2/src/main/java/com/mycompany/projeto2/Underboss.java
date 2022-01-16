@@ -6,15 +6,15 @@ public class Underboss extends Mafioso {
 
     private ArrayList<Soldier> soldiers;
     private ArrayList<CapoRegime> capoRegimes;
-    private Soldier soldier, traidorSoldier;
+    private Soldier soldier, traidorSoldier, MelhorSoldier;
     private CapoRegime capoRegime, traidorCapoRegime;
 
-    public Underboss(Familia familia, String nome, int ccId, int lealdade, int musculo, int inteligencia, int estratega, int carisma, int probabilidaSerPreso, boolean estaPreso, boolean linhagem) {
-        super(familia, nome, ccId, lealdade, musculo, inteligencia, estratega, carisma, probabilidaSerPreso, estaPreso, linhagem);
+    public Underboss(Familia familia, String nome, int ccId, int lealdade, int musculo, int inteligencia, int estratega, int carisma, int probabilidaSerPreso, boolean estaPreso, boolean linhagem, boolean informador) {
+        super(familia, nome, ccId, lealdade, musculo, inteligencia, estratega, carisma, probabilidaSerPreso, estaPreso, true, false);
         soldiers = new ArrayList<Soldier>();
         capoRegimes = new ArrayList<CapoRegime>();
     }
-
+//Loyalty test sendo que caso seja adicionado alguem ao obituario deve ser feito um suposto pagamento aos familiares deste sendo entao retirado um certo valor à riqueza da familia dos mafiosos
     public void loyaltyTest(Familia familia) {
 
         soldiers = familia.getSoldiers();
@@ -22,12 +22,13 @@ public class Underboss extends Mafioso {
 
         for (int i = 0; i < soldiers.size(); i++) {
             soldier = soldiers.get(i);
-            if (soldier.getLealdade() < 20) {
+            if (soldier.getLealdade() < 20 || soldier.isInformador()==true ) {
                 traidorSoldier = soldiers.get(i);
                 System.out.println("TraidorSoldier = " + traidorSoldier.getNome());
                 familia.removeSoldier(traidorSoldier.getNome());
                 familia.addFamiliarObituario(traidorSoldier);
                 System.out.println("O soldier " + traidorSoldier.getNome() + " foi removido da familia");
+                familia.setRiqueza(familia.getRiqueza()*0.97); //pagamento aos tais familiares do que sofreu "desaparecimento misterioso"
             }
         }
 
@@ -36,7 +37,6 @@ public class Underboss extends Mafioso {
             if (capoRegime.getLealdade() < 20) {
                 traidorCapoRegime = capoRegimes.get(i);
                 System.out.println("TraidorCapo = " + traidorCapoRegime.getNome());
-
             }
         }
     }
