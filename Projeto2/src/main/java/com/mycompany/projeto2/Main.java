@@ -103,7 +103,6 @@ public class Main {
                                     System.out.println("Introduza o id do mafioso que deseja libertar da prisao");
                                     preso = scan.nextInt();
                                     prisao.libertarPreso(preso);
-                                    familia1.setRiqueza(familia1.getRiqueza()*0.05);//pagamento de libertar
                                 } else {
                                     System.out.println("Nenhum mafioso encontra-se preso neste momento");
                                 }

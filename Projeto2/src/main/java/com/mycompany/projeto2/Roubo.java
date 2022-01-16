@@ -45,7 +45,8 @@ public class Roubo extends Negocio implements Policiavel {
                 }
                 else if (prender <= getCapoRegime().getSoldiers().get(i).getProbabilidadeSerPreso()){
                     Prisao prisao = new Prisao();
-                    prisao.addPreso(getCapoRegime().getSoldiers().get(i));
+                    prisao.addPreso(getCapoRegime().getSoldiers().get(i));//Adiciona o soldier à prisao
+                    getCapoRegime().getSoldiers().get(i).getFamilia().removeSoldier(getCapoRegime().getSoldiers().get(i).getNome());//Remove o soldier da familia
                     System.out.println("O "+ getCapoRegime().getSoldiers().get(i).getNome() + "foi preso!");
                 }
             }

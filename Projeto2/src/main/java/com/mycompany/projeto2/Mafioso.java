@@ -26,6 +26,11 @@ public abstract class Mafioso {
         this.informador=informador;
     }
 
+//Getters e setters necessários para a classe
+    public Familia getFamilia() {
+        return familia;
+    }
+
     public String getNome() {
         return nome;
     }
