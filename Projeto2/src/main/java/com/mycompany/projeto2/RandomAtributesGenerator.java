@@ -4,13 +4,21 @@ import java.util.Random;
 
 public class RandomAtributesGenerator {
 
-    private int randomLealdade, randomInteligencia, randomMusculo, randomEstrategia, randomCarisma, randomNumber, randomValorBaseTributavel, randomProbabPoliciaAtuar, randomRentabilidade, randomSerPreso, minValue = 10000, maxValue = 100000000;
+    private int randomCCID, randomLealdade, randomInteligencia, randomMusculo, randomEstrategia, randomCarisma, randomNumber, randomValorBaseTributavel, randomProbabPoliciaAtuar, randomRentabilidade, randomSerPreso, minValue = 10000, maxValue = 100000000;
 
     // create instance of Random class
-    Random rand = new Random();
+    Random rand = new Random(); 
 
     public RandomAtributesGenerator() {
 
+    }
+
+    public int getRandomCCID() {
+        return randomCCID;
+    }
+
+    public void setRandomCCID(int randomCCID) {
+        this.randomCCID = randomCCID;
     }
 
     public int generateRandomValorBaseTributavel() {
