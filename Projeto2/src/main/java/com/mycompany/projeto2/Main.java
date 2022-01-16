@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         int opcao, capoRegime, preso, negocioId, familiaId;
         String nome, nomeNegocio;
-        boolean sair = false, underbossMenu = false; 
+        boolean sair = false, underbossMenu = false;
         RandomAtributesGenerator randomAtributesGenerator = new RandomAtributesGenerator();
         Scanner scan = new Scanner(System.in);
         Boss boss;
@@ -51,7 +51,7 @@ public class Main {
                 System.out.println("A familia escolhida foi: " + familia.getNome());
 
             } else {
-                
+
                 System.out.println("        MENU MÁFIA       ");
                 System.out.println("1 - Boss");
                 System.out.println("2 - UnderBoss");
@@ -91,13 +91,13 @@ public class Main {
                                 nome = scan.next();
                                 chefeDaMafiaFamilia1.RecrutaCapoRegime(nome);
 
-                                for(int i = 0; i< familia1.getCapoRegimes().size();i++){
+                                for (int i = 0; i < familia1.getCapoRegimes().size(); i++) {
                                     familia1.getCapoRegimes().get(i).getNegocios();
-                                    for(int j = 0; j < familia1.getCapoRegimes().get(i).getNegocios().size(); j++){
+                                    for (int j = 0; j < familia1.getCapoRegimes().get(i).getNegocios().size(); j++) {
                                         double tributos = familia1.getCapoRegimes().get(i).getNegocios().get(j).getValorAtualTributavel();
                                         double ganhos = familia1.getCapoRegimes().get(i).getNegocios().get(j).getRentabilidade();
                                         double lucro = ganhos - tributos;
-                                        familia1.setRiqueza(familia1.getRiqueza()+lucro);
+                                        familia1.setRiqueza(familia1.getRiqueza() + lucro);
                                     }
                                 }
                                 System.out.println("A riqueza da familia foi atualizada!");
@@ -153,6 +153,16 @@ public class Main {
                                     break;
                                 case 2:
                                     //Periodo Contabilistico
+                                    for (int i = 0; i < familia1.getCapoRegimes().size(); i++) {
+                                        familia1.getCapoRegimes().get(i).getNegocios();
+                                        for (int j = 0; j < familia1.getCapoRegimes().get(i).getNegocios().size(); j++) {
+                                            double tributos = familia1.getCapoRegimes().get(i).getNegocios().get(j).getValorAtualTributavel();
+                                            double ganhos = familia1.getCapoRegimes().get(i).getNegocios().get(j).getRentabilidade();
+                                            double lucro = ganhos - tributos;
+                                            familia1.setRiqueza(familia1.getRiqueza() + lucro);
+                                        }
+                                    }
+                                    System.out.println("A riqueza da familia foi atualizada!");
                                     break;
                                 case 3:
                                     underboss = familia1.getUnderBoss();

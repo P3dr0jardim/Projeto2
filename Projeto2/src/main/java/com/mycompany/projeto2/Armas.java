@@ -54,5 +54,4 @@ public class Armas extends Negocio implements Policiavel{
             }
         }
     }
-    
 }
