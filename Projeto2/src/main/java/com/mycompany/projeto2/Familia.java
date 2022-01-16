@@ -190,7 +190,7 @@ public class Familia {
     @Override
     public String toString() {
         String texto;
-        texto = "Id da Familia: " + familiaId + "\n";
+        texto = "\n" + "Id da Familia: " + familiaId + "\n";
         texto += "Nome da Familia: " + nome + "\n";
         texto += "Riqueza da Familia: " + riqueza + "\n";
         texto += "Patrimonio da Familia: " + patrimonio;
