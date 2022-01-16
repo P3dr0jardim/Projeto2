@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         int opcao, capoRegime, preso, negocioId, familiaId;
         String nome, nomeNegocio;
-        boolean sair = false, underbossMenu = false;
+        boolean sair = false, underbossMenu = false; 
         RandomAtributesGenerator randomAtributesGenerator = new RandomAtributesGenerator();
         Scanner scan = new Scanner(System.in);
         Boss boss;
@@ -19,23 +19,23 @@ public class Main {
 
         Familia familia1 = new Familia(1, "Peaky Blinders", 1000.0, 2000.0);
         config.addFamilia(familia1);
-        Boss chefeDaMafiaFamilia1 = new Boss(familia1, "Thomas Shelby", 1, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), 0, false, true);
+        Boss chefeDaMafiaFamilia1 = new Boss(familia1, "Thomas Shelby", 1, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), 0, false, true, false);
 
         Familia familia2 = new Familia(2, "Yakuza", 3000.0, 5000.0);
         config.addFamilia(familia2);
-        Boss chefeDaMafiaFamilia2 = new Boss(familia2, "Jackie Chan", 1, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), 0, false, true);
+        Boss chefeDaMafiaFamilia2 = new Boss(familia2, "Jackie Chan", 1, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), 0, false, true, false);
 
         Familia familia3 = new Familia(3, "Sicilian Mafia", 10000.0, 20000.0);
         config.addFamilia(familia3);
-        Boss chefeDaMafiaFamilia3 = new Boss(familia3, "Al Capone", 1, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), 0, false, true);
+        Boss chefeDaMafiaFamilia3 = new Boss(familia3, "Al Capone", 1, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), 0, false, true, false);
 
         Familia familia4 = new Familia(4, "Sinaloa Cartel", 100000.0, 200000.0);
         config.addFamilia(familia4);
-        Boss chefeDaMafiaFamilia4 = new Boss(familia4, "Pablo Escobar", 1, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), 0, false, true);
+        Boss chefeDaMafiaFamilia4 = new Boss(familia4, "Pablo Escobar", 1, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), 0, false, true, false);
 
         Familia familia5 = new Familia(5, "Triad", 1000000.0, 2000000.0);
         config.addFamilia(familia5);
-        Boss chefeDaMafiaFamilia5 = new Boss(familia5, "Heung Wah-yim", 1, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), 0, false, true);
+        Boss chefeDaMafiaFamilia5 = new Boss(familia5, "Heung Wah-yim", 1, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), 0, false, true, false);
         Prisao prisao = new Prisao();
         Underboss underboss;
         Consiglieri consiglieri;
@@ -90,6 +90,17 @@ public class Main {
                                 System.out.println("Introduza o nome do capoRegime");
                                 nome = scan.next();
                                 chefeDaMafiaFamilia1.RecrutaCapoRegime(nome);
+
+                                for(int i = 0; i< familia1.getCapoRegimes().size();i++){
+                                    familia1.getCapoRegimes().get(i).getNegocios();
+                                    for(int j = 0; j < familia1.getCapoRegimes().get(i).getNegocios().size(); j++){
+                                        double tributos = familia1.getCapoRegimes().get(i).getNegocios().get(j).getValorAtualTributavel();
+                                        double ganhos = familia1.getCapoRegimes().get(i).getNegocios().get(j).getRentabilidade();
+                                        double lucro = ganhos - tributos;
+                                        familia1.setRiqueza(familia1.getRiqueza()+lucro);
+                                    }
+                                }
+                                System.out.println("A riqueza da familia foi atualizada!");
                                 break;
                             case 3:
                                 System.out.println("Introduza o nome do Underboss");

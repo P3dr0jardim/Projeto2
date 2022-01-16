@@ -1,22 +1,24 @@
 package com.mycompany.projeto2;
 
-public class Negocio {
+public abstract class Negocio {
 
     private String nome;
-    private double ValorBaseTributavel, rentabilidade;
+    private double ValorBaseTributavel, rentabilidade, ValorAtualTributavel=ValorBaseTributavel;
     private int ProbPolicia;
-    private boolean Policiavel;
+    private boolean Policiavel, Musculado, Inteligente;
     private CapoRegime CapoRegime;
-    private RandomAtributesGenerator randomAtributesGenerator = new RandomAtributesGenerator();
 
     //Constutor de negocio
-    public Negocio(String nome, double ValorBaseTributavel, int ProbPolicia, boolean Policiavel, CapoRegime CapoRegime, double rentabilidade) {
+    public Negocio(String nome, double ValorBaseTributavel, int ProbPolicia, boolean Policiavel, CapoRegime CapoRegime, double rentabilidade, double ValorAtualTributavel, boolean Musculado, boolean Inteligente) {
         this.nome = nome;
         this.ValorBaseTributavel = ValorBaseTributavel;
-        this.ProbPolicia = 0;
+        this.ProbPolicia = ProbPolicia;
         this.Policiavel = Policiavel;
         this.CapoRegime = CapoRegime;
         this.rentabilidade = rentabilidade;
+        this.ValorAtualTributavel=ValorAtualTributavel;
+        this.Musculado=Musculado;
+        this.Inteligente=Inteligente;   
     }
 
     //Getters e setters necessários
@@ -26,6 +28,26 @@ public class Negocio {
 
     public void setRentabilidade(double aumento) {
         this.rentabilidade = aumento;
+    }
+
+    public CapoRegime getCapoRegime() {
+        return CapoRegime;
+    }
+
+    public double getValorAtualTributavel() {
+        return ValorAtualTributavel;
+    }
+
+    public void setValorAtualTributavel(double tributo) {
+        this.ValorAtualTributavel += tributo;
+    }
+
+    public boolean isMusculado() {
+        return Musculado;
+    }
+
+    public boolean isInteligente() {
+        return Inteligente;
     }
 
     public String getNome() {
@@ -56,13 +78,9 @@ public class Negocio {
     public void ProbComInformador(int aumento) {
         ProbPolicia += aumento;
     }
-
-    //Probabilidade do negocio ser atuado pela policia usando quando este for inicializado
-    public void PoliciaAtuar() {
-        if (VerificaPoliciavel() == true) {
-            setProbPolicia(randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar());
-        }
-    }
+    
+    //Metodo abstrato defenido em cada subclasse de negocio
+    public abstract void AtualizaValoresNegocio();
 
     public double VerificaInteligencia() {
         double media = 0;

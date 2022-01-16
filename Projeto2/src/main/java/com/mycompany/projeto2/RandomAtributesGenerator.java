@@ -4,10 +4,10 @@ import java.util.Random;
 
 public class RandomAtributesGenerator {
 
-    private int randomCCID, randomLealdade, randomInteligencia, randomMusculo, randomEstrategia, randomCarisma, randomNumber, randomValorBaseTributavel, randomProbabPoliciaAtuar, randomRentabilidade, minValue = 10000, maxValue = 100000000;
+    private int randomCCID, randomLealdade, randomInteligencia, randomMusculo, randomEstrategia, randomCarisma, randomNumber, randomValorBaseTributavel, randomProbabPoliciaAtuar, randomRentabilidade, randomSerPreso, minValue = 10000, maxValue = 100000000;
 
     // create instance of Random class
-    Random rand = new Random();
+    Random rand = new Random(); 
 
     public RandomAtributesGenerator() {
 
@@ -77,6 +77,11 @@ public class RandomAtributesGenerator {
     public void setRandomNumber(int randomNumber) {
         this.randomNumber = randomNumber;
     }
+    
+    public int generateProbabilidadeSerPreso(){
+        randomSerPreso = rand.nextInt(61)+10;
+        return randomSerPreso;
+    }
 
     public int generateRandomInteligencia() {
         randomInteligencia = rand.nextInt(100);
@@ -137,4 +142,5 @@ public class RandomAtributesGenerator {
     public void setRandomCarisma(int randomCarisma) {
         this.randomCarisma = randomCarisma;
     }
+    
 }

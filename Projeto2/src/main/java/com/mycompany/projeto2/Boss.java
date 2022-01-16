@@ -8,8 +8,8 @@ public class Boss extends Mafioso {
     private RandomAtributesGenerator randomAtributesGenerator = new RandomAtributesGenerator();
     private int quantidadeDeNegocio, randomNumber;
 
-    public Boss(Familia familia, String nome, int ccId, int lealdade, int musculo, int inteligencia, int estratega, int carisma, int probabilidaSerPreso, boolean estaPreso, boolean linhagem) {
-        super(familia, nome, ccId, lealdade, musculo, inteligencia, estratega, carisma, probabilidaSerPreso, estaPreso, linhagem);
+    public Boss(Familia familia, String nome, int ccId, int lealdade, int musculo, int inteligencia, int estratega, int carisma, int probabilidaSerPreso, boolean estaPreso, boolean linhagem, boolean informador) {
+        super(familia, nome, ccId, lealdade, musculo, inteligencia, estratega, carisma, probabilidaSerPreso, estaPreso, true, false);
         this.familia = familia;
     }
 
@@ -17,11 +17,11 @@ public class Boss extends Mafioso {
         //Codigo para recrutar um soldier 
         System.out.println("randomAtributesGenerator " + randomAtributesGenerator.generateRandomLealdade());
 
-        familia.addSoldier(new Soldier(familia, nome, 10, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), getProbabilidadeSerPreso(), false, true));
+        familia.addSoldier(new Soldier(familia, nome, 10, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), getProbabilidadeSerPreso(), false, true, false));
 
         equipaDoCapoRegime = familia.getCapoRegime(capoRegime);
 
-        equipaDoCapoRegime.addSoldier(new Soldier(familia, nome, 10, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), getProbabilidadeSerPreso(), false, true));
+        equipaDoCapoRegime.addSoldier(new Soldier(familia, nome, 10, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), getProbabilidadeSerPreso(), false, true, false));
 
         System.out.println("Familia do soldier " + familia.getNome());
 
@@ -32,7 +32,7 @@ public class Boss extends Mafioso {
 
     public void RecrutaCapoRegime(String nome) {
         //Codigo para recrutar um CapoRegime 
-        familia.addCapoRegime(new CapoRegime(familia, nome, 10, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), getProbabilidadeSerPreso(), false, true));
+        familia.addCapoRegime(new CapoRegime(familia, nome, 10, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), getProbabilidadeSerPreso(), false, true, false));
 
         System.out.println("Familia do capoRegime " + familia.getNome());
         System.out.println("Atualmente existem: " + familia.getCapoRegimes().size());
@@ -40,7 +40,7 @@ public class Boss extends Mafioso {
 
     public void RecrutaUnderboss(String nome) {
         //Codigo para recrutar um Underboss 
-        familia.addUnderboss(new Underboss(familia, nome, 10, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), getProbabilidadeSerPreso(), false, true));
+        familia.addUnderboss(new Underboss(familia, nome, 10, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), getProbabilidadeSerPreso(), false, true, false));
 
         System.out.println("Familia do capoRegime " + familia.getNome());
         System.out.println("Atualmente existem: " + familia.getUnderBosses().size());
@@ -50,7 +50,7 @@ public class Boss extends Mafioso {
         //Codigo para nomear um consiglieri 
         consiglieri = true;
 
-        familia.addConsiglieri(new Consiglieri(familia, nome, 10, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), getProbabilidadeSerPreso(), false, true));
+        familia.addConsiglieri(new Consiglieri(familia, nome, 10, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), getProbabilidadeSerPreso(), false, true, false));
         System.out.println("Familia do consiglieri " + familia.getNome());
         System.out.println("Atualmente existem: " + familia.getConsiglieris().size());
     }
@@ -80,24 +80,24 @@ public class Boss extends Mafioso {
             System.out.println("Random Number" + randomNumber);
             switch (randomNumber) {
                 case 0:
-                    familia.addNegocio(new Casino("Casino", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), false, capoRegime, randomAtributesGenerator.generateRandomRentabilidade()));
-                    capoRegime.addNegocio(new Casino("Casino", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), false, capoRegime, randomAtributesGenerator.generateRandomRentabilidade()));
+                    familia.addNegocio(new Casino("Casino", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), false, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), false, true));
+                    capoRegime.addNegocio(new Casino("Casino", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), false, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), false, true));
                     break;
                 case 1:
-                    familia.addNegocio(new Armas("Armas", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), false, capoRegime, randomAtributesGenerator.generateRandomRentabilidade()));
-                    capoRegime.addNegocio(new Armas("Armas", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), false, capoRegime, randomAtributesGenerator.generateRandomRentabilidade()));
+                    familia.addNegocio(new Armas("Armas", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), true, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), true, false));
+                    capoRegime.addNegocio(new Armas("Armas", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), true, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), true, false));
                     break;
                 case 2:
-                    familia.addNegocio(new Droga("Droga", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), false, capoRegime, randomAtributesGenerator.generateRandomRentabilidade()));
-                    capoRegime.addNegocio(new Droga("Droga", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), false, capoRegime, randomAtributesGenerator.generateRandomRentabilidade()));
+                    familia.addNegocio(new Droga("Droga", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), true, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), true, false));
+                    capoRegime.addNegocio(new Droga("Droga", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), true, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), true, false));
                     break;
                 case 3:
-                    familia.addNegocio(new LavagemDinheiro("LavagemDinheiro", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), false, capoRegime, randomAtributesGenerator.generateRandomRentabilidade()));
-                    capoRegime.addNegocio(new LavagemDinheiro("LavagemDinheiro", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), false, capoRegime, randomAtributesGenerator.generateRandomRentabilidade()));
+                    familia.addNegocio(new LavagemDinheiro("LavagemDinheiro", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), true, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), false, true));
+                    capoRegime.addNegocio(new LavagemDinheiro("LavagemDinheiro", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), true, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), false, true));
                     break;
                 case 4:
-                    familia.addNegocio(new Roubo("Roubo", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), false, capoRegime, randomAtributesGenerator.generateRandomRentabilidade()));
-                    capoRegime.addNegocio(new Roubo("Roubo", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), false, capoRegime, randomAtributesGenerator.generateRandomRentabilidade()));
+                    familia.addNegocio(new Roubo("Roubo", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), true, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), true, true));
+                    capoRegime.addNegocio(new Roubo("Roubo", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), true, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), true, true));
                     break;
                 default:
                 // code block

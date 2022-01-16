@@ -6,11 +6,11 @@ public abstract class Mafioso {
     private Familia familia;
     private String nome;
     private int ccId, lealdade, musculo, inteligencia, estratega, carisma, probabilidadeSerPreso = 0;
-    private boolean estaPreso, linhagem;
+    private boolean estaPreso, linhagem, informador;
 
 //Construtores
 // Construtor Mafioso
-    public Mafioso(Familia familia, String nome, int ccId, int lealdade, int musculo, int inteligencia, int estratega, int carisma, int probabilidadeSerPreso, boolean estaPreso, boolean linhagem) {
+    public Mafioso(Familia familia, String nome, int ccId, int lealdade, int musculo, int inteligencia, int estratega, int carisma, int probabilidadeSerPreso, boolean estaPreso, boolean linhagem, boolean informador) {
         this.familia = familia;
         this.nome = nome;
         this.ccId = ccId;
@@ -23,6 +23,12 @@ public abstract class Mafioso {
         this.carisma = carisma;
         this.estaPreso = estaPreso;
         this.linhagem = linhagem;
+        this.informador=informador;
+    }
+
+//Getters e setters necessários para a classe
+    public Familia getFamilia() {
+        return familia;
     }
 
     public String getNome() {
@@ -104,6 +110,14 @@ public abstract class Mafioso {
     public void setLinhagem(boolean linhagem) {
         this.linhagem = linhagem;
     }
+    
+    public boolean isInformador(){
+        return informador;
+    }
+    
+    public void setInformador(boolean informador){
+        this.informador=informador;
+    }
 
     @Override
     public String toString() {
@@ -118,6 +132,7 @@ public abstract class Mafioso {
         texto += "ProbabilidadeSerPreso:" + probabilidadeSerPreso + "\n";
         texto += "EstaPreso:" + estaPreso + "\n";
         texto += "Linhagem:" + linhagem + "\n";
+        texto += "Informador: " + informador + "\n";
         return texto;
     }
 }
