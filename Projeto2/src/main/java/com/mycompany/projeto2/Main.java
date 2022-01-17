@@ -46,12 +46,16 @@ public class Main {
                 System.out.println("Welcome to “The five crime families of New York");
                 System.out.println("Selecione uma das seguintes familias para poder fazer a gestao da mesma (Introduza o id da familia)");
                 System.out.println(config.getFamilias());
+                while (!scan.hasNextInt()) {
+                    System.out.println("O valor introduzido não é valido!");
+                    System.out.println("Introduza novamente um valor valido");
+                    scan.next(); // this is important!
+                }
                 familiaId = scan.nextInt();
                 familia = config.getFamilia(familiaId);
                 System.out.println("A familia escolhida foi: " + familia.getNome());
 
             } else {
-
                 System.out.println("        MENU MÁFIA       ");
                 System.out.println("1 - Boss");
                 System.out.println("2 - UnderBoss");
@@ -60,6 +64,12 @@ public class Main {
                 System.out.println("5 - Mudar de Familia");
                 System.out.println("6 - Sair da aplicação");
                 System.out.println("Introduza uma opção: ");
+                while (!scan.hasNextInt()) {
+                    System.out.println("O valor introduzido não é valido!");
+                    System.out.println("Introduza novamente um valor valido");
+                    scan.next(); // this is important!
+                }
+
                 opcao = scan.nextInt();
 
                 switch (opcao) {
@@ -71,6 +81,11 @@ public class Main {
                         System.out.println("4. Gera negócios para caporegime");
                         System.out.println("5. Nomear consiglieri");
                         System.out.println("O que pretende?");
+                        while (!scan.hasNextInt()) {
+                            System.out.println("O valor introduzido não é valido!");
+                            System.out.println("Introduza novamente um valor valido");
+                            scan.next(); // this is important!
+                        }
                         opcao = scan.nextInt();
 
                         switch (opcao) {
@@ -135,6 +150,11 @@ public class Main {
                             System.out.println("2. Período contabilístico");
                             System.out.println("3. Loyalty test");
                             System.out.println("O que pretende?");
+                            while (!scan.hasNextInt()) {
+                                System.out.println("O valor introduzido não é valido!");
+                                System.out.println("Introduza novamente um valor valido");
+                                scan.next(); // this is important!
+                            }
                             opcao = scan.nextInt();
 
                             switch (opcao) {
@@ -182,6 +202,11 @@ public class Main {
                         System.out.println("1. Expandir negócio");
                         System.out.println("2. Mafia sitdown");
                         System.out.println("O que pretende?");
+                        while (!scan.hasNextInt()) {
+                            System.out.println("O valor introduzido não é valido!");
+                            System.out.println("Introduza novamente um valor valido");
+                            scan.next(); // this is important!
+                        }
                         opcao = scan.nextInt();
 
                         switch (opcao) {
@@ -210,6 +235,11 @@ public class Main {
                         System.out.println("6. Encarcerados");
                         System.out.println("7. All out war");
                         System.out.println("O que pretende?");
+                        while (!scan.hasNextInt()) {
+                            System.out.println("O valor introduzido não é valido!");
+                            System.out.println("Introduza novamente um valor valido");
+                            scan.next(); // this is important!
+                        }
                         opcao = scan.nextInt();
 
                         switch (opcao) {
