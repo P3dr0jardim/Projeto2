@@ -7,9 +7,9 @@ public class Familia {
     //Variáveis de Instância
     private int familiaId;
     private String nome;
-    private double riqueza, patrimonio;
+    private double riqueza, patrimonio, custoFixo;
     private ArrayList<Mafioso> mafiosos;
-    private ArrayList<Boss> bosses;
+    private Boss boss;
     private ArrayList<Underboss> underbosses;
     private ArrayList<Consiglieri> consiglieris;
     private ArrayList<CapoRegime> caporegimes;
@@ -17,15 +17,16 @@ public class Familia {
     private ArrayList<Object> obituarioFamiliares;
     private ArrayList<Negocio> negocios;
     private ArrayList<Negocio> tiposDeNegocio;
+    private Familia[] familiasComNegociosPartilhados;
 
     //Construtor
-    public Familia(int familiaId, String nome, double riqueza, double patrimonio) {
+    public Familia(int familiaId, String nome, double riqueza, double patrimonio, double custoFixo) {
         this.familiaId = familiaId;
         this.nome = nome;
         this.riqueza = riqueza;
         this.patrimonio = patrimonio;
+        this.custoFixo = custoFixo;
         mafiosos = new ArrayList<Mafioso>();
-        bosses = new ArrayList<Boss>();
         underbosses = new ArrayList<Underboss>();
         consiglieris = new ArrayList<Consiglieri>();
         caporegimes = new ArrayList<CapoRegime>();
@@ -33,6 +34,7 @@ public class Familia {
         obituarioFamiliares = new ArrayList<Object>();
         negocios = new ArrayList<Negocio>();
         tiposDeNegocio = new ArrayList<Negocio>();
+        familiasComNegociosPartilhados = new Familia[5];
     }
 
     public ArrayList<Negocio> getNegocios() {
@@ -70,14 +72,20 @@ public class Familia {
         mafiosos.add(mafioso);
     }
 
-    //Método que devolve a lista com o boss da família 
-    public ArrayList<Boss> getBoss() {
-        return bosses;
+    public Familia[] getFamiliasComNegociosPartilhados() {
+        return familiasComNegociosPartilhados;
     }
 
-    //Método que adiciona o boss à lista dos boss da família
-    public void addBoss(Boss boss) {
-        bosses.add(boss);
+    public void setFamiliasComNegociosPartilhados(Familia[] familiasComNegociosPartilhados) {
+        this.familiasComNegociosPartilhados = familiasComNegociosPartilhados;
+    }
+
+    public Boss getBoss() {
+        return boss;
+    }
+
+    public void setBoss(Boss boss) {
+        this.boss = boss;
     }
 
     //Método que devolve a lista com o underboss da família 
@@ -184,6 +192,14 @@ public class Familia {
     //Método que adiciona um soldier à lista dos soldiers da família
     public void addFamiliarObituario(Object familiar) {
         obituarioFamiliares.add(familiar);
+    }
+
+    public double getCustoFixo() {
+        return custoFixo;
+    }
+
+    public void setCustoFixo(double custoFixo) {
+        this.custoFixo = custoFixo;
     }
 
     //Override do método toString

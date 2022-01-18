@@ -34,6 +34,16 @@ public class Consiglieri extends Mafioso {
 
         System.out.println(negocio.toString());
     }
+    
+    public void mafiaSitdown(){
+        if(getEstratega() >=80){
+            familia.setCustoFixo(familia.getCustoFixo() / 2);
+        }else if(getEstratega() >= 50 && getEstratega() <80){
+            familia.setCustoFixo(familia.getCustoFixo() / 4);
+        }else if(getEstratega() < 50){
+            familia.setCustoFixo(familia.getCustoFixo() * 2);
+        }
+    }
 
     @Override
     public String toString() {
