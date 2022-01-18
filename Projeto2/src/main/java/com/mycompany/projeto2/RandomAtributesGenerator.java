@@ -4,8 +4,22 @@ import java.util.Random;
 
 public class RandomAtributesGenerator {
 
-    private int randomCCID, randomLealdade, randomInteligencia, randomMusculo, randomEstrategia, randomCarisma, randomNumber, randomValorBaseTributavel, randomProbabPoliciaAtuar, randomRentabilidade, randomSerPreso, minValue = 10000, maxValue = 100000000;
+    private int randomIndex, probabilidadeDeSerPartilhado, randomCCID, randomLealdade, randomInteligencia, randomMusculo, randomEstrategia, randomCarisma, randomNumber, randomValorBaseTributavel, randomProbabPoliciaAtuar, randomRentabilidade, randomSerPreso, minValue = 10000, maxValue = 100000000;
 
+    public int getRandomIndex() {
+        return randomIndex;
+    }
+
+    public void setRandomIndex(int randomIndex) {
+        this.randomIndex = randomIndex;
+    }
+    
+    public int generateRandomIndex(int size) {
+        randomIndex = rand.nextInt(size);
+        return randomIndex;
+    }
+   
+    
     // create instance of Random class
     Random rand = new Random(); 
 
@@ -58,6 +72,19 @@ public class RandomAtributesGenerator {
 
     public void setRandomProbabilidadePoliciaAtuar(int ProbabilidadePoliciaAtuar) {
         this.randomProbabPoliciaAtuar = ProbabilidadePoliciaAtuar;
+    }
+    
+    public int generateProbabilidadeDeSerPartilhado() {
+        probabilidadeDeSerPartilhado = rand.nextInt(100);
+        return probabilidadeDeSerPartilhado;
+    }
+    
+    public int getProbabilidadeDeSerPartilhado() {
+        return probabilidadeDeSerPartilhado;
+    }
+
+    public void setProbabilidadeDeSerPartilhado(int probabilidadeDeSerPartilhado) {
+        this.probabilidadeDeSerPartilhado = probabilidadeDeSerPartilhado;
     }
 
     public int generateRandomLealdade() {

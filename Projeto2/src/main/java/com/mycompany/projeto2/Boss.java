@@ -4,9 +4,10 @@ public class Boss extends Mafioso {
 
     private boolean consiglieri = false;
     private Familia familia;
+    private Familia familiaPartilhada;
     private CapoRegime equipaDoCapoRegime, capoRegime;
     private RandomAtributesGenerator randomAtributesGenerator = new RandomAtributesGenerator();
-    private int quantidadeDeNegocio, randomNumber;
+    private int quantidadeDeNegocios, randomNumber;
 
     public Boss(Familia familia, String nome, int ccId, int lealdade, int musculo, int inteligencia, int estratega, int carisma, int probabilidaSerPreso, boolean estaPreso, boolean linhagem, boolean informador) {
         super(familia, nome, ccId, lealdade, musculo, inteligencia, estratega, carisma, probabilidaSerPreso, estaPreso, true, false);
@@ -64,20 +65,33 @@ public class Boss extends Mafioso {
         }
     }
 
-    public void geraNegocio(int capoRegimeId) {
+    public void geraNegocio(int capoRegimeId, Config config) {
         capoRegime = familia.getCapoRegime(capoRegimeId);
-        if (capoRegime.getLealdade() >= 80) {
-            quantidadeDeNegocio = 5;
-        } else if (capoRegime.getLealdade() >= 50 && capoRegime.getLealdade() < 80) {
-            quantidadeDeNegocio = 3;
-        } else if (capoRegime.getLealdade() < 50) {
-            quantidadeDeNegocio = 1;
+        if (getCarisma() >= 80) {
+            quantidadeDeNegocios = 5;
+        } else if (getCarisma() >= 50 && getCarisma() < 80) {
+            quantidadeDeNegocios = 3;
+        } else if (getCarisma() < 50) {
+            quantidadeDeNegocios = 1;
         }
 
-        System.err.println("Quantidade de negocios : " + quantidadeDeNegocio);
-        for (int i = 0; i < quantidadeDeNegocio; i++) {
+        if (randomAtributesGenerator.generateProbabilidadeDeSerPartilhado() >= 1) {
+            if (config.getFamilia(randomAtributesGenerator.generateRandomIndex(config.getFamilias().size())) == null) {
+                familiaPartilhada = null;
+            } else {
+                familiaPartilhada = config.getFamilia(randomAtributesGenerator.generateRandomIndex(config.getFamilias().size()));
+
+                System.out.println("Negocios da Familia Partilhada" + familiaPartilhada.getNegocios());
+            }
+
+            //remover a familia atual da lista
+            System.out.println("familiaPartilhada " + familiaPartilhada);
+        }
+
+        System.out.println("Quantidade de negocios : " + quantidadeDeNegocios);
+
+        for (int i = 0; i < quantidadeDeNegocios; i++) {
             randomNumber = randomAtributesGenerator.generateRandomNumber();
-            System.out.println("Random Number" + randomNumber);
             switch (randomNumber) {
                 case 0:
                     familia.addNegocio(new Casino("Casino", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), false, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), false, true));

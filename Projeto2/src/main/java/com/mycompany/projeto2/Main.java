@@ -15,33 +15,38 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         Boss boss;
         Config config = new Config();
-        Familia familia;
 
-        Familia familia1 = new Familia(1, "Peaky Blinders", 1000.0, 2000.0);
+        Familia familia1 = new Familia(1, "Peaky Blinders", 1000.0, 2000.0, 100.0);
         config.addFamilia(familia1);
         Boss chefeDaMafiaFamilia1 = new Boss(familia1, "Thomas Shelby", 1, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), 0, false, true, false);
+        familia1.setBoss(chefeDaMafiaFamilia1);
 
-        Familia familia2 = new Familia(2, "Yakuza", 3000.0, 5000.0);
+        Familia familia2 = new Familia(2, "Yakuza", 3000.0, 5000.0, 100.0);
         config.addFamilia(familia2);
         Boss chefeDaMafiaFamilia2 = new Boss(familia2, "Jackie Chan", 1, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), 0, false, true, false);
+        familia2.setBoss(chefeDaMafiaFamilia2);
 
-        Familia familia3 = new Familia(3, "Sicilian Mafia", 10000.0, 20000.0);
+        Familia familia3 = new Familia(3, "Sicilian Mafia", 10000.0, 20000.0, 100.0);
         config.addFamilia(familia3);
         Boss chefeDaMafiaFamilia3 = new Boss(familia3, "Al Capone", 1, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), 0, false, true, false);
+        familia3.setBoss(chefeDaMafiaFamilia3);
 
-        Familia familia4 = new Familia(4, "Sinaloa Cartel", 100000.0, 200000.0);
+        Familia familia4 = new Familia(4, "Sinaloa Cartel", 100000.0, 200000.0, 100.0);
         config.addFamilia(familia4);
         Boss chefeDaMafiaFamilia4 = new Boss(familia4, "Pablo Escobar", 1, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), 0, false, true, false);
+        familia4.setBoss(chefeDaMafiaFamilia4);
 
-        Familia familia5 = new Familia(5, "Triad", 1000000.0, 2000000.0);
+        Familia familia5 = new Familia(5, "Triad", 1000000.0, 2000000.0, 100.0);
         config.addFamilia(familia5);
         Boss chefeDaMafiaFamilia5 = new Boss(familia5, "Heung Wah-yim", 1, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), 0, false, true, false);
+        familia5.setBoss(chefeDaMafiaFamilia5);
+
         Prisao prisao = new Prisao();
         Underboss underboss;
         Consiglieri consiglieri;
+        Familia familia;
 
         do {
-
             if (!config.isFamiliaFoiEscolhida()) {
                 System.out.println("Welcome to “The five crime families of New York");
                 System.out.println("Selecione uma das seguintes familias para poder fazer a gestao da mesma (Introduza o id da familia)");
@@ -56,6 +61,8 @@ public class Main {
                 System.out.println("A familia escolhida foi: " + familia.getNome());
 
             } else {
+                System.out.println("familia escolhida: " + config.getFamiliaEscolhida());
+
                 System.out.println("        MENU MÁFIA       ");
                 System.out.println("1 - Boss");
                 System.out.println("2 - UnderBoss");
@@ -87,32 +94,34 @@ public class Main {
                             scan.next(); // this is important!
                         }
                         opcao = scan.nextInt();
+                        boss = config.getFamiliaEscolhida().getBoss();
 
                         switch (opcao) {
                             case 1:
-                                System.out.println("Atualmente existe: " + familia1.getSoldiers());
+                                System.out.println("Atualmente existe: " + config.getFamiliaEscolhida().getSoldiers());
 
-                                System.out.println("CapoRegimes disponiveis" + familia1.getCapoRegimes());
+                                System.out.println("CapoRegimes disponiveis" + config.getFamiliaEscolhida().getCapoRegimes());
 
                                 System.out.println("Introduza o capoRegime que o soldier ira fazer parte");
                                 capoRegime = scan.nextInt();
 
                                 System.out.println("Introduza o nome do soldier");
                                 nome = scan.next();
-                                chefeDaMafiaFamilia1.RecrutaSoldier(nome, capoRegime);
+
+                                boss.RecrutaSoldier(nome, capoRegime);
                                 break;
                             case 2:
                                 System.out.println("Introduza o nome do capoRegime");
                                 nome = scan.next();
-                                chefeDaMafiaFamilia1.RecrutaCapoRegime(nome);
+                                boss.RecrutaCapoRegime(nome);
 
-                                for (int i = 0; i < familia1.getCapoRegimes().size(); i++) {
-                                    familia1.getCapoRegimes().get(i).getNegocios();
-                                    for (int j = 0; j < familia1.getCapoRegimes().get(i).getNegocios().size(); j++) {
-                                        double tributos = familia1.getCapoRegimes().get(i).getNegocios().get(j).getValorAtualTributavel();
-                                        double ganhos = familia1.getCapoRegimes().get(i).getNegocios().get(j).getRentabilidade();
+                                for (int i = 0; i < config.getFamiliaEscolhida().getCapoRegimes().size(); i++) {
+                                    config.getFamiliaEscolhida().getCapoRegimes().get(i).getNegocios();
+                                    for (int j = 0; j < config.getFamiliaEscolhida().getCapoRegimes().get(i).getNegocios().size(); j++) {
+                                        double tributos = config.getFamiliaEscolhida().getCapoRegimes().get(i).getNegocios().get(j).getValorAtualTributavel();
+                                        double ganhos = config.getFamiliaEscolhida().getCapoRegimes().get(i).getNegocios().get(j).getRentabilidade();
                                         double lucro = ganhos - tributos;
-                                        familia1.setRiqueza(familia1.getRiqueza() + lucro);
+                                        config.getFamiliaEscolhida().setRiqueza(config.getFamiliaEscolhida().getRiqueza() + lucro);
                                     }
                                 }
                                 System.out.println("A riqueza da familia foi atualizada!");
@@ -120,7 +129,7 @@ public class Main {
                             case 3:
                                 System.out.println("Introduza o nome do Underboss");
                                 nome = scan.next();
-                                chefeDaMafiaFamilia1.RecrutaUnderboss(nome);
+                                boss.RecrutaUnderboss(nome);
                                 underbossMenu = true;
                                 break;
                             case 4:
@@ -130,14 +139,14 @@ public class Main {
                                 //System.out.println("Introduza o nome do negocio");
                                 //nomeNegocio = scan.next();
 
-                                chefeDaMafiaFamilia1.geraNegocio(capoRegime);
-                                System.out.println("negocios da familia: " + familia1.getNegocios());
+                                boss.geraNegocio(capoRegime, config);
+                                System.out.println("negocios da familia: " + config.getFamiliaEscolhida().getNegocios());
 
                                 break;
                             case 5:
                                 System.out.println("Introduza o nome do Consiglieri");
                                 nome = scan.next();
-                                chefeDaMafiaFamilia1.NomearConsiglieri(nome);
+                                boss.NomearConsiglieri(nome);
                                 break;
                             default:
                                 System.out.println("\nOpção inválida!\n");
@@ -173,20 +182,20 @@ public class Main {
                                     break;
                                 case 2:
                                     //Periodo Contabilistico
-                                    for (int i = 0; i < familia1.getCapoRegimes().size(); i++) {
-                                        familia1.getCapoRegimes().get(i).getNegocios();
-                                        for (int j = 0; j < familia1.getCapoRegimes().get(i).getNegocios().size(); j++) {
-                                            double tributos = familia1.getCapoRegimes().get(i).getNegocios().get(j).getValorAtualTributavel();
-                                            double ganhos = familia1.getCapoRegimes().get(i).getNegocios().get(j).getRentabilidade();
+                                    for (int i = 0; i < config.getFamiliaEscolhida().getCapoRegimes().size(); i++) {
+                                        config.getFamiliaEscolhida().getCapoRegimes().get(i).getNegocios();
+                                        for (int j = 0; j < config.getFamiliaEscolhida().getCapoRegimes().get(i).getNegocios().size(); j++) {
+                                            double tributos = config.getFamiliaEscolhida().getCapoRegimes().get(i).getNegocios().get(j).getValorAtualTributavel();
+                                            double ganhos = config.getFamiliaEscolhida().getCapoRegimes().get(i).getNegocios().get(j).getRentabilidade();
                                             double lucro = ganhos - tributos;
-                                            familia1.setRiqueza(familia1.getRiqueza() + lucro);
+                                            config.getFamiliaEscolhida().setRiqueza(config.getFamiliaEscolhida().getRiqueza() + lucro);
                                         }
                                     }
                                     System.out.println("A riqueza da familia foi atualizada!");
                                     break;
                                 case 3:
-                                    underboss = familia1.getUnderBoss();
-                                    underboss.loyaltyTest(familia1);
+                                    underboss = config.getFamiliaEscolhida().getUnderBoss();
+                                    underboss.loyaltyTest(config.getFamiliaEscolhida());
                                     break;
                                 default:
                                     System.out.println("\nOpção inválida!\n");
@@ -211,15 +220,17 @@ public class Main {
 
                         switch (opcao) {
                             case 1:
-                                System.out.println("Negocios: " + familia1.getNegocios());
+                                System.out.println("Negocios: " + config.getFamiliaEscolhida().getNegocios());
                                 System.out.println("Introduza o id do negocio que deseja expandir");
                                 negocioId = scan.nextInt();
 
-                                System.out.println("Consiglieri: " + familia1.getConsiglieris());
-                                consiglieri = familia1.getConsiglieri();
+                                System.out.println("Consiglieri: " + config.getFamiliaEscolhida().getConsiglieris());
+                                consiglieri = config.getFamiliaEscolhida().getConsiglieri();
                                 consiglieri.expandirNegocio(negocioId);
                                 break;
                             case 2:
+                                //Mafia Sitdown
+
                                 break;
                             default:
                                 System.out.println("\nOpção inválida!\n");
@@ -244,7 +255,7 @@ public class Main {
 
                         switch (opcao) {
                             case 1:
-                                System.out.println(familia1.getSoldiers());
+                                System.out.println(config.getFamiliaEscolhida().getSoldiers());
                                 break;
                             case 2:
                                 break;
@@ -253,7 +264,7 @@ public class Main {
                             case 4:
                                 break;
                             case 5:
-                                System.out.println("Obituario: " + familia1.getObituarioFamiliares());
+                                System.out.println("Obituario: " + config.getFamiliaEscolhida().getObituarioFamiliares());
                                 break;
                             case 6:
                                 break;
