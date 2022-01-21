@@ -255,18 +255,34 @@ public class Main {
 
                         switch (opcao) {
                             case 1:
-                                System.out.println(config.getFamiliaEscolhida().getSoldiers());
+                                System.out.println("Boss: " + config.getFamiliaEscolhida().getBoss() + "\n");
+                                System.out.println("UnderBoss: " + config.getFamiliaEscolhida().getUnderBoss() + "\n");
+                                System.out.println("Consiglieri: " + config.getFamiliaEscolhida().getConsiglieris() + "\n");
+                                System.out.println("CapoRegimes: " + config.getFamiliaEscolhida().getCapoRegimes() + "\n");
+                                System.out.println("Soldiers: " + config.getFamiliaEscolhida().getSoldiers() + "\n");
+                                System.out.println("Negócios: " + config.getFamiliaEscolhida().getNegocios() + "\n");
+                                System.out.println("Custo Fixo: " + config.getFamiliaEscolhida().getCustoFixo() + "\n");
+                                System.out.println("Riqueza Acumulada: " + config.getFamiliaEscolhida().getRiqueza() + "\n");
+                                System.out.println("Obituário: " + config.getFamiliaEscolhida().getObituarioFamiliares() + "\n");
+                                //System.out.println("Encarcerados: "+config.getFamiliaEscolhida().getPresos()+"\n");
                                 break;
                             case 2:
+                                System.out.println("Negócios: " + config.getFamiliaEscolhida().getNegocios() + "\n");
                                 break;
                             case 3:
+                                System.out.println("Custos: " + config.getFamiliaEscolhida().getCustoFixo() + "\n");
                                 break;
                             case 4:
+                                for (int i = 0; i < config.getFamiliaEscolhida().getCapoRegimes().size(); i++) {
+                                    System.out.println("O CapoRegime " + config.getFamiliaEscolhida().getCapoRegimes().get(i).getNome() + " tem os seguintes soldiers na sua equipa:" + "\n");
+                                    System.out.println(config.getFamiliaEscolhida().getCapoRegimes().get(i).getSoldiers().toString());
+                                }
                                 break;
                             case 5:
                                 System.out.println("Obituario: " + config.getFamiliaEscolhida().getObituarioFamiliares());
                                 break;
                             case 6:
+                                System.out.println("Encarcerados: " + prisao.toString());
                                 break;
                             case 7:
                                 break;
