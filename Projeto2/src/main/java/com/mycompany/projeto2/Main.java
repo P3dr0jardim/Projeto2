@@ -264,7 +264,110 @@ public class Main {
                                                 if(estrategaConsiglieri>=50 && estrategaConsiglieri <80)familia5.setCustoFixo(familia5.getCustoFixo()*1.5);
                                             }
                                         }
+                                        if(config.getFamiliaEscolhida()==familia2){
+                                        for(int k = 0; k<familia1.getNegocios().size(); k++){
+                                            if(familia2.getNegocios().get(i)==familia1.getNegocios().get(k)){
+                                                if(estrategaConsiglieri>=80)familia1.setCustoFixo(familia1.getCustoFixo()*2);
+                                                if(estrategaConsiglieri>=50 && estrategaConsiglieri <80)familia1.setCustoFixo(familia1.getCustoFixo()*1.5);
+                                            }
+                                        }
+                                        for(int k = 0; k<familia3.getNegocios().size(); k++){
+                                            if(familia2.getNegocios().get(i)==familia3.getNegocios().get(k)){
+                                                if(estrategaConsiglieri>=80)familia3.setCustoFixo(familia3.getCustoFixo()*2);
+                                                if(estrategaConsiglieri>=50 && estrategaConsiglieri <80)familia3.setCustoFixo(familia3.getCustoFixo()*1.5);
+                                            }
+                                        }
+                                        for(int k = 0; k<familia4.getNegocios().size(); k++){
+                                            if(familia2.getNegocios().get(i)==familia4.getNegocios().get(k)){
+                                                if(estrategaConsiglieri>=80)familia4.setCustoFixo(familia4.getCustoFixo()*2);
+                                                if(estrategaConsiglieri>=50 && estrategaConsiglieri <80)familia4.setCustoFixo(familia4.getCustoFixo()*1.5);
+                                            }
+                                        }
+                                        for(int k = 0; k<familia5.getNegocios().size(); k++){
+                                            if(familia2.getNegocios().get(i)==familia5.getNegocios().get(k)){
+                                                if(estrategaConsiglieri>=80)familia5.setCustoFixo(familia5.getCustoFixo()*2);
+                                                if(estrategaConsiglieri>=50 && estrategaConsiglieri <80)familia5.setCustoFixo(familia5.getCustoFixo()*1.5);
+                                            }
+                                        }
+                                        if(config.getFamiliaEscolhida()==familia3){
+                                        for(int k = 0; k<familia1.getNegocios().size(); k++){
+                                            if(familia3.getNegocios().get(i)==familia1.getNegocios().get(k)){
+                                                if(estrategaConsiglieri>=80)familia1.setCustoFixo(familia1.getCustoFixo()*2);
+                                                if(estrategaConsiglieri>=50 && estrategaConsiglieri <80)familia1.setCustoFixo(familia1.getCustoFixo()*1.5);
+                                            }
+                                        }
+                                        for(int k = 0; k<familia2.getNegocios().size(); k++){
+                                            if(familia3.getNegocios().get(i)==familia2.getNegocios().get(k)){
+                                                if(estrategaConsiglieri>=80)familia2.setCustoFixo(familia2.getCustoFixo()*2);
+                                                if(estrategaConsiglieri>=50 && estrategaConsiglieri <80)familia2.setCustoFixo(familia2.getCustoFixo()*1.5);
+                                            }
+                                        }
+                                        for(int k = 0; k<familia4.getNegocios().size(); k++){
+                                            if(familia3.getNegocios().get(i)==familia4.getNegocios().get(k)){
+                                                if(estrategaConsiglieri>=80)familia4.setCustoFixo(familia4.getCustoFixo()*2);
+                                                if(estrategaConsiglieri>=50 && estrategaConsiglieri <80)familia4.setCustoFixo(familia4.getCustoFixo()*1.5);
+                                            }
+                                        }
+                                        for(int k = 0; k<familia5.getNegocios().size(); k++){
+                                            if(familia3.getNegocios().get(i)==familia5.getNegocios().get(k)){
+                                                if(estrategaConsiglieri>=80)familia5.setCustoFixo(familia5.getCustoFixo()*2);
+                                                if(estrategaConsiglieri>=50 && estrategaConsiglieri <80)familia5.setCustoFixo(familia5.getCustoFixo()*1.5);
+                                            }
+                                        }
+                                        if(config.getFamiliaEscolhida()==familia4){
+                                        for(int k = 0; k<familia1.getNegocios().size(); k++){
+                                            if(familia4.getNegocios().get(i)==familia1.getNegocios().get(k)){
+                                                if(estrategaConsiglieri>=80)familia1.setCustoFixo(familia1.getCustoFixo()*2);
+                                                if(estrategaConsiglieri>=50 && estrategaConsiglieri <80)familia1.setCustoFixo(familia1.getCustoFixo()*1.5);
+                                            }
+                                        }
+                                        for(int k = 0; k<familia2.getNegocios().size(); k++){
+                                            if(familia4.getNegocios().get(i)==familia2.getNegocios().get(k)){
+                                                if(estrategaConsiglieri>=80)familia2.setCustoFixo(familia2.getCustoFixo()*2);
+                                                if(estrategaConsiglieri>=50 && estrategaConsiglieri <80)familia2.setCustoFixo(familia2.getCustoFixo()*1.5);
+                                            }
+                                        }
+                                        for(int k = 0; k<familia3.getNegocios().size(); k++){
+                                            if(familia4.getNegocios().get(i)==familia3.getNegocios().get(k)){
+                                                if(estrategaConsiglieri>=80)familia3.setCustoFixo(familia3.getCustoFixo()*2);
+                                                if(estrategaConsiglieri>=50 && estrategaConsiglieri <80)familia3.setCustoFixo(familia3.getCustoFixo()*1.5);
+                                            }
+                                        }
+                                        for(int k = 0; k<familia5.getNegocios().size(); k++){
+                                            if(familia4.getNegocios().get(i)==familia5.getNegocios().get(k)){
+                                                if(estrategaConsiglieri>=80)familia5.setCustoFixo(familia5.getCustoFixo()*2);
+                                                if(estrategaConsiglieri>=50 && estrategaConsiglieri <80)familia5.setCustoFixo(familia5.getCustoFixo()*1.5);
+                                            }
+                                        }
+                                        if(config.getFamiliaEscolhida()==familia5){
+                                        for(int k = 0; k<familia1.getNegocios().size(); k++){
+                                            if(familia5.getNegocios().get(i)==familia1.getNegocios().get(k)){
+                                                if(estrategaConsiglieri>=80)familia1.setCustoFixo(familia1.getCustoFixo()*2);
+                                                if(estrategaConsiglieri>=50 && estrategaConsiglieri <80)familia1.setCustoFixo(familia1.getCustoFixo()*1.5);
+                                            }
+                                        }
+                                        for(int k = 0; k<familia2.getNegocios().size(); k++){
+                                            if(familia5.getNegocios().get(i)==familia2.getNegocios().get(k)){
+                                                if(estrategaConsiglieri>=80)familia2.setCustoFixo(familia2.getCustoFixo()*2);
+                                                if(estrategaConsiglieri>=50 && estrategaConsiglieri <80)familia2.setCustoFixo(familia2.getCustoFixo()*1.5);
+                                            }
+                                        }
+                                        for(int k = 0; k<familia3.getNegocios().size(); k++){
+                                            if(familia5.getNegocios().get(i)==familia3.getNegocios().get(k)){
+                                                if(estrategaConsiglieri>=80)familia3.setCustoFixo(familia3.getCustoFixo()*2);
+                                                if(estrategaConsiglieri>=50 && estrategaConsiglieri <80)familia3.setCustoFixo(familia3.getCustoFixo()*1.5);
+                                            }
+                                        }
+                                        for(int k = 0; k<familia4.getNegocios().size(); k++){
+                                            if(familia5.getNegocios().get(i)==familia4.getNegocios().get(k)){
+                                                if(estrategaConsiglieri>=80)familia4.setCustoFixo(familia4.getCustoFixo()*2);
+                                                if(estrategaConsiglieri>=50 && estrategaConsiglieri <80)familia4.setCustoFixo(familia4.getCustoFixo()*1.5);
+                                            }
+                                        }
                                     }
+                                }
+                            }
+                                    }   }
                                 }
                                 if(estrategaConsiglieri>=80)familia1.setCustoFixo(familia1.getCustoFixo()*2);
                                 if(estrategaConsiglieri>=50 && estrategaConsiglieri <80)familia1.setCustoFixo(familia1.getCustoFixo()*1.5);
