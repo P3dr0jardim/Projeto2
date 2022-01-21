@@ -45,6 +45,7 @@ public class Main {
         Underboss underboss;
         Consiglieri consiglieri;
         Familia familia;
+        Familia familiaRival;
 
         do {
             if (!config.isFamiliaFoiEscolhida()) {
@@ -286,6 +287,29 @@ public class Main {
                                 System.out.println(prisao.getPresosFamilia());
                                 break;
                             case 7:
+                                System.out.println("Selecione uma segunda família para o All Out War (Introduza o id da segunda familia.)");
+                                System.out.println(config.getFamilias());
+                                System.out.println("A familia que está selecionada é: " + config.getFamiliaEscolhida().getNomeFamilia()+"\n");
+                                System.out.println("Escolha a segunda família.");
+                                familiaId = scan.nextInt();
+                                familiaRival = config.getFamilia(familiaId);
+                                System.out.println("A segunda familia escolhida foi: " + familiaRival.getNomeFamilia());
+                                if(config.getFamiliaEscolhida().getConsiglieri().getEstratega()>60 && familiaRival.getConsiglieri().getEstratega()<40){
+                                    config.getFamiliaEscolhida().setCustoFixo(config.getFamiliaEscolhida().getCustoFixo()*1.5);
+                                    familiaRival.setCustoFixo(familiaRival.getCustoFixo()/1.5);
+                                }
+                                if(config.getFamiliaEscolhida().getConsiglieri().getEstratega()<40 && familiaRival.getConsiglieri().getEstratega()>60){
+                                    config.getFamiliaEscolhida().setCustoFixo(config.getFamiliaEscolhida().getCustoFixo()/1.5);
+                                    familiaRival.setCustoFixo(familiaRival.getCustoFixo()*1.5);
+                                }
+                                if(config.getFamiliaEscolhida().getConsiglieri().getEstratega()>80 && familiaRival.getConsiglieri().getEstratega()<30){
+                                    config.getFamiliaEscolhida().setCustoFixo(config.getFamiliaEscolhida().getCustoFixo()*3);
+                                    familiaRival.setCustoFixo(familiaRival.getCustoFixo()/3);
+                                }
+                                if(config.getFamiliaEscolhida().getConsiglieri().getEstratega()<30 && familiaRival.getConsiglieri().getEstratega()>80){
+                                    config.getFamiliaEscolhida().setCustoFixo(config.getFamiliaEscolhida().getCustoFixo()/3);
+                                    familiaRival.setCustoFixo(familiaRival.getCustoFixo()*3);
+                                }
                                 break;
                             case 8:
                                 System.out.println("\nSaindo da aplicação...");
