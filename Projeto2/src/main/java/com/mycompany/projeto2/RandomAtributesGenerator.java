@@ -34,6 +34,11 @@ public class RandomAtributesGenerator {
     public void setRandomCCID(int randomCCID) {
         this.randomCCID = randomCCID;
     }
+    
+    public int generateRandomCCID() {
+        randomCCID = rand.nextInt(99999999-9999999);
+        return randomCCID;
+    }
 
     public int generateRandomValorBaseTributavel() {
         randomValorBaseTributavel = rand.nextInt(maxValue - minValue) + minValue;
