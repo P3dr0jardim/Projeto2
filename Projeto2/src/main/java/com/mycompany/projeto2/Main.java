@@ -236,8 +236,39 @@ public class Main {
                                 consiglieri.expandirNegocio(negocioId);
                                 break;
                             case 2:
-                                //Mafia Sitdown
-
+                                System.out.println("Mafia Sitdown"+"\n");
+                                int estrategaConsiglieri = config.getFamiliaEscolhida().getConsiglieri().getEstratega();
+                                for(int i = 0; i<config.getFamiliaEscolhida().getNegocios().size(); i++){
+                                    if(config.getFamiliaEscolhida()==familia1){
+                                        for(int k = 0; k<familia2.getNegocios().size(); k++){
+                                            if(familia1.getNegocios().get(i)==familia2.getNegocios().get(k)){
+                                                if(estrategaConsiglieri>=80)familia2.setCustoFixo(familia2.getCustoFixo()*2);
+                                                if(estrategaConsiglieri>=50 && estrategaConsiglieri <80)familia2.setCustoFixo(familia2.getCustoFixo()*1.5);
+                                            }
+                                        }
+                                        for(int k = 0; k<familia3.getNegocios().size(); k++){
+                                            if(familia1.getNegocios().get(i)==familia3.getNegocios().get(k)){
+                                                if(estrategaConsiglieri>=80)familia3.setCustoFixo(familia3.getCustoFixo()*2);
+                                                if(estrategaConsiglieri>=50 && estrategaConsiglieri <80)familia3.setCustoFixo(familia3.getCustoFixo()*1.5);
+                                            }
+                                        }
+                                        for(int k = 0; k<familia4.getNegocios().size(); k++){
+                                            if(familia1.getNegocios().get(i)==familia4.getNegocios().get(k)){
+                                                if(estrategaConsiglieri>=80)familia4.setCustoFixo(familia4.getCustoFixo()*2);
+                                                if(estrategaConsiglieri>=50 && estrategaConsiglieri <80)familia4.setCustoFixo(familia4.getCustoFixo()*1.5);
+                                            }
+                                        }
+                                        for(int k = 0; k<familia5.getNegocios().size(); k++){
+                                            if(familia1.getNegocios().get(i)==familia5.getNegocios().get(k)){
+                                                if(estrategaConsiglieri>=80)familia5.setCustoFixo(familia5.getCustoFixo()*2);
+                                                if(estrategaConsiglieri>=50 && estrategaConsiglieri <80)familia5.setCustoFixo(familia5.getCustoFixo()*1.5);
+                                            }
+                                        }
+                                    }
+                                }
+                                if(estrategaConsiglieri>=80)familia1.setCustoFixo(familia1.getCustoFixo()*2);
+                                if(estrategaConsiglieri>=50 && estrategaConsiglieri <80)familia1.setCustoFixo(familia1.getCustoFixo()*1.5);
+                                System.out.println("Custos Fixox Atualizados!");
                                 break;
                             default:
                                 System.out.println("\nOpção inválida!\n");
