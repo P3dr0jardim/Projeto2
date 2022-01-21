@@ -36,7 +36,7 @@ public class RandomAtributesGenerator {
     }
     
     public int generateRandomCCID() {
-        randomCCID = rand.nextInt(99999999);
+        randomCCID = rand.nextInt(99999999-9999999);
         return randomCCID;
     }
 
