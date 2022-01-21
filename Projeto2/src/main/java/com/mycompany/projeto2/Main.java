@@ -104,12 +104,18 @@ public class Main {
                                 System.out.println("CapoRegimes disponiveis" + config.getFamiliaEscolhida().getCapoRegimes());
 
                                 System.out.println("Introduza o capoRegime que o soldier ira fazer parte");
-                                capoRegime = scan.nextInt();
-
-                                System.out.println("Introduza o nome do soldier");
-                                nome = scan.next();
-
-                                boss.RecrutaSoldier(nome, capoRegime);
+                                int introduzido = scan.nextInt();
+                                for(int i = 0; i<config.getFamiliaEscolhida().getCapoRegimes().size(); i++){
+                                    if(config.getFamiliaEscolhida().getCapoRegimes().get(i).getCcId()==introduzido){
+                                        capoRegime = i;
+                                        System.out.println("Introduza o nome do soldier");
+                                        nome = scan.next();
+                                        boss.RecrutaSoldier(nome, capoRegime);
+                                    }
+                                    else{
+                                        i++;
+                                    }
+                                }
                                 break;
                             case 2:
                                 System.out.println("Introduza o nome do capoRegime");
