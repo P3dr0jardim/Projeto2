@@ -22,7 +22,7 @@ public class Boss extends Mafioso {
 
         equipaDoCapoRegime = familia.getCapoRegime(capoRegime);
 
-        equipaDoCapoRegime.addSoldier(new Soldier(familia, nome, 10, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), getProbabilidadeSerPreso(), false, true, false));
+        equipaDoCapoRegime.addSoldier(new Soldier(familia, nome, randomAtributesGenerator.generateRandomCCID(), randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), getProbabilidadeSerPreso(), false, true, false));
 
         System.out.println("Familia do soldier " + familia.getNome());
 
