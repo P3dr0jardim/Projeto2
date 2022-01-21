@@ -148,7 +148,7 @@ public class Familia {
     }
 
     //Métodos Seletores
-    public String getNomeFamilia() {
+    public String getNome() {
         return nome;
     }
 

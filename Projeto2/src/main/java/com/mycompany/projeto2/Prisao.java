@@ -26,9 +26,9 @@ public class Prisao {
     }
 
     //Método que adiciona um membro da mafia à prisao
-    public void addPreso(Mafioso m) {
-        presos.add(m);
-        inserePrisioneiro(m);
+    public void addPreso(Mafioso mafioso) {
+        presos.add(mafioso);
+        inserePrisioneiro(mafioso);
     }
 
     //Método que liberta um membro da mafia da prisao
@@ -53,11 +53,11 @@ public class Prisao {
         }    
     }
     
-    public void inserePrisioneiro(Mafioso m){
-        presosFamilia.put(m.getFamilia().getNomeFamilia(), m);
+    public void inserePrisioneiro(Mafioso mafioso){
+        presosFamilia.put(mafioso.getFamilia().getNome(), mafioso);
     }
     
-    public void removePrisioneiro(Mafioso m){
-        presosFamilia.remove(m.getFamilia().getNomeFamilia(), m);
+    public void removePrisioneiro(Mafioso mafioso){
+        presosFamilia.remove(mafioso.getFamilia().getNome(), mafioso);
     }
 }

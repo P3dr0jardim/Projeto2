@@ -24,7 +24,7 @@ public class Boss extends Mafioso {
 
         equipaDoCapoRegime.addSoldier(new Soldier(familia, nome, 10, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), getProbabilidadeSerPreso(), false, true, false));
 
-        System.out.println("Familia do soldier " + familia.getNomeFamilia());
+        System.out.println("Familia do soldier " + familia.getNome());
 
         System.out.println(equipaDoCapoRegime.capoRegimeTeam());
 
@@ -35,7 +35,7 @@ public class Boss extends Mafioso {
         //Codigo para recrutar um CapoRegime 
         familia.addCapoRegime(new CapoRegime(familia, nome, 10, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), getProbabilidadeSerPreso(), false, true, false));
 
-        System.out.println("Familia do capoRegime " + familia.getNomeFamilia());
+        System.out.println("Familia do capoRegime " + familia.getNome());
         System.out.println("Atualmente existem: " + familia.getCapoRegimes().size());
     }
 
@@ -43,7 +43,7 @@ public class Boss extends Mafioso {
         //Codigo para recrutar um Underboss 
         familia.addUnderboss(new Underboss(familia, nome, 10, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), getProbabilidadeSerPreso(), false, true, false));
 
-        System.out.println("Familia do capoRegime " + familia.getNomeFamilia());
+        System.out.println("Familia do capoRegime " + familia.getNome());
         System.out.println("Atualmente existem: " + familia.getUnderBosses().size());
     }
 
@@ -52,7 +52,7 @@ public class Boss extends Mafioso {
         consiglieri = true;
 
         familia.addConsiglieri(new Consiglieri(familia, nome, 10, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), getProbabilidadeSerPreso(), false, true, false));
-        System.out.println("Familia do consiglieri " + familia.getNomeFamilia());
+        System.out.println("Familia do consiglieri " + familia.getNome());
         System.out.println("Atualmente existem: " + familia.getConsiglieris().size());
     }
 
