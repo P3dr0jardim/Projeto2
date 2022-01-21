@@ -58,7 +58,7 @@ public class Main {
                 }
                 familiaId = scan.nextInt();
                 familia = config.getFamilia(familiaId);
-                System.out.println("A familia escolhida foi: " + familia.getNome());
+                System.out.println("A familia escolhida foi: " + familia.getNomeFamilia());
 
             } else {
                 System.out.println("familia escolhida: " + config.getFamiliaEscolhida());
@@ -282,7 +282,8 @@ public class Main {
                                 System.out.println("Obituario: " + config.getFamiliaEscolhida().getObituarioFamiliares());
                                 break;
                             case 6:
-                                System.out.println("Encarcerados: " + prisao.toString());
+                                System.out.println("Encarcerados: ");
+                                System.out.println(prisao.getPresosFamilia());
                                 break;
                             case 7:
                                 break;
