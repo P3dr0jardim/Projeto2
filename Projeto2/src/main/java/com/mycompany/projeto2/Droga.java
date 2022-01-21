@@ -1,9 +1,27 @@
 package com.mycompany.projeto2;
 
-public class Droga extends Negocio implements Policiavel {
+import java.util.ArrayList;
 
-    public Droga(String nome, double ValorBaseTributavel, int ProbPolicia, boolean Policiavel, CapoRegime CapoRegime, double rentabilidade, double ValorAtualTributavel, boolean Musculado, boolean Inteligente) {
-        super(nome, ValorBaseTributavel, ProbPolicia, true, CapoRegime, rentabilidade, ValorAtualTributavel, true, false);
+public class Droga extends Negocio implements Policiavel {
+    private ArrayList<Associate> associatesDrogas;
+    private RandomAtributesGenerator randomAtributesGenerator = new RandomAtributesGenerator();
+    private Familia familia;
+    
+    public Droga(Familia familia, String nome, double ValorBaseTributavel, int ProbPolicia, boolean Policiavel, CapoRegime CapoRegime, double rentabilidade, double ValorAtualTributavel, boolean Musculado, boolean Inteligente) {
+        super(familia, nome, ValorBaseTributavel, ProbPolicia, true, CapoRegime, rentabilidade, ValorAtualTributavel, true, false);
+        this.familia = familia;
+        associatesDrogas = new ArrayList<Associate>();
+        this.createAssociates();
+    }
+    
+    @Override
+    public void createAssociates() {
+        int quantidadeDeAssociates = randomAtributesGenerator.generateRandomNumber();
+        System.out.println("quantidadeDeAssociates " + quantidadeDeAssociates);
+        for (int i = 0; i < quantidadeDeAssociates; i++) {
+            associatesDrogas.add(new Associate(familia, randomAtributesGenerator.generateRandomName("Associate"), 1, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), 0, false, true, false));
+        }
+        System.out.println("Associates Criados: " + associatesDrogas);
     }
 
     //Média do Musculo da equipa de Soldiers
@@ -50,6 +68,16 @@ public class Droga extends Negocio implements Policiavel {
                 }
             }
         }
+    }
+    
+    @Override
+    public String toString() {
+        String texto;
+        texto = "Associates Drogas: " + "\n";
+        for (Associate associate : associatesDrogas) {
+            texto += "Associate: " + associate.getNome() + "\n";
+        };
+        return super.toString() + texto;
     }
 
 }
