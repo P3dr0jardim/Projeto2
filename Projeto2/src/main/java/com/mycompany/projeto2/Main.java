@@ -367,10 +367,9 @@ public class Main {
                                     }
                                 }
                             }
-                                    }   }
-                                }
-                                if(estrategaConsiglieri>=80)familia1.setCustoFixo(familia1.getCustoFixo()*2);
-                                if(estrategaConsiglieri>=50 && estrategaConsiglieri <80)familia1.setCustoFixo(familia1.getCustoFixo()*1.5);
+                        }   
+                    }
+                }
                                 System.out.println("Custos Fixox Atualizados!");
                                 break;
                             default:
