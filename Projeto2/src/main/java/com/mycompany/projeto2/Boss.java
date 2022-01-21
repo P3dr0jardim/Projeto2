@@ -76,7 +76,7 @@ public class Boss extends Mafioso {
             quantidadeDeNegocios = 1;
         }
 
-        if (randomAtributesGenerator.generateProbabilidadeDeSerPartilhado() >= 1) {
+        if (randomAtributesGenerator.generateProbabilidadeDeSerPartilhado() >= 50) {
             int familiaIndex = randomAtributesGenerator.generateRandomIndex(config.getFamilias().size());
             if (config.getFamilia(familiaIndex) == null) {
                 familiaPartilhada = null;
