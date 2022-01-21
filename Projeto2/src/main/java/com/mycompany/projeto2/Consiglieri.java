@@ -6,17 +6,15 @@ public class Consiglieri extends Mafioso {
     private Familia familia;
     private Negocio negocio;
 
-    public Consiglieri(Familia familia, String nome, int ccId, int lealdade, int musculo, int inteligencia, int estratega, int carisma, int probabilidaSerPreso, boolean estaPreso, boolean linhagem, boolean informador) {
-        super(familia, nome, ccId, lealdade, musculo, inteligencia, estratega, carisma, probabilidaSerPreso, estaPreso, linhagem, false);
+    public Consiglieri(Familia familia, String nome, int ccId, int lealdade, int musculo, int inteligencia, int estratega, int carisma, int probabilidadeSerPreso, boolean estaPreso, boolean linhagem, boolean informador) {
+        super(familia, nome, ccId, lealdade, musculo, inteligencia, estratega, carisma, probabilidadeSerPreso, estaPreso, linhagem, false);
         this.familia = familia;
     }
 
     public void expandirNegocio(int negocioId) {
-        System.out.println("negocioId: " + negocioId);
 
-        System.out.println("familia" + familia);
         negocio = familia.getNegocio(negocioId);
-
+        System.out.println("Negocio: " + negocio);
         System.out.println("getEstratega() " + getEstratega());
 
         if (getEstratega() > 50) {
@@ -34,13 +32,13 @@ public class Consiglieri extends Mafioso {
 
         System.out.println(negocio.toString());
     }
-    
-    public void mafiaSitdown(){
-        if(getEstratega() >=80){
+
+    public void mafiaSitdown() {
+        if (getEstratega() >= 80) {
             familia.setCustoFixo(familia.getCustoFixo() / 2);
-        }else if(getEstratega() >= 50 && getEstratega() <80){
+        } else if (getEstratega() >= 50 && getEstratega() < 80) {
             familia.setCustoFixo(familia.getCustoFixo() / 4);
-        }else if(getEstratega() < 50){
+        } else if (getEstratega() < 50) {
             familia.setCustoFixo(familia.getCustoFixo() * 2);
         }
     }

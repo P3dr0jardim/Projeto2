@@ -9,8 +9,8 @@ public class Underboss extends Mafioso {
     private Soldier soldier, traidorSoldier, MelhorSoldier;
     private CapoRegime capoRegime, traidorCapoRegime;
 
-    public Underboss(Familia familia, String nome, int ccId, int lealdade, int musculo, int inteligencia, int estratega, int carisma, int probabilidaSerPreso, boolean estaPreso, boolean linhagem, boolean informador) {
-        super(familia, nome, ccId, lealdade, musculo, inteligencia, estratega, carisma, probabilidaSerPreso, estaPreso, true, false);
+    public Underboss(Familia familia, String nome, int ccId, int lealdade, int musculo, int inteligencia, int estratega, int carisma, int probabilidadeSerPreso, boolean estaPreso, boolean linhagem, boolean informador) {
+        super(familia, nome, ccId, lealdade, musculo, inteligencia, estratega, carisma, probabilidadeSerPreso, estaPreso, true, false);
         soldiers = new ArrayList<Soldier>();
         capoRegimes = new ArrayList<CapoRegime>();
     }

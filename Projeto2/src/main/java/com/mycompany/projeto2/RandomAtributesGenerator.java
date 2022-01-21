@@ -5,6 +5,28 @@ import java.util.Random;
 public class RandomAtributesGenerator {
 
     private int randomIndex, probabilidadeDeSerPartilhado, randomCCID, randomLealdade, randomInteligencia, randomMusculo, randomEstrategia, randomCarisma, randomNumber, randomValorBaseTributavel, randomProbabPoliciaAtuar, randomRentabilidade, randomSerPreso, minValue = 10000, maxValue = 100000000;
+    private String randomName;
+
+    // create instance of Random class
+    Random rand = new Random();
+
+    public RandomAtributesGenerator() {
+
+    }
+
+    public String getRandomName() {
+        return randomName;
+    }
+
+    public void setRandomName(String randomName) {
+        this.randomName = randomName;
+    }
+    
+    public String generateRandomName(String name) {
+        randomName = name + rand.nextInt(1000);
+        System.out.println("Random Name" + randomName);
+        return randomName;
+    }
 
     public int getRandomIndex() {
         return randomIndex;
@@ -13,18 +35,11 @@ public class RandomAtributesGenerator {
     public void setRandomIndex(int randomIndex) {
         this.randomIndex = randomIndex;
     }
-    
+
     public int generateRandomIndex(int size) {
-        randomIndex = rand.nextInt(size);
+        randomIndex = rand.nextInt(size - 1) + 1;
+        System.out.println("RandomIndex: " + randomIndex);
         return randomIndex;
-    }
-   
-    
-    // create instance of Random class
-    Random rand = new Random(); 
-
-    public RandomAtributesGenerator() {
-
     }
 
     public int getRandomCCID() {
@@ -78,12 +93,12 @@ public class RandomAtributesGenerator {
     public void setRandomProbabilidadePoliciaAtuar(int ProbabilidadePoliciaAtuar) {
         this.randomProbabPoliciaAtuar = ProbabilidadePoliciaAtuar;
     }
-    
+
     public int generateProbabilidadeDeSerPartilhado() {
         probabilidadeDeSerPartilhado = rand.nextInt(100);
         return probabilidadeDeSerPartilhado;
     }
-    
+
     public int getProbabilidadeDeSerPartilhado() {
         return probabilidadeDeSerPartilhado;
     }
@@ -109,9 +124,9 @@ public class RandomAtributesGenerator {
     public void setRandomNumber(int randomNumber) {
         this.randomNumber = randomNumber;
     }
-    
-    public int generateProbabilidadeSerPreso(){
-        randomSerPreso = rand.nextInt(61)+10;
+
+    public int generateProbabilidadeSerPreso() {
+        randomSerPreso = rand.nextInt(61) + 10;
         return randomSerPreso;
     }
 
@@ -174,5 +189,5 @@ public class RandomAtributesGenerator {
     public void setRandomCarisma(int randomCarisma) {
         this.randomCarisma = randomCarisma;
     }
-    
+
 }

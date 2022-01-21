@@ -8,9 +8,10 @@ public class Boss extends Mafioso {
     private CapoRegime equipaDoCapoRegime, capoRegime;
     private RandomAtributesGenerator randomAtributesGenerator = new RandomAtributesGenerator();
     private int quantidadeDeNegocios, randomNumber;
+    private Negocio negocioPartilhado;
 
-    public Boss(Familia familia, String nome, int ccId, int lealdade, int musculo, int inteligencia, int estratega, int carisma, int probabilidaSerPreso, boolean estaPreso, boolean linhagem, boolean informador) {
-        super(familia, nome, ccId, lealdade, musculo, inteligencia, estratega, carisma, probabilidaSerPreso, estaPreso, true, false);
+    public Boss(Familia familia, String nome, int ccId, int lealdade, int musculo, int inteligencia, int estratega, int carisma, int probabilidadeSerPreso, boolean estaPreso, boolean linhagem, boolean informador) {
+        super(familia, nome, ccId, lealdade, musculo, inteligencia, estratega, carisma, probabilidadeSerPreso, estaPreso, true, false);
         this.familia = familia;
     }
 
@@ -76,47 +77,63 @@ public class Boss extends Mafioso {
         }
 
         if (randomAtributesGenerator.generateProbabilidadeDeSerPartilhado() >= 1) {
-            if (config.getFamilia(randomAtributesGenerator.generateRandomIndex(config.getFamilias().size())) == null) {
+            int familiaIndex = randomAtributesGenerator.generateRandomIndex(config.getFamilias().size());
+            if (config.getFamilia(familiaIndex) == null) {
                 familiaPartilhada = null;
             } else {
-                familiaPartilhada = config.getFamilia(randomAtributesGenerator.generateRandomIndex(config.getFamilias().size()));
-
-                System.out.println("Negocios da Familia Partilhada" + familiaPartilhada.getNegocios());
+                familiaPartilhada = config.getFamilia(familiaIndex);
+                if (familiaPartilhada.getNegocios().size() == 0) {
+                    negocioPartilhado = null;
+                } else {
+                    negocioPartilhado = familiaPartilhada.getNegocio(randomAtributesGenerator.generateRandomIndex(familiaPartilhada.getNegocios().size()));
+                }
             }
-
-            //remover a familia atual da lista
-            System.out.println("familiaPartilhada " + familiaPartilhada);
         }
 
-        System.out.println("Quantidade de negocios : " + quantidadeDeNegocios);
+        if (familiaPartilhada != null && negocioPartilhado != null) {
+            familia.addNegocio(negocioPartilhado);
+            capoRegime.addNegocio(negocioPartilhado);
+        }
+
+        System.out.println("familiaPartilhada: " + familiaPartilhada);
+        System.out.println("negocioPartilhado: " + negocioPartilhado);
 
         for (int i = 0; i < quantidadeDeNegocios; i++) {
             randomNumber = randomAtributesGenerator.generateRandomNumber();
+            System.out.println("quantidadeDeNegocios " + quantidadeDeNegocios);
+            //Alterar criação de negocios
             switch (randomNumber) {
                 case 0:
-                    familia.addNegocio(new Casino("Casino", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), false, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), false, true));
-                    capoRegime.addNegocio(new Casino("Casino", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), false, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), false, true));
+                    Casino casino = new Casino(familia, "Casino", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), false, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), false, true);
+                    familia.addNegocio(casino);
+                    capoRegime.addNegocio(casino);
                     break;
                 case 1:
-                    familia.addNegocio(new Armas("Armas", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), true, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), true, false));
-                    capoRegime.addNegocio(new Armas("Armas", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), true, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), true, false));
+                    Armas armas = new Armas(familia, "Armas", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), true, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), true, false);
+                    familia.addNegocio(armas);
+                    capoRegime.addNegocio(armas);
                     break;
                 case 2:
-                    familia.addNegocio(new Droga("Droga", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), true, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), true, false));
-                    capoRegime.addNegocio(new Droga("Droga", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), true, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), true, false));
+                    Droga droga = new Droga(familia, "Droga", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), true, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), true, false);
+
+                    familia.addNegocio(droga);
+                    capoRegime.addNegocio(droga);
                     break;
                 case 3:
-                    familia.addNegocio(new LavagemDinheiro("LavagemDinheiro", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), true, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), false, true));
-                    capoRegime.addNegocio(new LavagemDinheiro("LavagemDinheiro", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), true, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), false, true));
+                    LavagemDinheiro lavagemDinheiro = new LavagemDinheiro(familia, "LavagemDinheiro", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), true, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), false, true);
+
+                    familia.addNegocio(lavagemDinheiro);
+                    capoRegime.addNegocio(lavagemDinheiro);
                     break;
                 case 4:
-                    familia.addNegocio(new Roubo("Roubo", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), true, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), true, true));
-                    capoRegime.addNegocio(new Roubo("Roubo", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), true, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), true, true));
+
+                    Roubo roubo = new Roubo(familia, "Roubo", randomAtributesGenerator.generateRandomValorBaseTributavel(), randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar(), true, capoRegime, randomAtributesGenerator.generateRandomRentabilidade(), randomAtributesGenerator.generateRandomValorBaseTributavel(), true, true);
+                    familia.addNegocio(roubo);
+                    capoRegime.addNegocio(roubo);
                     break;
                 default:
                 // code block
             }
-
         }
     }
 
