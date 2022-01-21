@@ -45,6 +45,7 @@ public class Main {
         Underboss underboss;
         Consiglieri consiglieri;
         Familia familia;
+        Familia familiaRival;
 
         do {
             if (!config.isFamiliaFoiEscolhida()) {
@@ -255,20 +256,60 @@ public class Main {
 
                         switch (opcao) {
                             case 1:
-                                System.out.println(config.getFamiliaEscolhida().getSoldiers());
+                                System.out.println("Boss: " + config.getFamiliaEscolhida().getBoss() + "\n");
+                                System.out.println("UnderBoss: " + config.getFamiliaEscolhida().getUnderBoss() + "\n");
+                                System.out.println("Consiglieri: " + config.getFamiliaEscolhida().getConsiglieris() + "\n");
+                                System.out.println("CapoRegimes: " + config.getFamiliaEscolhida().getCapoRegimes() + "\n");
+                                System.out.println("Soldiers: " + config.getFamiliaEscolhida().getSoldiers() + "\n");
+                                System.out.println("Negócios: " + config.getFamiliaEscolhida().getNegocios() + "\n");
+                                System.out.println("Custo Fixo: " + config.getFamiliaEscolhida().getCustoFixo() + "\n");
+                                System.out.println("Riqueza Acumulada: " + config.getFamiliaEscolhida().getRiqueza() + "\n");
+                                System.out.println("Obituário: " + config.getFamiliaEscolhida().getObituarioFamiliares() + "\n");
+                                //System.out.println("Encarcerados: "+config.getFamiliaEscolhida().getPresos()+"\n");
                                 break;
                             case 2:
+                                System.out.println("Negócios: " + config.getFamiliaEscolhida().getNegocios() + "\n");
                                 break;
                             case 3:
+                                System.out.println("Custos: " + config.getFamiliaEscolhida().getCustoFixo() + "\n");
                                 break;
                             case 4:
+                                for (int i = 0; i < config.getFamiliaEscolhida().getCapoRegimes().size(); i++) {
+                                    System.out.println("O CapoRegime " + config.getFamiliaEscolhida().getCapoRegimes().get(i).getNome() + " tem os seguintes soldiers na sua equipa:" + "\n");
+                                    System.out.println(config.getFamiliaEscolhida().getCapoRegimes().get(i).getSoldiers().toString());
+                                }
                                 break;
                             case 5:
                                 System.out.println("Obituario: " + config.getFamiliaEscolhida().getObituarioFamiliares());
                                 break;
                             case 6:
+                                System.out.println("Encarcerados: ");
+                                System.out.println(prisao.getPresosFamilia());
                                 break;
                             case 7:
+                                System.out.println("Selecione uma segunda família para o All Out War (Introduza o id da segunda familia.)");
+                                System.out.println(config.getFamilias());
+                                System.out.println("A familia que está selecionada é: " + config.getFamiliaEscolhida().getNome()+"\n");
+                                System.out.println("Escolha a segunda família.");
+                                familiaId = scan.nextInt();
+                                familiaRival = config.getFamilia(familiaId);
+                                System.out.println("A segunda familia escolhida foi: " + familiaRival.getNome());
+                                if(config.getFamiliaEscolhida().getConsiglieri().getEstratega()>60 && familiaRival.getConsiglieri().getEstratega()<40){
+                                    config.getFamiliaEscolhida().setCustoFixo(config.getFamiliaEscolhida().getCustoFixo()*1.5);
+                                    familiaRival.setCustoFixo(familiaRival.getCustoFixo()/1.5);
+                                }
+                                if(config.getFamiliaEscolhida().getConsiglieri().getEstratega()<40 && familiaRival.getConsiglieri().getEstratega()>60){
+                                    config.getFamiliaEscolhida().setCustoFixo(config.getFamiliaEscolhida().getCustoFixo()/1.5);
+                                    familiaRival.setCustoFixo(familiaRival.getCustoFixo()*1.5);
+                                }
+                                if(config.getFamiliaEscolhida().getConsiglieri().getEstratega()>80 && familiaRival.getConsiglieri().getEstratega()<30){
+                                    config.getFamiliaEscolhida().setCustoFixo(config.getFamiliaEscolhida().getCustoFixo()*3);
+                                    familiaRival.setCustoFixo(familiaRival.getCustoFixo()/3);
+                                }
+                                if(config.getFamiliaEscolhida().getConsiglieri().getEstratega()<30 && familiaRival.getConsiglieri().getEstratega()>80){
+                                    config.getFamiliaEscolhida().setCustoFixo(config.getFamiliaEscolhida().getCustoFixo()/3);
+                                    familiaRival.setCustoFixo(familiaRival.getCustoFixo()*3);
+                                }
                                 break;
                             case 8:
                                 System.out.println("\nSaindo da aplicação...");
