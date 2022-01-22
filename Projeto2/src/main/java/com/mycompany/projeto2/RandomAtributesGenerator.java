@@ -37,7 +37,7 @@ public class RandomAtributesGenerator {
     }
 
     public int generateRandomIndex(int size) {
-        randomIndex = rand.nextInt(size - 1) + 1;
+        randomIndex = rand.nextInt(size);
         System.out.println("RandomIndex: " + randomIndex);
         return randomIndex;
     }

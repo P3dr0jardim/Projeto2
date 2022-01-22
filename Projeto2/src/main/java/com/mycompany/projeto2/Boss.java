@@ -32,6 +32,14 @@ public class Boss extends Mafioso {
         System.out.println("Atualmente existem: " + familia.getSoldiers().size());
     }
 
+    public Familia getFamiliaPartilhada() {
+        return familiaPartilhada;
+    }
+
+    public void setFamiliaPartilhada(Familia familiaPartilhada) {
+        this.familiaPartilhada = familiaPartilhada;
+    }
+
     public void RecrutaCapoRegime(String nome) {
         //Codigo para recrutar um CapoRegime 
         familia.addCapoRegime(new CapoRegime(familia, nome, randomAtributesGenerator.generateRandomCCID(), randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), getProbabilidadeSerPreso(), false, true, false));
@@ -76,7 +84,7 @@ public class Boss extends Mafioso {
             quantidadeDeNegocios = 1;
         }
 
-        if (randomAtributesGenerator.generateProbabilidadeDeSerPartilhado() >= 1) {
+        if (randomAtributesGenerator.generateProbabilidadeDeSerPartilhado() >= 50) {
             int familiaIndex = randomAtributesGenerator.generateRandomIndex(config.getFamilias().size());
             if (config.getFamilia(familiaIndex) == null) {
                 familiaPartilhada = null;
