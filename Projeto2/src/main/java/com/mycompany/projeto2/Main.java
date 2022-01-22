@@ -62,7 +62,7 @@ public class Main {
                 System.out.println("A familia escolhida foi: " + familia.getNome());
 
             } else {
-                System.out.println("familia escolhida: " + config.getFamiliaEscolhida());
+                System.out.println("familia escolhida: " + config.getFamiliaEscolhida()+"\n\n");
 
                 System.out.println("        MENU MÁFIA       ");
                 System.out.println("1 - Boss");
@@ -119,17 +119,6 @@ public class Main {
                                 System.out.println("Introduza o nome do capoRegime");
                                 nome = scan.next();
                                 boss.RecrutaCapoRegime(nome);
-
-                                for (int i = 0; i < config.getFamiliaEscolhida().getCapoRegimes().size(); i++) {
-                                    config.getFamiliaEscolhida().getCapoRegimes().get(i).getNegocios();
-                                    for (int j = 0; j < config.getFamiliaEscolhida().getCapoRegimes().get(i).getNegocios().size(); j++) {
-                                        double tributos = config.getFamiliaEscolhida().getCapoRegimes().get(i).getNegocios().get(j).getValorAtualTributavel();
-                                        double ganhos = config.getFamiliaEscolhida().getCapoRegimes().get(i).getNegocios().get(j).getRentabilidade();
-                                        double lucro = ganhos - tributos;
-                                        config.getFamiliaEscolhida().setRiqueza(config.getFamiliaEscolhida().getRiqueza() + lucro);
-                                    }
-                                }
-                                System.out.println("A riqueza da familia foi atualizada!");
                                 break;
                             case 3:
                                 System.out.println("Introduza o nome do Underboss");
@@ -187,16 +176,23 @@ public class Main {
                                     break;
                                 case 2:
                                     //Periodo Contabilistico
-                                    for (int i = 0; i < config.getFamiliaEscolhida().getCapoRegimes().size(); i++) {
-                                        config.getFamiliaEscolhida().getCapoRegimes().get(i).getNegocios();
-                                        for (int j = 0; j < config.getFamiliaEscolhida().getCapoRegimes().get(i).getNegocios().size(); j++) {
-                                            double tributos = config.getFamiliaEscolhida().getCapoRegimes().get(i).getNegocios().get(j).getValorAtualTributavel();
-                                            double ganhos = config.getFamiliaEscolhida().getCapoRegimes().get(i).getNegocios().get(j).getRentabilidade();
-                                            double lucro = ganhos - tributos;
-                                            config.getFamiliaEscolhida().setRiqueza(config.getFamiliaEscolhida().getRiqueza() + lucro);
+                                    if (config.getFamiliaEscolhida().getCapoRegimes().size()>0){
+                                        for (int i = 0; i < config.getFamiliaEscolhida().getCapoRegimes().size(); i++) {
+                                            config.getFamiliaEscolhida().getCapoRegimes().get(i).getNegocios();
+                                            for (int j = 0; j < config.getFamiliaEscolhida().getCapoRegimes().get(i).getNegocios().size(); j++) {
+                                                config.getFamiliaEscolhida().getCapoRegimes().get(i).getNegocios().get(j).AtualizaValoresNegocio();
+                                                double tributos = config.getFamiliaEscolhida().getCapoRegimes().get(i).getNegocios().get(j).getValorAtualTributavel();
+                                                double ganhos = config.getFamiliaEscolhida().getCapoRegimes().get(i).getNegocios().get(j).getRentabilidade();
+                                                double lucro = ganhos - tributos;
+                                                config.getFamiliaEscolhida().setRiqueza(config.getFamiliaEscolhida().getRiqueza() + lucro);
+                                            }
                                         }
+                                        System.out.println("A riqueza da familia foi atualizada!\n");
                                     }
-                                    System.out.println("A riqueza da familia foi atualizada!");
+                                    else {
+                                        System.out.println("Não existem de momento CapoRegimes ligados à familia!\n");
+                                    }
+            
                                     break;
                                 case 3:
                                     underboss = config.getFamiliaEscolhida().getUnderBoss();
