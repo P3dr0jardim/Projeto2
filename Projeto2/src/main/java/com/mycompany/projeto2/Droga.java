@@ -26,7 +26,7 @@ public class Droga extends Negocio implements Policiavel {
 
     //Média do Musculo da equipa de Soldiers
     @Override
-    public void AtualizaValoresNegocio() {
+        public void AtualizaValoresNegocio() {
         if (VerificaMusculo() >= 50 && VerificaMusculo() < 70) {
             double novaRentabilidade = getRentabilidade() * 2;
             setRentabilidade(novaRentabilidade);
@@ -62,9 +62,9 @@ public class Droga extends Negocio implements Policiavel {
                     getCapoRegime().getSoldiers().get(i).setInformador(true);
                 }
                 else if (prender <= getCapoRegime().getSoldiers().get(i).getProbabilidadeSerPreso()){
-                    Prisao prisao = new Prisao();
-                    prisao.addPreso(getCapoRegime().getSoldiers().get(i));
+                    familia.addPreso(getCapoRegime().getSoldiers().get(i));
                     System.out.println("O "+ getCapoRegime().getSoldiers().get(i).getNome() + "foi preso!");
+                    getCapoRegime().getSoldiers().get(i).setEstaPreso(true);
                 }
             }
         }

@@ -32,24 +32,43 @@ public class LavagemDinheiro extends Negocio implements Policiavel {
             double novaRentabilidade = getRentabilidade() * 1.5;
             setRentabilidade(novaRentabilidade);
             setValorAtualTributavel(novaRentabilidade * 0.15);
+            policiarNegocio();
         }
         if (VerificaInteligencia() >= 70 && VerificaInteligencia() < 90) {
             double novaRentabilidade = getRentabilidade() * 2;
             setRentabilidade(novaRentabilidade);
             setProbPolicia(getProbPolicia() - 5);
             setValorAtualTributavel(novaRentabilidade * 0.2);
+            policiarNegocio();
         } else if (VerificaInteligencia() >= 90) {
             double novaRentabilidade = getRentabilidade() * 3;
             setRentabilidade(novaRentabilidade);
             setProbPolicia(getProbPolicia() - 10);
             setValorAtualTributavel(novaRentabilidade * 0.3);
+            policiarNegocio();
         } else {
             setProbPolicia(getProbPolicia() + 15);
+            policiarNegocio();
         }
     }
 
     @Override
     public void policiarNegocio() {
+        RandomAtributesGenerator randomAtributesGenerator = new RandomAtributesGenerator();
+        int atuar = randomAtributesGenerator.generateRandomProbabilidadePoliciaAtuar();
+        int prender = randomAtributesGenerator.generateProbabilidadeSerPreso();
+        if (atuar <= getProbPolicia()) {
+            System.out.println("A policia está a atuar no negocio.");
+            for (int i = 0; i < getCapoRegime().getSoldiers().size(); i++) {
+                if (getCapoRegime().getSoldiers().get(i).getLealdade() < 15) {
+                    getCapoRegime().getSoldiers().get(i).setInformador(true);
+                } else if (prender <= getCapoRegime().getSoldiers().get(i).getProbabilidadeSerPreso()) {
+                    familia.addPreso(getCapoRegime().getSoldiers().get(i));
+                    System.out.println("O " + getCapoRegime().getSoldiers().get(i).getNome() + "foi preso!");
+                    getCapoRegime().getSoldiers().get(i).setEstaPreso(true);
+                }
+            }
+        }
     }
 
     @Override
