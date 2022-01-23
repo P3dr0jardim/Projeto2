@@ -14,8 +14,8 @@ public class Underboss extends Mafioso {
         soldiers = new ArrayList<Soldier>();
         capoRegimes = new ArrayList<CapoRegime>();
     }
-//Loyalty test sendo que caso seja adicionado alguem ao obituario deve ser feito um suposto pagamento aos familiares deste sendo entao retirado um certo valor à riqueza da familia dos mafiosos
-
+    
+    //Loyalty test sendo que caso seja adicionado alguem ao obituario deve ser feito um suposto pagamento aos familiares deste sendo entao retirado um certo valor à riqueza da familia dos mafiosos
     public void loyaltyTest(Familia familia) {
 
         soldiers = familia.getSoldiers();

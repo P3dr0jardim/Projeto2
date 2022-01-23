@@ -15,6 +15,7 @@ public class Armas extends Negocio implements Policiavel {
         this.createAssociates();
     }
 
+    //Cria x valor de associados para este negócio
     @Override
     public void createAssociates() {
         int quantidadeDeAssociates = randomAtributesGenerator.generateRandomNumber();
@@ -25,7 +26,7 @@ public class Armas extends Negocio implements Policiavel {
         System.out.println("Associates Criados: " + associatesArmas);
     }
 
-    //Média do Musculo da equipa de Soldiers
+    //Obtem média do Musculo da equipa de Soldiers e consoante esse valor é atribuido novos valores para a rentabilidade, Valor base tributavel e probabilidade da policia atuar
     @Override
     public void AtualizaValoresNegocio() {
         if (VerificaMusculo() >= 50 && VerificaMusculo() < 70) {
@@ -51,6 +52,7 @@ public class Armas extends Negocio implements Policiavel {
         }
     }
 
+    //Método que analisa os valores de lealdade da equipa e consoante esse valor, o soldier pode se torna informador ou ir preso
     @Override
     public void policiarNegocio() {
         RandomAtributesGenerator randomAtributesGenerator = new RandomAtributesGenerator();

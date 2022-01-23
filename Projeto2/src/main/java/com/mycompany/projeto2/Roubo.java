@@ -16,6 +16,7 @@ public class Roubo extends Negocio implements Policiavel {
         this.createAssociates();
     }
 
+    //Cria x valor de associados para este negócio
     @Override
     public void createAssociates() {
         int quantidadeDeAssociates = randomAtributesGenerator.generateRandomNumber();
@@ -26,7 +27,7 @@ public class Roubo extends Negocio implements Policiavel {
         System.out.println("Associates Criados: " + associatesRoubo);
     }
 
-    //Média do Musculo da equipa de Soldiers
+    //Obtem média do Musculo e da Inteligência da equipa de Soldiers e consoante esse valor é atribuido novos valores para a rentabilidade, Valor base tributavel e probabilidade da policia atuar
     @Override
     public void AtualizaValoresNegocio() {
         if ((VerificaMusculo() >= 50 && VerificaMusculo() < 70) && (VerificaInteligencia() >= 50 && VerificaInteligencia() < 70)) {
@@ -52,6 +53,7 @@ public class Roubo extends Negocio implements Policiavel {
         }
     }
 
+    //Método que analisa os valores de lealdade da equipa e consoante esse valor, o soldier pode se torna informador ou ir preso
     @Override
     public void policiarNegocio() {
         RandomAtributesGenerator randomAtributesGenerator = new RandomAtributesGenerator();
@@ -67,7 +69,7 @@ public class Roubo extends Negocio implements Policiavel {
                 } else if (prender <= getCapoRegime().getSoldiers().get(i).getProbabilidadeSerPreso()) {
                     familia.addPreso(getCapoRegime().getSoldiers().get(i));//Adiciona o soldier à prisao
                     getCapoRegime().getSoldiers().get(i).getFamilia().removeSoldier(getCapoRegime().getSoldiers().get(i).getNome());//Remove o soldier da familia
-                    System.out.println("O " + getCapoRegime().getSoldiers().get(i).getNome() + "foi preso!");
+                    System.out.println("O " + getCapoRegime().getSoldiers().get(i).getNome() + " foi preso!");
                     getCapoRegime().getSoldiers().get(i).setEstaPreso(true);
                 }
             }

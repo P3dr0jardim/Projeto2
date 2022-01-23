@@ -11,6 +11,7 @@ public class Consiglieri extends Mafioso {
         this.familia = familia;
     }
 
+    //Método que permite expandir um negócio implicando um aumento no valor tributavel
     public void expandirNegocio(String nomeNegocio) {
 
         negocio = familia.getNegocio(nomeNegocio, 0, true);
@@ -18,21 +19,19 @@ public class Consiglieri extends Mafioso {
         System.out.println("getEstratega() " + getEstratega());
 
         if (getEstratega() > 50 && getEstratega() < 70) {
-            aumentoValorBaseTributabel = negocio.getValorBaseTributavel() + 100;
+            aumentoValorBaseTributabel = negocio.getValorBaseTributavel() + 500;
             negocio.setValorBaseTributavel(aumentoValorBaseTributabel);
         } else if (getEstratega() >= 70 && getEstratega() <90) {
             aumentoValorBaseTributabel = negocio.getValorBaseTributavel() + 200;
             negocio.setValorBaseTributavel(aumentoValorBaseTributabel);
         } else if (getEstratega() >= 90) {
-            aumentoValorBaseTributabel = negocio.getValorBaseTributavel() + 500;
+            aumentoValorBaseTributabel = negocio.getValorBaseTributavel() + 100;
             negocio.setValorBaseTributavel(aumentoValorBaseTributabel);
-        } else {
-            System.out.println("negocio.getValorBaseTributavel()" + negocio.getValorBaseTributavel());
         }
-
         System.out.println(negocio.toString());
     }
 
+    //Método onde conforme o nivel de Estratega do Consiglieri o custo fixo da familia aumenta ou diminui
     public void mafiaSitdown() {
         if (getEstratega() >= 80) {
             familia.setCustoFixo(familia.getCustoFixo() / 2);

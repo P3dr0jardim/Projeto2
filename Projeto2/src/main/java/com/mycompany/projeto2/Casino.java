@@ -15,6 +15,7 @@ public class Casino extends Negocio {
         this.createAssociates();
     }
 
+    //Cria x valor de associados para este negócio
     @Override
     public void createAssociates() {
         int quantidadeDeAssociates = randomAtributesGenerator.generateRandomNumber();
@@ -25,7 +26,7 @@ public class Casino extends Negocio {
         System.out.println("Associates Criados: " + associatesCasino);
     }
 
-    //Média do Musculo da equipa de Soldiers
+    //Obtem média da inteligencia da equipa de Soldiers e consoante esse valor é atribuido novos valores para a rentabilidade e valor base tributavel
     @Override
     public void AtualizaValoresNegocio() {
         if (VerificaInteligencia() >= 50 && VerificaInteligencia() < 70) {

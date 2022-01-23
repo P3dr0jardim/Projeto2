@@ -16,7 +16,6 @@ public class Familia {
     private ArrayList<Soldier> soldiers;
     private ArrayList<Object> obituarioFamiliares;
     private ArrayList<Negocio> negocios;
-    private ArrayList<Negocio> tiposDeNegocio;
     private Familia[] familiasComNegociosPartilhados;
     private CapoRegime capoRegimeSelecionado;
     private Negocio negocioSelecionado;
@@ -34,17 +33,13 @@ public class Familia {
         soldiers = new ArrayList<Soldier>();
         obituarioFamiliares = new ArrayList<Object>();
         negocios = new ArrayList<Negocio>();
-        tiposDeNegocio = new ArrayList<Negocio>();
         familiasComNegociosPartilhados = new Familia[5];
         presosDaFamilia = new ArrayList<Mafioso>();
     }
 
+    //Método que retorn o array com os presos
     public ArrayList<Mafioso> getPresosDaFamilia() {
         return presosDaFamilia;
-    }
-
-    public void setPresosDaFamilia(ArrayList<Mafioso> presosDaFamilia) {
-        this.presosDaFamilia = presosDaFamilia;
     }
 
     //Método que adiciona um membro da mafia à prisao
@@ -59,6 +54,7 @@ public class Familia {
                 if (mafiosoId == mafioso.getCcId()) {
                     presosDaFamilia.remove(mafioso);
                     System.out.println("O mafioso " + mafioso.getNome() + " foi libertado");
+                    mafioso.setEstaPreso(false);
                 } else {
                     System.out.println("O valor do ID não corresponde a nenhum preso!");
                 }
@@ -68,12 +64,9 @@ public class Familia {
         }
     }
 
+    //Método que retorn os negócios ativos na família
     public ArrayList<Negocio> getNegocios() {
         return negocios;
-    }
-
-    public void setNegocios(ArrayList<Negocio> negocios) {
-        this.negocios = negocios;
     }
 
     //Método que adiciona objetos da classe Mafiosos à lista
@@ -100,14 +93,6 @@ public class Familia {
         return negocioSelecionado;
     }
 
-    public ArrayList<Negocio> getTiposDeNegocio() {
-        return tiposDeNegocio;
-    }
-
-    public void setTiposDeNegocio(ArrayList<Negocio> tiposDeNegocio) {
-        this.tiposDeNegocio = tiposDeNegocio;
-    }
-
     //Método que devolve a lista de mafiosos na família 
     public ArrayList<Mafioso> getMafiosos() {
         return mafiosos;
@@ -118,34 +103,32 @@ public class Familia {
         mafiosos.add(mafioso);
     }
 
-    public Familia[] getFamiliasComNegociosPartilhados() {
-        return familiasComNegociosPartilhados;
-    }
-
-    public void setFamiliasComNegociosPartilhados(Familia[] familiasComNegociosPartilhados) {
-        this.familiasComNegociosPartilhados = familiasComNegociosPartilhados;
-    }
-
+    //Método que retorna o boss da família
     public Boss getBoss() {
         return boss;
     }
 
+    //Método que atribui um boss à família
     public void setBoss(Boss boss) {
         this.boss = boss;
     }
 
+    //Método que retorna o consiglieri da família
     public Consiglieri getConsiglieri() {
         return consiglieri;
     }
 
+    //Método que atribui um Consiglieri à família
     public void setConsiglieri(Consiglieri consiglieri) {
         this.consiglieri = consiglieri;
     }
 
+    //Método que retorna o underboss da família
     public Underboss getUnderboss() {
         return underboss;
     }
 
+    //Método que atribui um underboss à familia
     public void setUnderboss(Underboss underboss) {
         this.underboss = underboss;
     }
@@ -165,13 +148,12 @@ public class Familia {
         caporegimes.removeIf(capoRegime -> capoRegime.getNome().equals(capoRegimeNome));
     }
 
+    //Método que retorna o caporegime na qual o seu ccID seja igual ao valor do ID introduzido como parâmetro
     public CapoRegime getCapoRegime(int capoRegimeId) {
         //Redefine a variavel capoRegime para null
         capoRegimeSelecionado = null;
 
         for (CapoRegime capoRegime : caporegimes) {
-            System.out.println("capoRegimeId " + capoRegimeId);
-            System.out.println("capoRegime.getCcId() " + capoRegime.getCcId());
             if (capoRegimeId == capoRegime.getCcId()) {
                 capoRegimeSelecionado = capoRegime;
             } else {
@@ -198,46 +180,39 @@ public class Familia {
         soldiers.removeIf(soldier -> soldier.getNome().equals(soldierName));
     }
 
-    //Métodos Seletores
+    //Método que retorna o nome da família
     public String getNome() {
         return nome;
     }
 
+    //Método que retorna a riqueza da familia
     public double getRiqueza() {
         return riqueza;
     }
 
+    //Metodo que retorna o patrimonio da familia
     public double getPatrimonio() {
         return patrimonio;
     }
-
-    //Métodos Modificadores
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setRiqueza(double riqueza) {
-        this.riqueza = riqueza;
-    }
-
+    
+    //Retorna o ID da familia
     public int getFamiliaId() {
         return familiaId;
     }
-
-    public void setFamiliaId(int familiaId) {
-        this.familiaId = familiaId;
+    
+    //Método que atribui um novo valor à riqueza
+    public void setRiqueza(double riqueza) {
+        this.riqueza = riqueza;
     }
-
+    
+    //Atribui um novo valor ao patrimonio
     public void setPatrimonio(double patrimonio) {
         this.patrimonio = patrimonio;
     }
 
+    //Retorna os membros que passaram para o obituario da familia
     public ArrayList<Object> getObituarioFamiliares() {
         return obituarioFamiliares;
-    }
-
-    public void setObituarioFamiliares(ArrayList<Object> obituarioFamiliares) {
-        this.obituarioFamiliares = obituarioFamiliares;
     }
 
     //Método que adiciona um soldier à lista dos soldiers da família
@@ -245,10 +220,12 @@ public class Familia {
         obituarioFamiliares.add(familiar);
     }
 
+    //Retorn o custo fixo da familia
     public double getCustoFixo() {
         return custoFixo;
     }
 
+    //Atribui um novo valor ao tal custo fixo
     public void setCustoFixo(double custoFixo) {
         this.custoFixo = custoFixo;
     }
