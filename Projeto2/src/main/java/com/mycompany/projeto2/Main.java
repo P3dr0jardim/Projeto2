@@ -98,32 +98,39 @@ public class Main {
                         switch (opcao) {
                             case 1:
                                 if(capoRegimeActive){
-                                isValid = true;
-                                System.out.println("Atualmente existe: " + config.getFamiliaEscolhida().getSoldiers());
+                                    isValid = true;
+                                    System.out.println("Atualmente existe: " + config.getFamiliaEscolhida().getSoldiers());
 
-                                System.out.println("CapoRegimes disponiveis" + config.getFamiliaEscolhida().getCapoRegimes());
+                                    System.out.println("CapoRegimes disponiveis" + config.getFamiliaEscolhida().getCapoRegimes());
 
-                                System.out.println("Introduza o capoRegime que o soldier ira fazer parte");
-                                while (isValid) {
-                                    if (scan.hasNextInt()) {
-                                        capoRegimeId = scan.nextInt();
-                                    } else {
-                                        scan.next();
-                                        continue;
+                                    System.out.println("Introduza o ID do capoRegime que o soldier ira fazer parte");
+                                    
+                                    while (isValid) {
+                                        if (scan.hasNextInt()) {
+                                            capoRegimeId = scan.nextInt();
+                                        } else {
+                                            scan.next();
+                                            continue;
+                                        }
+                                        isValid = false;
                                     }
-                                    isValid = false;
-                                }
 
-                                capoRegime = config.getFamiliaEscolhida().getCapoRegime(capoRegimeId);
-                                System.out.println("Introduza o nome do soldier");
-                                nome = scan.next();
-                                boss.RecrutaSoldier(nome, capoRegime);
+                                    if (config.getFamiliaEscolhida().getCapoRegime(capoRegimeId) != null){
+                                        capoRegime = config.getFamiliaEscolhida().getCapoRegime(capoRegimeId);
+                                        System.out.println("Introduza o nome do soldier");
+                                        nome = scan.next();
+                                        boss.RecrutaSoldier(nome, capoRegime);
+                                    }else{
+                                        System.out.println("Não existe nenhum caporegime com esse ID \n");
+                                    }  
                                 }else{
-                                    System.out.println("Tem que criar primeiro um capoRegime antes de recrutar um soldier");
+                                    System.out.println("Tem que criar primeiro um capoRegime antes de recrutar um soldier\n");
                                 }
                                 break;
                             case 2:
+                                
                                 System.out.println("Introduza o nome do capoRegime");
+                                
                                 nome = scan.next();
                                 boss.RecrutaCapoRegime(nome);
                                 capoRegimeActive = true;
@@ -139,18 +146,20 @@ public class Main {
                                 //Gera negocios para caporegime
                                 System.out.println("CapoRegimes disponiveis" + config.getFamiliaEscolhida().getCapoRegimes());
                                 capoRegime = null;
-                                System.out.println("CapoRegime: " + capoRegime);
-
+                                
                                 while (capoRegime == null) {
-                                    System.out.println("Introduza o capoRegime que ira atribuir o novo negocio");
+                                    System.out.println("Introduza o ID do capoRegime que ira atribuir o novo negocio");
                                     capoRegimeId = scan.nextInt();
                                     capoRegime = config.getFamiliaEscolhida().getCapoRegime(capoRegimeId);
                                 }
-
-                                System.out.println("capoRegime: " + capoRegime);
-                                boss.geraNegocio(capoRegime, config);
-                                System.out.println("negocios da familia: " + config.getFamiliaEscolhida().getNegocios());
-
+                                if (config.getFamiliaEscolhida().getCapoRegime(capoRegimeId) != null){
+                                    System.out.println("capoRegime: " + capoRegime);
+                                    boss.geraNegocio(capoRegime, config);
+                                    System.out.println("negocios da familia: " + config.getFamiliaEscolhida().getNegocios());
+                                }
+                                else{
+                                    System.out.println("Não existe nenhum caporegime com esse ID \n");
+                                }
                                 break;
                             case 5:
                                 System.out.println("Introduza o nome do Consiglieri");
@@ -185,12 +194,17 @@ public class Main {
                                         }
                                         System.out.println("Introduza o id do mafioso que deseja libertar da prisao");
 
+                                         while (!scan.hasNextInt()) {
+                                            System.out.println("O valor introduzido não é valido!");
+                                            System.out.println("Introduza novamente um valor valido");
+                                            scan.next(); // this is important!
+                                        }           
                                         presoId = scan.nextInt();
 
                                         config.getFamiliaEscolhida().libertarPreso(presoId);
 
                                     } else {
-                                        System.out.println("Nenhum mafioso encontra-se preso neste momento");
+                                        System.out.println("Nenhum mafioso encontra-se preso neste momento\n");
                                     }
                                     break;
 
@@ -210,7 +224,7 @@ public class Main {
                                         underboss = config.getFamiliaEscolhida().getUnderboss();
                                         underboss.loyaltyTest(config.getFamiliaEscolhida());
                                         System.out.println("A riqueza da familia foi atualizada!\n");
-                                        System.out.println("A riqueza atual é " + config.getFamiliaEscolhida().getRiqueza());
+                                        System.out.println("A riqueza atual é " + config.getFamiliaEscolhida().getRiqueza()+"\n");
 
                                     } else {
                                         System.out.println("Não existem de momento CapoRegimes ligados à familia!\n");
@@ -226,7 +240,7 @@ public class Main {
                                     break;
                             }
                         } else {
-                            System.out.println("O Menu underBoss esta indisponivel, porque o underboss ainda nao foi criado!");
+                            System.out.println("O Menu underBoss esta indisponivel, porque o underboss ainda nao foi criado!\n");
                         }
 
                         break;
@@ -288,9 +302,9 @@ public class Main {
 
                                         System.out.println("Custos Fixos Atualizados!");
                                         System.out.println("Custo da familia atual: " + config.getFamiliaEscolhida().getCustoFixo());
-                                        System.out.println("Custo da familia partilhada: " + boss.getFamiliaPartilhada().getCustoFixo());
+                                        System.out.println("Custo da familia partilhada: " + boss.getFamiliaPartilhada().getCustoFixo()+"\n");
                                     } else {
-                                        System.out.println("A familia nao tem relações com outra familia!");
+                                        System.out.println("A familia nao tem relações com outra familia!\n");
                                     }
 
                                     break;
@@ -298,7 +312,7 @@ public class Main {
                                     System.out.println("\nOpção inválida!\n");
                             }
                         } else {
-                            System.out.println("O Menu consiglieri esta indisponivel, porque o consiglieri ainda nao foi criado!");
+                            System.out.println("O Menu consiglieri esta indisponivel, porque o consiglieri ainda nao foi criado!\n");
                         }
                         break;
                     case 4:
@@ -389,7 +403,7 @@ public class Main {
                                 }
 
                                 System.out.println("Custo fixo familia atual: " + config.getFamiliaEscolhida().getCustoFixo());
-                                System.out.println("Custo fixo familia rival: " + familiaRival.getCustoFixo());
+                                System.out.println("Custo fixo familia rival: " + familiaRival.getCustoFixo()+"\n");
                                 break;
                             case 8:
                                 System.out.println("\nSaindo da aplicação...");

@@ -15,6 +15,7 @@ public class Boss extends Mafioso {
         this.familia = familia;
     }
 
+    //Recruta alguém para ser Soldier da família
     public void RecrutaSoldier(String nome, CapoRegime capoRegime) {
         //Codigo para recrutar um soldier 
         Soldier soldier = new Soldier(familia, nome, randomAtributesGenerator.generateRandomCCID(), randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), randomAtributesGenerator.generateProbabilidadeSerPreso(), false, true, false);
@@ -36,6 +37,7 @@ public class Boss extends Mafioso {
         this.familiaPartilhada = familiaPartilhada;
     }
 
+    //Recruta alguém para o cargo de CapoRegime
     public void RecrutaCapoRegime(String nome) {
         //Codigo para recrutar um CapoRegime 
         familia.addCapoRegime(new CapoRegime(familia, nome, randomAtributesGenerator.generateRandomCCID(), randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), getProbabilidadeSerPreso(), false, true, false));
@@ -43,7 +45,8 @@ public class Boss extends Mafioso {
         System.out.println("Familia do capoRegime " + familia.getNome());
         System.out.println("Atualmente existem: " + familia.getCapoRegimes().size());
     }
-
+    
+    //Recruta alguém para o cargo de underboss
     public void RecrutaUnderboss(String nome) {
         //Codigo para recrutar um Underboss 
         Underboss underboss = new Underboss(familia, nome, randomAtributesGenerator.generateRandomCCID(), randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), getProbabilidadeSerPreso(), false, true, false);
@@ -52,27 +55,21 @@ public class Boss extends Mafioso {
         familia.setUnderboss(underboss);
         
     }
-
+    
+    //Vai nomear alguém para o cargo de consiglieri
     public void NomearConsiglieri(String nome) {
         //Codigo para nomear um consiglieri 
         hasConsiglieri = true;
 
         Consiglieri consiglieri = new Consiglieri(familia, nome, randomAtributesGenerator.generateRandomCCID(), randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), getProbabilidadeSerPreso(), false, true, false);
         System.out.println("Familia do consiglieri" + familia.getNome());
-        System.out.println("Consiglieri: " + familia.getConsiglieri());
+        System.out.println("Consiglieri anterior: " + familia.getConsiglieri());
         familia.setConsiglieri(consiglieri);
+        System.out.println("Consiglieri atual: " + familia.getConsiglieri());
     
     }
-
-    public String temConsiglieri() {
-        if (hasConsiglieri) {
-            return "O chefe da mafia " + getNome() + " tem um consiglieri";
-
-        } else {
-            return "O chefe da mafia " + getNome() + " não tem um consiglieri";
-        }
-    }
-
+    
+    //Método que vai gerar consoante o carisma do boss um certo valor de negocio para o caporegime associado
     public void geraNegocio(CapoRegime capoRegime, Config config) {
         if (getCarisma() >= 80) {
             quantidadeDeNegocios = 5;
@@ -147,5 +144,4 @@ public class Boss extends Mafioso {
     public String toString() {
         return super.toString(); //To change body of generated methods, choose Tools | Templates.
     }
-
 }

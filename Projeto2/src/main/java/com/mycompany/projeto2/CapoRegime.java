@@ -17,21 +17,14 @@ public class CapoRegime extends Mafioso {
         return negocios;
     }
 
-    public void setNegocios(ArrayList<Negocio> negocios) {
-        this.negocios = negocios;
-    }
-
     //Método que adiciona um negocio à lista dos soldiers associados ao capoRegime
     public void addNegocio(Negocio negocio) {
         negocios.add(negocio);
     }
 
+    //Método que retorna o Array com os Soldiers associados ao Caporegime
     public ArrayList<Soldier> getSoldiers() {
         return soldiers;
-    }
-
-    public void setSoldiers(ArrayList<Soldier> soldiers) {
-        this.soldiers = soldiers;
     }
 
     //Método que adiciona um soldier à lista dos soldiers associados ao capoRegime
@@ -39,6 +32,7 @@ public class CapoRegime extends Mafioso {
         soldiers.add(soldier);
     }
 
+    //Mostra a equipa liderada pelo CapoRegime e com a sua equipa de Soldiers
     public String capoRegimeTeam() {
         String texto;
         texto = "A equipa do capoRegime " + getNome() + " é " + getSoldiers();

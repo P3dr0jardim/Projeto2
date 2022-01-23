@@ -34,80 +34,36 @@ public abstract class Pessoa {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public int getCcId() {
         return ccId;
-    }
-
-    public void setCcId(int ccId) {
-        this.ccId = ccId;
     }
 
     public int getLealdade() {
         return lealdade;
     }
 
-    public void setLealdade(int lealdade) {
-        this.lealdade = lealdade;
-    }
-
     public int getMusculo() {
         return musculo;
-    }
-
-    public void setMusculo(int musculo) {
-        this.musculo = musculo;
     }
 
     public int getInteligencia() {
         return inteligencia;
     }
 
-    public void setInteligencia(int inteligencia) {
-        this.inteligencia = inteligencia;
-    }
-
     public int getEstratega() {
         return estratega;
-    }
-
-    public void setEstratega(int estratega) {
-        this.estratega = estratega;
     }
 
     public int getCarisma() {
         return carisma;
     }
 
-    public void setCarisma(int carisma) {
-        this.carisma = carisma;
-    }
-
     public int getProbabilidadeSerPreso() {
         return probabilidadeSerPreso;
     }
 
-    public void setProbabilidadeSerPreso(int probabilidadeSerPreso) {
-        this.probabilidadeSerPreso = probabilidadeSerPreso;
-    }
-
-    public boolean isEstaPreso() {
-        return estaPreso;
-    }
-
     public void setEstaPreso(boolean estaPreso) {
         this.estaPreso = estaPreso;
-    }
-
-    public boolean isLinhagem() {
-        return linhagem;
-    }
-
-    public void setLinhagem(boolean linhagem) {
-        this.linhagem = linhagem;
     }
     
     public boolean isInformador(){

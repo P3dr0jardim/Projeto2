@@ -28,6 +28,7 @@ public abstract class Negocio {
         associates = new ArrayList<Associate>();
     }
 
+    //Metodo que cria associados para se enquadrarem nos negocios
     public void createAssociates() {
         int quantidadeDeAssociates = randomAtributesGenerator.generateRandomNumber();
         System.out.println("quantidadeDeAssociates " + quantidadeDeAssociates);
@@ -37,75 +38,80 @@ public abstract class Negocio {
         System.out.println("Associates Criados: " + associates);
     }
 
+    //Método que retorna os associados
     public ArrayList<Associate> getAssociates() {
         return associates;
     }
 
-    public void setAssociates(ArrayList<Associate> associates) {
-        this.associates = associates;
-    }
-
-    //Getters e setters necessários
+    //Retorna a rentabilidade do negocio
     public double getRentabilidade() {
         return rentabilidade;
     }
 
+    //Atribui um novo valor à rentabilidade
     public void setRentabilidade(double aumento) {
         this.rentabilidade = aumento;
     }
 
+    //Retorna o caporegime associado ao negocio
     public CapoRegime getCapoRegime() {
         return CapoRegime;
     }
 
+    //Retorna o valor atual tributavel do negócio
     public double getValorAtualTributavel() {
         return ValorAtualTributavel;
     }
 
+    //Atribui um novo valor atual tributavel
     public void setValorAtualTributavel(double tributo) {
         this.ValorAtualTributavel += tributo;
     }
 
+    //Retorna se o negocio é ou não Musculado
     public boolean isMusculado() {
         return Musculado;
     }
 
+    //Retorna se o negocio é ou não Inteligente
     public boolean isInteligente() {
         return Inteligente;
     }
 
+    //Retorna o nome do negocio
     public String getNome() {
         return nome;
     }
 
+    //Retorna o valor base tributavel
     public double getValorBaseTributavel() {
         return ValorBaseTributavel;
     }
 
+    //Atribui um novo valor base tributavel ao negocio
     public void setValorBaseTributavel(double NovoValorBase) {
         this.ValorBaseTributavel = NovoValorBase;
     }
 
+    //Retorna se o negocio é ou não policiavel
     public boolean VerificaPoliciavel() {
         return Policiavel;
     }
 
+    //Retorna a probabilidade da policia atuar
     public int getProbPolicia() {
         return ProbPolicia;
     }
 
+    //Atribui um novo valor da probabilidade da policia atuar
     public void setProbPolicia(int prob) {
         this.ProbPolicia = prob;
-    }
-
-    //Probabilidade da policia agir caso haja um informador no negócio
-    public void ProbComInformador(int aumento) {
-        ProbPolicia += aumento;
     }
 
     //Metodo abstrato defenido em cada subclasse de negocio
     public abstract void AtualizaValoresNegocio();
 
+    //Retorna um valor da média obtida da Inteligencia da equipa a atuar no negocio
     public double VerificaInteligencia() {
         double media = 0;
         double soma = 0;
@@ -116,6 +122,7 @@ public abstract class Negocio {
         return media;
     }
 
+    //Retorna o valor médio do Musculo relativo à equipa associada ao negocio
     public double VerificaMusculo() {
         double media = 0;
         double soma = 0;
