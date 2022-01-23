@@ -8,9 +8,9 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int opcao, capoRegime, preso, negocioId, familiaId;
-        String nome, nomeNegocio;
-        boolean sair = false, underbossMenu = false;
+        int opcao, capoRegimeId = 0, presoId, negocioId = 0, familiaId;
+        String nome, nomeNegocio = "";
+        boolean sair = false, underbossMenu = false, consiglieriMenu = false, capoRegimeActive = false, isValid = true;
         RandomAtributesGenerator randomAtributesGenerator = new RandomAtributesGenerator();
         Scanner scan = new Scanner(System.in);
         Boss boss;
@@ -41,12 +41,11 @@ public class Main {
         Boss chefeDaMafiaFamilia5 = new Boss(familia5, "Heung Wah-yim", 1, randomAtributesGenerator.generateRandomLealdade(), randomAtributesGenerator.generateRandomMusculo(), randomAtributesGenerator.generateRandomInteligencia(), randomAtributesGenerator.generateRandomEstrategia(), randomAtributesGenerator.generateRandomCarisma(), 0, false, true, false);
         familia5.setBoss(chefeDaMafiaFamilia5);
 
-        Prisao prisao = new Prisao();
         Underboss underboss;
         Consiglieri consiglieri;
         Familia familia;
         Familia familiaRival;
-
+        CapoRegime capoRegime = null;
         do {
             if (!config.isFamiliaFoiEscolhida()) {
                 System.out.println("Welcome to “The five crime families of New York");
@@ -62,7 +61,7 @@ public class Main {
                 System.out.println("A familia escolhida foi: " + familia.getNome());
 
             } else {
-                System.out.println("familia escolhida: " + config.getFamiliaEscolhida()+"\n\n");
+                System.out.println("familia escolhida: " + config.getFamiliaEscolhida() + "\n\n");
 
                 System.out.println("        MENU MÁFIA       ");
                 System.out.println("1 - Boss");
@@ -98,27 +97,36 @@ public class Main {
 
                         switch (opcao) {
                             case 1:
+                                if(capoRegimeActive){
+                                isValid = true;
                                 System.out.println("Atualmente existe: " + config.getFamiliaEscolhida().getSoldiers());
 
                                 System.out.println("CapoRegimes disponiveis" + config.getFamiliaEscolhida().getCapoRegimes());
 
                                 System.out.println("Introduza o capoRegime que o soldier ira fazer parte");
-                                int introduzido = scan.nextInt();
-                                for (int i = 0; i < config.getFamiliaEscolhida().getCapoRegimes().size(); i++) {
-                                    if (config.getFamiliaEscolhida().getCapoRegimes().get(i).getCcId() == introduzido) {
-                                        capoRegime = i;
-                                        System.out.println("Introduza o nome do soldier");
-                                        nome = scan.next();
-                                        boss.RecrutaSoldier(nome, capoRegime);
+                                while (isValid) {
+                                    if (scan.hasNextInt()) {
+                                        capoRegimeId = scan.nextInt();
                                     } else {
-                                        i++;
+                                        scan.next();
+                                        continue;
                                     }
+                                    isValid = false;
+                                }
+
+                                capoRegime = config.getFamiliaEscolhida().getCapoRegime(capoRegimeId);
+                                System.out.println("Introduza o nome do soldier");
+                                nome = scan.next();
+                                boss.RecrutaSoldier(nome, capoRegime);
+                                }else{
+                                    System.out.println("Tem que criar primeiro um capoRegime antes de recrutar um soldier");
                                 }
                                 break;
                             case 2:
                                 System.out.println("Introduza o nome do capoRegime");
                                 nome = scan.next();
                                 boss.RecrutaCapoRegime(nome);
+                                capoRegimeActive = true;
                                 break;
                             case 3:
                                 System.out.println("Introduza o nome do Underboss");
@@ -127,12 +135,19 @@ public class Main {
                                 underbossMenu = true;
                                 break;
                             case 4:
+                                isValid = true;
                                 //Gera negocios para caporegime
-                                System.out.println("Introduza o capoRegime que ira atribuir o novo negocio");
-                                capoRegime = scan.nextInt();
-                                //System.out.println("Introduza o nome do negocio");
-                                //nomeNegocio = scan.next();
+                                System.out.println("CapoRegimes disponiveis" + config.getFamiliaEscolhida().getCapoRegimes());
+                                capoRegime = null;
+                                System.out.println("CapoRegime: " + capoRegime);
 
+                                while (capoRegime == null) {
+                                    System.out.println("Introduza o capoRegime que ira atribuir o novo negocio");
+                                    capoRegimeId = scan.nextInt();
+                                    capoRegime = config.getFamiliaEscolhida().getCapoRegime(capoRegimeId);
+                                }
+
+                                System.out.println("capoRegime: " + capoRegime);
                                 boss.geraNegocio(capoRegime, config);
                                 System.out.println("negocios da familia: " + config.getFamiliaEscolhida().getNegocios());
 
@@ -141,11 +156,13 @@ public class Main {
                                 System.out.println("Introduza o nome do Consiglieri");
                                 nome = scan.next();
                                 boss.NomearConsiglieri(nome);
+                                consiglieriMenu = true;
                                 break;
                             default:
                                 System.out.println("\nOpção inválida!\n");
                         }
                         break;
+
                     case 2:
                         if (underbossMenu) {
                             System.out.println("\n        Opções válidas      ");
@@ -162,21 +179,24 @@ public class Main {
 
                             switch (opcao) {
                                 case 1:
-                                    if (prisao.getPresos().size() > 0) {
-                                        System.out.println("O(s) seguinte(s) " + prisao.getPresos().size() + " mafioso(s) encontram-se na prisão:");
-                                        for (int i = 0; i < prisao.getPresos().size(); i++) {
-                                            System.out.println("ID: " + prisao.getPresos().get(i).getCcId() + ", Nome: " + prisao.getPresos().get(i).getNome());
+                                    if (config.getFamiliaEscolhida().getPresosDaFamilia().size() > 0) {
+                                        for (int i = 0; i < config.getFamiliaEscolhida().getPresosDaFamilia().size(); i++) {
+                                            System.out.println("ID: " + config.getFamiliaEscolhida().getPresosDaFamilia().get(i).getCcId() + ", Nome: " + config.getFamiliaEscolhida().getPresosDaFamilia().get(i).getNome());
                                         }
                                         System.out.println("Introduza o id do mafioso que deseja libertar da prisao");
-                                        preso = scan.nextInt();
-                                        prisao.libertarPreso(preso);
+
+                                        presoId = scan.nextInt();
+
+                                        config.getFamiliaEscolhida().libertarPreso(presoId);
+
                                     } else {
                                         System.out.println("Nenhum mafioso encontra-se preso neste momento");
                                     }
                                     break;
+
                                 case 2:
                                     //Periodo Contabilistico
-                                    if (config.getFamiliaEscolhida().getCapoRegimes().size()>0){
+                                    if (config.getFamiliaEscolhida().getCapoRegimes().size() > 0) {
                                         for (int i = 0; i < config.getFamiliaEscolhida().getCapoRegimes().size(); i++) {
                                             config.getFamiliaEscolhida().getCapoRegimes().get(i).getNegocios();
                                             for (int j = 0; j < config.getFamiliaEscolhida().getCapoRegimes().get(i).getNegocios().size(); j++) {
@@ -187,15 +207,18 @@ public class Main {
                                                 config.getFamiliaEscolhida().setRiqueza(config.getFamiliaEscolhida().getRiqueza() + lucro);
                                             }
                                         }
+                                        underboss = config.getFamiliaEscolhida().getUnderboss();
+                                        underboss.loyaltyTest(config.getFamiliaEscolhida());
                                         System.out.println("A riqueza da familia foi atualizada!\n");
-                                    }
-                                    else {
+                                        System.out.println("A riqueza atual é " + config.getFamiliaEscolhida().getRiqueza());
+
+                                    } else {
                                         System.out.println("Não existem de momento CapoRegimes ligados à familia!\n");
                                     }
-            
+
                                     break;
                                 case 3:
-                                    underboss = config.getFamiliaEscolhida().getUnderBoss();
+                                    underboss = config.getFamiliaEscolhida().getUnderboss();
                                     underboss.loyaltyTest(config.getFamiliaEscolhida());
                                     break;
                                 default:
@@ -207,55 +230,75 @@ public class Main {
                         }
 
                         break;
+
                     case 3:
-                        System.out.println("\n        Opções válidas      ");
-                        System.out.println("1. Expandir negócio");
-                        System.out.println("2. Mafia sitdown");
-                        System.out.println("O que pretende?");
-                        while (!scan.hasNextInt()) {
-                            System.out.println("O valor introduzido não é valido!");
-                            System.out.println("Introduza novamente um valor valido");
-                            scan.next(); // this is important!
-                        }
-                        opcao = scan.nextInt();
+                        if (consiglieriMenu) {
+                            System.out.println("\n        Opções válidas      ");
+                            System.out.println("1. Expandir negócio");
+                            System.out.println("2. Mafia sitdown");
+                            System.out.println("O que pretende?");
+                            while (!scan.hasNextInt()) {
+                                System.out.println("O valor introduzido não é valido!");
+                                System.out.println("Introduza novamente um valor valido");
+                                scan.next(); // this is important!
+                            }
+                            opcao = scan.nextInt();
 
-                        switch (opcao) {
-                            case 1:
-                                System.out.println("Negocios: " + config.getFamiliaEscolhida().getNegocios());
-                                System.out.println("Introduza o id do negocio que deseja expandir");
-                                negocioId = scan.nextInt();
+                            switch (opcao) {
+                                case 1:
+                                    isValid = true;
+                                    System.out.println("Negocios: " + config.getFamiliaEscolhida().getNegocios());
+                                    System.out.println("Introduza o nome do negocio que deseja expandir");
 
-                                System.out.println("Consiglieri: " + config.getFamiliaEscolhida().getConsiglieris());
-                                consiglieri = config.getFamiliaEscolhida().getConsiglieri();
-                                consiglieri.expandirNegocio(negocioId);
-                                break;
-                            case 2:
-                                System.out.println("Mafia Sitdown");
-                                int estrategaConsiglieri = config.getFamiliaEscolhida().getConsiglieri().getEstratega();
-                                System.out.println("Custos fixos:");
-                                System.out.println("Custo da familia " + config.getFamiliaEscolhida().getNome() + " :" + config.getFamiliaEscolhida().getCustoFixo());
-                                System.out.println("Custo da familia partilhada " + boss.getFamiliaPartilhada().getNome() + ": " + boss.getFamiliaPartilhada().getCustoFixo());
-                                
-                                if (estrategaConsiglieri >= 90) {
-                                    config.getFamiliaEscolhida().setCustoFixo(0);
-                                    boss.getFamiliaPartilhada().setCustoFixo(0);
-                                }else if (estrategaConsiglieri >= 70 && estrategaConsiglieri < 90) {
-                                    config.getFamiliaEscolhida().setCustoFixo(config.getFamiliaEscolhida().getCustoFixo() /5);
-                                    boss.getFamiliaPartilhada().setCustoFixo(boss.getFamiliaPartilhada().getCustoFixo() /5);
-                                }else if(estrategaConsiglieri >= 50 && estrategaConsiglieri < 70){
-                                    config.getFamiliaEscolhida().setCustoFixo(config.getFamiliaEscolhida().getCustoFixo() /2);
-                                    boss.getFamiliaPartilhada().setCustoFixo(boss.getFamiliaPartilhada().getCustoFixo() /2);
-                                }else{
-                                    config.getFamiliaEscolhida().setCustoFixo(config.getFamiliaEscolhida().getCustoFixo() * 2);
-                                    boss.getFamiliaPartilhada().setCustoFixo(boss.getFamiliaPartilhada().getCustoFixo() * 2);
-                                }
+                                    while (isValid) {
+                                        if (scan.hasNext()) {
+                                            nomeNegocio = scan.next();
+                                        } else {
+                                            scan.next();
+                                            continue;
+                                        }
+                                        isValid = false;
+                                    }
 
-                                System.out.println("Custos Fixos Atualizados!");
-                                System.out.println("Custo da familia atual: " + config.getFamiliaEscolhida().getCustoFixo());
-                                System.out.println("Custo da familia partilhada: " + boss.getFamiliaPartilhada().getCustoFixo());
-                                break;
-                            default:
-                                System.out.println("\nOpção inválida!\n");
+                                    System.out.println("Consiglieri: " + config.getFamiliaEscolhida().getConsiglieri());
+                                    consiglieri = config.getFamiliaEscolhida().getConsiglieri();
+                                    consiglieri.expandirNegocio(nomeNegocio);
+                                    break;
+                                case 2:
+                                    System.out.println("Mafia Sitdown");
+
+                                    if (boss.getFamiliaPartilhada() != null) {
+                                        int estrategaConsiglieri = config.getFamiliaEscolhida().getConsiglieri().getEstratega();
+                                        System.out.println("Custos fixos:");
+                                        System.out.println("Custo da familia " + config.getFamiliaEscolhida().getNome() + " :" + config.getFamiliaEscolhida().getCustoFixo());
+                                        System.out.println("Custo da familia partilhada " + boss.getFamiliaPartilhada().getNome() + ": " + boss.getFamiliaPartilhada().getCustoFixo());
+                                        if (estrategaConsiglieri >= 90) {
+                                            config.getFamiliaEscolhida().setCustoFixo(0);
+                                            boss.getFamiliaPartilhada().setCustoFixo(0);
+                                        } else if (estrategaConsiglieri >= 70 && estrategaConsiglieri < 90) {
+                                            config.getFamiliaEscolhida().setCustoFixo(config.getFamiliaEscolhida().getCustoFixo() / 5);
+                                            boss.getFamiliaPartilhada().setCustoFixo(boss.getFamiliaPartilhada().getCustoFixo() / 5);
+                                        } else if (estrategaConsiglieri >= 50 && estrategaConsiglieri < 70) {
+                                            config.getFamiliaEscolhida().setCustoFixo(config.getFamiliaEscolhida().getCustoFixo() / 2);
+                                            boss.getFamiliaPartilhada().setCustoFixo(boss.getFamiliaPartilhada().getCustoFixo() / 2);
+                                        } else {
+                                            config.getFamiliaEscolhida().setCustoFixo(config.getFamiliaEscolhida().getCustoFixo() * 2);
+                                            boss.getFamiliaPartilhada().setCustoFixo(boss.getFamiliaPartilhada().getCustoFixo() * 2);
+                                        }
+
+                                        System.out.println("Custos Fixos Atualizados!");
+                                        System.out.println("Custo da familia atual: " + config.getFamiliaEscolhida().getCustoFixo());
+                                        System.out.println("Custo da familia partilhada: " + boss.getFamiliaPartilhada().getCustoFixo());
+                                    } else {
+                                        System.out.println("A familia nao tem relações com outra familia!");
+                                    }
+
+                                    break;
+                                default:
+                                    System.out.println("\nOpção inválida!\n");
+                            }
+                        } else {
+                            System.out.println("O Menu consiglieri esta indisponivel, porque o consiglieri ainda nao foi criado!");
                         }
                         break;
                     case 4:
@@ -278,15 +321,17 @@ public class Main {
                         switch (opcao) {
                             case 1:
                                 System.out.println("Boss: " + config.getFamiliaEscolhida().getBoss() + "\n");
-                                System.out.println("UnderBoss: " + config.getFamiliaEscolhida().getUnderBoss() + "\n");
-                                System.out.println("Consiglieri: " + config.getFamiliaEscolhida().getConsiglieris() + "\n");
+                                System.out.println("UnderBoss: " + config.getFamiliaEscolhida().getUnderboss() + "\n");
+                                System.out.println("Consiglieri: " + config.getFamiliaEscolhida().getConsiglieri() + "\n");
                                 System.out.println("CapoRegimes: " + config.getFamiliaEscolhida().getCapoRegimes() + "\n");
                                 System.out.println("Soldiers: " + config.getFamiliaEscolhida().getSoldiers() + "\n");
                                 System.out.println("Negócios: " + config.getFamiliaEscolhida().getNegocios() + "\n");
                                 System.out.println("Custo Fixo: " + config.getFamiliaEscolhida().getCustoFixo() + "\n");
                                 System.out.println("Riqueza Acumulada: " + config.getFamiliaEscolhida().getRiqueza() + "\n");
                                 System.out.println("Obituário: " + config.getFamiliaEscolhida().getObituarioFamiliares() + "\n");
-                                //System.out.println("Encarcerados: "+config.getFamiliaEscolhida().getPresos()+"\n");
+
+                                System.out.println("Encarcerados: " + config.getFamiliaEscolhida().getPresosDaFamilia() + "\n");
+
                                 break;
                             case 2:
                                 System.out.println("Negócios: " + config.getFamiliaEscolhida().getNegocios() + "\n");
@@ -305,7 +350,9 @@ public class Main {
                                 break;
                             case 6:
                                 System.out.println("Encarcerados: ");
-                                System.out.println(prisao.getPresosFamilia());
+
+                                System.out.println(config.getFamiliaEscolhida().getPresosDaFamilia());
+
                                 break;
                             case 7:
                                 System.out.println("Selecione uma segunda família para o All Out War (Introduza o id da segunda familia.)");
@@ -315,6 +362,15 @@ public class Main {
                                 familiaId = scan.nextInt();
                                 familiaRival = config.getFamilia(familiaId);
                                 System.out.println("A segunda familia escolhida foi: " + familiaRival.getNome());
+
+                                System.out.println("A segunda familiagetConsiglieri: " + familiaRival.getConsiglieri());
+                                if (familiaRival.getConsiglieri() == null) {
+                                    System.out.println("A familia rival nao tem um consiglieri");
+                                    System.out.println("Introduza o nome do consiglieri da familia Rival");
+                                    String consiglieriFamiliaRival = scan.next();
+                                    familiaRival.getBoss().NomearConsiglieri(consiglieriFamiliaRival);
+                                }
+
                                 if (config.getFamiliaEscolhida().getConsiglieri().getEstratega() > 60 && familiaRival.getConsiglieri().getEstratega() < 40) {
                                     config.getFamiliaEscolhida().setCustoFixo(config.getFamiliaEscolhida().getCustoFixo() * 1.5);
                                     familiaRival.setCustoFixo(familiaRival.getCustoFixo() / 1.5);
@@ -331,6 +387,9 @@ public class Main {
                                     config.getFamiliaEscolhida().setCustoFixo(config.getFamiliaEscolhida().getCustoFixo() / 3);
                                     familiaRival.setCustoFixo(familiaRival.getCustoFixo() * 3);
                                 }
+
+                                System.out.println("Custo fixo familia atual: " + config.getFamiliaEscolhida().getCustoFixo());
+                                System.out.println("Custo fixo familia rival: " + familiaRival.getCustoFixo());
                                 break;
                             case 8:
                                 System.out.println("\nSaindo da aplicação...");
@@ -351,6 +410,7 @@ public class Main {
                         System.out.println("\nOpção inválida, tente novamente!\n");
                 }
             }
+
         } while (!sair);
     }
 }

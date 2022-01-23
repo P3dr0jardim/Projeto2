@@ -2,7 +2,7 @@ package com.mycompany.projeto2;
 
 public class Consiglieri extends Mafioso {
 
-    private double aumentoValorBaseTributabel;
+    private double aumentoValorBaseTributabel = 0;
     private Familia familia;
     private Negocio negocio;
 
@@ -11,19 +11,19 @@ public class Consiglieri extends Mafioso {
         this.familia = familia;
     }
 
-    public void expandirNegocio(int negocioId) {
+    public void expandirNegocio(String nomeNegocio) {
 
-        negocio = familia.getNegocio(negocioId);
+        negocio = familia.getNegocio(nomeNegocio, 0, true);
         System.out.println("Negocio: " + negocio);
         System.out.println("getEstratega() " + getEstratega());
 
-        if (getEstratega() > 50) {
+        if (getEstratega() > 50 && getEstratega() < 70) {
             aumentoValorBaseTributabel = negocio.getValorBaseTributavel() + 100;
             negocio.setValorBaseTributavel(aumentoValorBaseTributabel);
-        } else if (getEstratega() > 70) {
+        } else if (getEstratega() >= 70 && getEstratega() <90) {
             aumentoValorBaseTributabel = negocio.getValorBaseTributavel() + 200;
             negocio.setValorBaseTributavel(aumentoValorBaseTributabel);
-        } else if (getEstratega() > 90) {
+        } else if (getEstratega() >= 90) {
             aumentoValorBaseTributabel = negocio.getValorBaseTributavel() + 500;
             negocio.setValorBaseTributavel(aumentoValorBaseTributabel);
         } else {

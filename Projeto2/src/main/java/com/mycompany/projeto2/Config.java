@@ -54,13 +54,8 @@ public class Config {
             return familiaEscolhida;
         } else {
             System.out.println("Familia foi escolhida");
-
-            System.out.println("FamiliaId" + familiaId);
-            System.out.println("familiaEscolhida.getFamiliaId()" + familiaEscolhida.getFamiliaId());
             if (familiaId != familiaEscolhida.getFamiliaId()) {
-
                 for (Familia familia : familias) {
-
                     if (familiaId == familia.getFamiliaId()) {
                         System.out.println("Familia partilhada certo");
                         familiaPartilhada = familia;
